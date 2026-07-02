@@ -1,0 +1,35 @@
+{
+  "name": "healthaxis",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "generate:data": "node --env-file=.env.local scripts/generate-synthetic-data.mjs",
+    "seed:firestore": "node --env-file=.env.local scripts/generate-synthetic-data.mjs"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.2",
+    "autoprefixer": "^10.5.2",
+    "firebase": "^12.15.0",
+    "firebase-admin": "^14.1.0",
+    "framer-motion": "^12.42.2",
+    "lucide-react": "^0.468.0",
+    "next": "^15.0.3",
+    "postcss": "^8.5.16",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^3.9.1",
+    "tailwindcss": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "^15.0.3",
+    "typescript": "^5.7.2"
+  }
+}

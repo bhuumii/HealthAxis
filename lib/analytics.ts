@@ -1,3 +1,5 @@
+import { forecastCentreStock, forecastMedicineStock } from "@/lib/forecasting";
+import { buildRedistributionPlan } from "@/lib/redistribution";
 import type {
   CentreStatus,
   DistrictData,
@@ -8,8 +10,6 @@ import type {
   StockForecast
 } from "@/lib/types";
 
-const WARNING_DAYS = 10;
-const CRITICAL_DAYS = 5;
 export const INTERVENTION_FLAG_THRESHOLD = 40;
 
 export function calculateInterventionScore(components: {
@@ -39,48 +39,12 @@ function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
-export function movingAverage(values: number[], window = 7): number {
-  return average(values.slice(-window));
-}
-
-export function exponentialSmoothing(values: number[], alpha = 0.45): number {
-  if (!values.length) return 0;
-  return values.slice(1).reduce((forecast, value) => alpha * value + (1 - alpha) * forecast, values[0]);
-}
-
 export function forecastStock(centre: HealthCentre, medicine: MedicineStock): StockForecast {
-  const current = last(medicine.history).closing;
-  const dailyUse = medicine.history.map((point) => point.consumed);
-  const avgDailyUse = movingAverage(dailyUse, 7);
-  const smoothedDemand = exponentialSmoothing(dailyUse);
-  const demand = Math.max(avgDailyUse, 0.1);
-  const daysUntilStockout = current / demand;
-  let severity: Severity = "good";
-
-  if (daysUntilStockout <= CRITICAL_DAYS || current <= medicine.minThreshold * 0.5) {
-    severity = "bad";
-  } else if (daysUntilStockout <= WARNING_DAYS || current <= medicine.minThreshold) {
-    severity = "warn";
-  }
-
-  return {
-    centreId: centre.id,
-    centreName: centre.name,
-    medicineId: medicine.id,
-    medicineName: medicine.name,
-    category: medicine.category,
-    unit: medicine.unit,
-    currentStock: Math.round(current),
-    minThreshold: medicine.minThreshold,
-    avgDailyUse: Number(avgDailyUse.toFixed(1)),
-    smoothedDemand: Number(smoothedDemand.toFixed(1)),
-    daysUntilStockout: Number(daysUntilStockout.toFixed(1)),
-    severity
-  };
+  return forecastMedicineStock(centre, medicine);
 }
 
 export function getCentreForecasts(centre: HealthCentre): StockForecast[] {
-  return centre.medicines.map((medicine) => forecastStock(centre, medicine));
+  return forecastCentreStock(centre);
 }
 
 export function bedOccupancyPct(centre: HealthCentre): number {
@@ -171,51 +135,7 @@ export function getStockWarnings(data: DistrictData): StockForecast[] {
 }
 
 export function getRedistributionRecommendations(data: DistrictData): RedistributionRecommendation[] {
-  const recommendations: RedistributionRecommendation[] = [];
-  const itemIds = [...new Set(data.centres.flatMap((centre) => centre.medicines.map((medicine) => medicine.id)))];
-
-  for (const itemId of itemIds) {
-    const forecasts = data.centres
-      .map((centre) => {
-        const medicine = centre.medicines.find((candidate) => candidate.id === itemId);
-        return medicine ? forecastStock(centre, medicine) : null;
-      })
-      .filter((forecast): forecast is StockForecast => Boolean(forecast));
-
-    const deficits = forecasts
-      .filter((forecast) => forecast.daysUntilStockout <= WARNING_DAYS || forecast.currentStock < forecast.minThreshold)
-      .sort((a, b) => a.daysUntilStockout - b.daysUntilStockout);
-
-    const surplus = forecasts
-      .filter((forecast) => forecast.daysUntilStockout >= 21 && forecast.currentStock > forecast.minThreshold * 2)
-      .sort((a, b) => b.daysUntilStockout - a.daysUntilStockout);
-
-    for (const deficit of deficits) {
-      const donor = surplus.find((candidate) => candidate.centreId !== deficit.centreId);
-      if (!donor) continue;
-
-      const targetCover = Math.ceil(deficit.avgDailyUse * 14);
-      const needed = Math.max(0, targetCover - deficit.currentStock);
-      const transferable = Math.floor((donor.currentStock - donor.minThreshold * 1.5) * 0.35);
-      const quantity = Math.max(0, Math.min(needed, transferable));
-
-      if (quantity > 0) {
-        recommendations.push({
-          itemId,
-          itemName: deficit.medicineName,
-          unit: deficit.unit,
-          fromCentreId: donor.centreId,
-          fromCentreName: donor.centreName,
-          toCentreId: deficit.centreId,
-          toCentreName: deficit.centreName,
-          quantity,
-          reason: `${deficit.centreName} has ${deficit.daysUntilStockout} days of cover; ${donor.centreName} has ${donor.daysUntilStockout} days.`
-        });
-      }
-    }
-  }
-
-  return recommendations.slice(0, 10);
+  return buildRedistributionPlan(data).slice(0, 20);
 }
 
 export function districtKpis(data: DistrictData) {

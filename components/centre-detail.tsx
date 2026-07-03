@@ -5,9 +5,11 @@ import Link from "next/link";
 import { ArrowLeft, FlaskConical, UserCheck } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { LiveDataIndicator } from "@/components/live-data-indicator";
 import { StatusBadge } from "@/components/status-badge";
 import { useLanguage } from "@/components/language-provider";
 import { getCentreStatus } from "@/lib/analytics";
+import { detectCentreAnomalies } from "@/lib/anomalyDetection";
 import { useDistrictData } from "@/lib/use-district-data";
 import type { HealthCentre, Severity } from "@/lib/types";
 
@@ -102,7 +104,7 @@ function chipClass(severity: Severity, active: boolean) {
 
 export function CentreDetail({ centreId }: { centreId: string }) {
   const { t } = useLanguage();
-  const { data } = useDistrictData();
+  const { data, isLive, livePulse, lastUpdatedAt } = useDistrictData();
   const [activeMetric, setActiveMetric] = useState<TrendMetric>("stock");
   const centre = data.centres.find((candidate) => candidate.id === centreId);
 
@@ -118,6 +120,8 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   }
 
   const status = getCentreStatus(centre);
+  const anomalies = detectCentreAnomalies(centre);
+  const urgentForecasts = [...status.forecasts].sort((a, b) => a.daysUntilStockout - b.daysUntilStockout).slice(0, 3);
   const recentDates = [...new Set(centre.attendance.map((record) => record.date))].slice(-7);
   const trend = buildTrendData(centre, status, activeMetric);
   const lineColor = severityStyles[trend.status].line;
@@ -135,6 +139,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
             Catchment population {centre.catchmentPopulation.toLocaleString("en-IN")}. Intervention score {status.interventionScore}/100.
           </p>
         </div>
+        <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -143,6 +148,19 @@ export function CentreDetail({ centreId }: { centreId: string }) {
         <Kpi label={t("doctorAttendance")} value={`${(100 - status.doctorAbsenceRate).toFixed(1)}%`} />
         <Kpi label={t("testAvailability")} value={`${(100 - status.unavailableTestPct).toFixed(1)}%`} />
       </section>
+
+      {anomalies.length ? (
+        <section className="mt-4 rounded-2xl bg-blue-50 p-4 ring-1 ring-blue-200">
+          <p className="text-sm font-black text-blue-900">Unusual pattern detected</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {anomalies.slice(0, 3).map((anomaly) => (
+              <span className="inline-flex rounded-full bg-white px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200" key={anomaly.metric + "-" + anomaly.label}>
+                {anomaly.label}: {anomaly.currentValue} vs {anomaly.baselineMean} baseline ({anomaly.zScore} SD)
+              </span>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_390px]">
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
@@ -200,6 +218,16 @@ export function CentreDetail({ centreId }: { centreId: string }) {
               </motion.div>
             </AnimatePresence>
           </div>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            {urgentForecasts.map((forecast) => (
+              <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100" key={forecast.medicineId}>
+                <p className="text-xs font-bold uppercase tracking-normal text-slate-500">Projected stock-out</p>
+                <p className="mt-1 text-sm font-black text-slate-950">{forecast.medicineName}</p>
+                <p className="mt-1 text-2xl font-black text-slate-950">{forecast.daysUntilStockout} days</p>
+                <p className="mt-1 text-xs text-slate-500">{forecast.projectedStockoutDate ?? "No date projected"}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
@@ -230,6 +258,8 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                 <th className="py-3 pr-4">{t("currentStock")}</th>
                 <th className="py-3 pr-4">{t("dailyUse")}</th>
                 <th className="py-3 pr-4">{t("smoothedDemand")}</th>
+                <th className="py-3 pr-4">Projected stock-out</th>
+                <th className="py-3 pr-4">Method</th>
                 <th className="py-3 pr-4">{t("status")}</th>
               </tr>
             </thead>
@@ -240,6 +270,8 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                   <td className="py-3 pr-4 text-slate-700">{forecast.currentStock} {forecast.unit}</td>
                   <td className="py-3 pr-4 text-slate-700">{forecast.avgDailyUse}</td>
                   <td className="py-3 pr-4 text-slate-700">{forecast.smoothedDemand} · {forecast.daysUntilStockout} days</td>
+                  <td className="py-3 pr-4 text-slate-700">{forecast.projectedStockoutDate ?? "Beyond one year"}</td>
+                  <td className="py-3 pr-4 text-slate-700">{forecast.method}</td>
                   <td className="py-3 pr-4"><StatusBadge value={forecast.severity} /></td>
                 </tr>
               ))}

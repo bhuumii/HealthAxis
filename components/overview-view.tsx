@@ -6,9 +6,11 @@ import { ArrowLeft, ArrowRight, Bed, Boxes, Building2, ChevronDown, Search, Sire
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { AnimatePresence, motion } from "framer-motion";
 import { AssistantPanel } from "@/components/assistant-panel";
+import { LiveDataIndicator } from "@/components/live-data-indicator";
 import { StatusBadge } from "@/components/status-badge";
 import { useLanguage } from "@/components/language-provider";
 import { districtKpis, getDistrictStatuses } from "@/lib/analytics";
+import { detectCentreAnomalies } from "@/lib/anomalyDetection";
 import { useDistrictData } from "@/lib/use-district-data";
 import type { CentreStatus, Severity } from "@/lib/types";
 
@@ -105,8 +107,15 @@ function chipClass(value: StatusFilter, active: boolean) {
   return "bg-slate-900 text-white ring-slate-900";
 }
 
+function stockOutRisk(status: CentreStatus) {
+  const lowestDays = Math.min(...status.forecasts.map((forecast) => forecast.daysUntilStockout));
+  if (lowestDays < 7) return { label: "High stock-out risk: " + lowestDays + " days", className: "bg-red-50 text-red-700 ring-red-200" };
+  if (lowestDays < 14) return { label: "Medium stock-out risk: " + lowestDays + " days", className: "bg-amber-50 text-amber-700 ring-amber-200" };
+  return null;
+}
+
 export function OverviewView() {
-  const { data, error } = useDistrictData();
+  const { data, error, isLive, livePulse, lastUpdatedAt } = useDistrictData();
   const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
@@ -148,6 +157,7 @@ export function OverviewView() {
           <h1 className="mt-2 text-3xl font-black tracking-normal text-slate-950 lg:text-5xl">{t("districtOverview")}</h1>
           <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">{t("districtLead")}</p>
         </div>
+        <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
       {error ? <p className="mb-4 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800 ring-1 ring-amber-200">Some live data could not be loaded. Showing the latest available district data.</p> : null}
@@ -229,7 +239,11 @@ export function OverviewView() {
 
         {visibleStatuses.length ? (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {visibleStatuses.map((status) => (
+            {visibleStatuses.map((status) => {
+              const anomalies = detectCentreAnomalies(status.centre);
+              const risk = stockOutRisk(status);
+
+              return (
               <article key={status.centre.id} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -247,8 +261,15 @@ export function OverviewView() {
                   <PillMetric label={t("doctors")} badge={<StatusBadge value={status.doctors} label={`${status.doctorAbsenceRate}% absent`} />} />
                   <PillMetric label={t("tests")} badge={<StatusBadge value={status.tests} label={`${status.unavailableTestPct}% down`} />} />
                 </div>
+                {risk || anomalies.length ? (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {risk ? <span className={"inline-flex rounded-full px-2.5 py-1 text-xs font-bold ring-1 " + risk.className}>{risk.label}</span> : null}
+                    {anomalies.length ? <span className="inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200">Unusual pattern: {anomalies[0].label}</span> : null}
+                  </div>
+                ) : null}
               </article>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className="rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-slate-200">

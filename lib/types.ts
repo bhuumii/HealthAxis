@@ -91,7 +91,22 @@ export interface StockForecast {
   avgDailyUse: number;
   smoothedDemand: number;
   daysUntilStockout: number;
+  projectedStockoutDate: string | null;
+  method: string;
+  historyDays: number;
   severity: Severity;
+}
+
+export interface AnomalySignal {
+  centreId: string;
+  centreName: string;
+  metric: "stock" | "beds" | "doctors" | "footfall";
+  label: string;
+  currentValue: number;
+  baselineMean: number;
+  standardDeviation: number;
+  zScore: number;
+  direction: "above" | "below";
 }
 
 export interface CentreStatus {
@@ -118,5 +133,11 @@ export interface RedistributionRecommendation {
   toCentreId: string;
   toCentreName: string;
   quantity: number;
+  priority: "high" | "medium";
+  fromDaysCoverBefore: number;
+  fromDaysCoverAfter: number;
+  toDaysCoverBefore: number;
+  toDaysCoverAfter: number;
+  unmetDemandAfter: number;
   reason: string;
 }

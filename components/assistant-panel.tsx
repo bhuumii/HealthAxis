@@ -58,14 +58,14 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
   }
 
   return (
-    <section className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+    <section className="rounded-md border border-[#cfd8df] bg-white p-4">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-slate-950">{t("askAi")}</h2>
-        <p className="mt-1 text-sm text-slate-500">Ask questions about the district&apos;s current status.</p>
+        <h2 className="text-lg font-bold text-[#17212b]">{t("askAi")}</h2>
+        <p className="mt-1 text-sm text-slate-500">Run structured questions against the current district operating dataset.</p>
       </div>
       <div className="flex gap-2">
         <input
-          className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+          className="min-w-0 flex-1 rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 py-2 text-sm outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
           value={question}
           placeholder={t("askPlaceholder")}
           onChange={(event) => setQuestion(event.target.value)}
@@ -74,24 +74,24 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
           }}
         />
         <button
-          className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-md bg-[#164e63] px-4 py-2 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
           type="button"
           onClick={askAssistant}
           disabled={loading}
         >
-          <Send size={16} />
+          <Send size={15} strokeWidth={1.75} />
           {loading ? t("thinking") : t("ask")}
         </button>
       </div>
-      <div className="mt-4 max-h-72 space-y-3 overflow-y-auto rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
+      <div className="mt-4 max-h-72 space-y-3 overflow-y-auto rounded-md border border-[#dde4e9] bg-[#f8fafb] p-3">
         {answers.length ? (
           answers.map((answer, index) => (
-            <p key={`${answer}-${index}`} className="rounded-xl bg-white p-3 text-sm leading-6 text-slate-700 shadow-sm">
+            <p key={`${answer}-${index}`} className="rounded border border-[#dde4e9] bg-white p-2.5 text-sm leading-6 text-[#46515c]">
               {answer}
             </p>
           ))
         ) : (
-          <p className="p-3 text-sm text-slate-500">Ask about shortages, bed pressure, doctor attendance, tests, or resource transfers.</p>
+          <p className="p-3 text-sm text-slate-500">Enter a query about stock risk, bed occupancy, workforce coverage, diagnostic availability, or transfer options.</p>
         )}
       </div>
     </section>

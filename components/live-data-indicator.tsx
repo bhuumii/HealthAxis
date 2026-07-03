@@ -1,18 +1,15 @@
 "use client";
 
-import { Radio } from "lucide-react";
-
 export function LiveDataIndicator({ isLive, pulse, lastUpdatedAt }: { isLive: boolean; pulse: boolean; lastUpdatedAt: Date | null }) {
-  const label = isLive ? "Live Firestore" : "Fallback data";
+  const label = isLive ? "Live data feed" : "Fallback dataset";
   const timestamp = lastUpdatedAt ? lastUpdatedAt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "waiting";
 
   return (
-    <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold ring-1 transition ${isLive ? "bg-emerald-50 text-emerald-700 ring-emerald-200" : "bg-amber-50 text-amber-700 ring-amber-200"}`}>
-      <span className="relative flex h-2.5 w-2.5">
-        {pulse ? <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" /> : null}
-        <span className={`relative inline-flex h-2.5 w-2.5 rounded-full ${isLive ? "bg-emerald-600" : "bg-amber-500"}`} />
+    <div className={`inline-flex items-center gap-2 rounded border px-2.5 py-1 text-xs font-bold transition ${isLive ? "border-[#b8cdbc] bg-[#eef5f1] text-[#47705d]" : "border-[#d5bd91] bg-[#f7f1e6] text-[#8a6426]"}`}>
+      <span className="relative flex h-2 w-2">
+        {pulse ? <span className="absolute inline-flex h-full w-full animate-ping rounded-sm bg-[#47705d] opacity-50" /> : null}
+        <span className={`relative inline-flex h-2 w-2 rounded-sm ${isLive ? "bg-[#47705d]" : "bg-[#9a6a22]"}`} />
       </span>
-      <Radio size={14} />
       <span>{label}</span>
       <span className="text-slate-500">{timestamp}</span>
     </div>

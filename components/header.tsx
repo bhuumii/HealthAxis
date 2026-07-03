@@ -20,9 +20,9 @@ export function Header() {
   const authPage = pathname === "/login" || pathname === "/signup";
 
   return (
-    <div className="flex w-full flex-col gap-3 lg:w-auto lg:flex-row lg:items-center">
+    <div className="flex w-full flex-col gap-2 lg:w-auto lg:flex-row lg:items-center">
       {!authPage ? (
-        <nav className="flex flex-wrap items-center gap-2" aria-label="Primary navigation">
+        <nav className="flex flex-wrap items-center gap-1" aria-label="Primary navigation">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = pathname === item.href || (item.href === "/overview" && pathname === "/");
@@ -30,12 +30,12 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex h-10 items-center gap-2 rounded-lg px-3 text-sm font-semibold transition ${
-                  active ? "bg-emerald-700 text-white shadow-sm" : "bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-emerald-50"
+                className={`inline-flex h-9 items-center gap-2 border-b-2 px-3 text-sm font-semibold transition ${
+                  active ? "border-[#164e63] bg-white text-[#164e63]" : "border-transparent text-[#46515c] hover:border-[#b8c7d0] hover:bg-white"
                 }`}
                 aria-current={active ? "page" : undefined}
               >
-                <Icon size={16} />
+                <Icon size={15} strokeWidth={1.75} />
                 {t(item.labelKey)}
               </Link>
             );
@@ -43,7 +43,7 @@ export function Header() {
         </nav>
       ) : null}
       <select
-        className="h-10 rounded-lg border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 shadow-sm"
+        className="h-9 rounded-md border border-[#cfd8df] bg-white px-2.5 text-sm font-semibold text-[#46515c]"
         value={language}
         aria-label="Dashboard language"
         onChange={(event) => setLanguage(event.target.value as typeof language)}
@@ -55,17 +55,17 @@ export function Header() {
         ))}
       </select>
       {user ? (
-        <div className="flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200">
-          <UserCircle size={16} className="text-emerald-700" />
+        <div className="flex items-center gap-2 rounded-md border border-[#cfd8df] bg-white px-2.5 py-1.5 text-sm font-semibold text-[#46515c]">
+          <UserCircle size={15} strokeWidth={1.75} className="text-[#5c6873]" />
           <span className="max-w-44 truncate">{user.email ?? "Signed in"}</span>
-          <button className="inline-flex items-center gap-1 text-slate-500 hover:text-red-700" type="button" onClick={() => void signOut()}>
-            <LogOut size={15} />
+          <button className="inline-flex items-center gap-1 text-[#5c6873] hover:text-[#9f3a38]" type="button" onClick={() => void signOut()}>
+            <LogOut size={14} strokeWidth={1.75} />
             Sign out
           </button>
         </div>
       ) : authPage ? null : (
-        <Link className="inline-flex h-10 items-center gap-2 rounded-lg bg-white px-3 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-emerald-50" href="/login">
-          <UserCircle size={16} />
+        <Link className="inline-flex h-9 items-center gap-2 rounded-md border border-[#cfd8df] bg-white px-3 text-sm font-semibold text-[#46515c] hover:bg-[#eef3f5]" href="/login">
+          <UserCircle size={15} strokeWidth={1.75} />
           Sign in
         </Link>
       )}

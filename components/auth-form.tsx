@@ -104,41 +104,41 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     <main className="mx-auto grid min-h-[calc(100vh-86px)] max-w-7xl items-center px-4 py-8 lg:px-8">
       <section className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,0.7fr)] lg:items-center">
         <div>
-          <p className="text-sm font-bold uppercase tracking-normal text-emerald-700">Secure district command centre</p>
-          <h1 className="mt-2 text-3xl font-black tracking-normal text-slate-950 lg:text-5xl">HealthAxis</h1>
-          <p className="mt-4 max-w-xl text-base leading-7 text-slate-600">
+          <p className="text-xs font-bold uppercase text-[#164e63]">Secure district command centre</p>
+          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">HealthAxis</h1>
+          <p className="mt-3 max-w-xl text-sm leading-6 text-[#46515c]">
             Sign in to monitor PHC/CHC stock, beds, doctors, tests, intervention flags, and live district recommendations.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-              <Activity className="text-emerald-700" size={22} />
+            <div className="rounded-md border border-[#cfd8df] bg-white p-4">
+              <Activity className="text-[#5c6873]" size={18} strokeWidth={1.75} />
               <p className="mt-3 text-sm font-bold text-slate-950">Real-time district data</p>
               <p className="mt-1 text-sm text-slate-500">Protected operational reads for authenticated users.</p>
             </div>
-            <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-              <ShieldCheck className="text-emerald-700" size={22} />
+            <div className="rounded-md border border-[#cfd8df] bg-white p-4">
+              <ShieldCheck className="text-[#5c6873]" size={18} strokeWidth={1.75} />
               <p className="mt-3 text-sm font-bold text-slate-950">District admin access</p>
               <p className="mt-1 text-sm text-slate-500">Email/password and Google sign-in supported.</p>
             </div>
           </div>
         </div>
 
-        <form className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" onSubmit={submit}>
+        <form className="rounded-md border border-[#cfd8df] bg-white p-5" onSubmit={submit}>
           <div className="mb-5">
-            <h2 className="text-2xl font-black text-slate-950">{isLogin ? "Sign in" : "Create account"}</h2>
+            <h2 className="text-2xl font-bold text-[#17212b]">{isLogin ? "Sign in" : "Create account"}</h2>
             <p className="mt-1 text-sm text-slate-500">
               {isLogin ? "Use your HealthAxis admin account." : "Create a HealthAxis admin account."}
             </p>
           </div>
 
-          {error ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700 ring-1 ring-red-200">{error}</p> : null}
-          {message ? <p className="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200">{message}</p> : null}
+          {error ? <p className="mb-4 rounded-md bg-[#f8eeee] px-3 py-2 text-sm font-semibold text-[#9f3a38] ring-1 ring-[#d7aaaa]">{error}</p> : null}
+          {message ? <p className="mb-4 rounded-md bg-[#eef5f1] px-3 py-2 text-sm font-semibold text-[#47705d] ring-1 ring-[#b8cdbc]">{message}</p> : null}
 
           <label className="block text-sm font-bold text-slate-700" htmlFor="email">
             Email
           </label>
           <input
-            className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className="mt-2 h-11 w-full rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 text-sm outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
             id="email"
             type="email"
             autoComplete="email"
@@ -151,7 +151,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             Password
           </label>
           <input
-            className="mt-2 h-11 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            className="mt-2 h-11 w-full rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 text-sm outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
             id="password"
             type="password"
             autoComplete={isLogin ? "current-password" : "new-password"}
@@ -162,13 +162,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           />
 
           {isLogin ? (
-            <button className="mt-3 text-sm font-bold text-emerald-700 hover:text-emerald-900" type="button" onClick={forgotPassword} disabled={busy}>
+            <button className="mt-3 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" type="button" onClick={forgotPassword} disabled={busy}>
               Forgot password?
             </button>
           ) : null}
 
           <button
-            className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-xl bg-emerald-700 px-4 text-sm font-bold text-white shadow-sm hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-md bg-[#164e63] px-4 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
             type="submit"
             disabled={busy || loading}
           >
@@ -176,18 +176,18 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           </button>
 
           <button
-            className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-4 text-sm font-bold text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-3 inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-white px-4 text-sm font-bold text-slate-700 ring-1 ring-[#cfd8df] hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
             type="button"
             onClick={googleSignIn}
             disabled={busy || loading}
           >
-            <Mail size={17} className="text-emerald-700" />
+            <Mail size={15} strokeWidth={1.75} className="text-[#5c6873]" />
             Continue with Google
           </button>
 
           <p className="mt-5 text-center text-sm text-slate-500">
             {isLogin ? "No account yet?" : "Already have an account?"} {" "}
-            <Link className="font-bold text-emerald-700 hover:text-emerald-900" href={isLogin ? `/signup?next=${encodeURIComponent(next)}` : `/login?next=${encodeURIComponent(next)}`}>
+            <Link className="font-bold text-[#164e63] hover:text-[#0d3848]" href={isLogin ? `/signup?next=${encodeURIComponent(next)}` : `/login?next=${encodeURIComponent(next)}`}>
               {isLogin ? "Sign up" : "Sign in"}
             </Link>
           </p>

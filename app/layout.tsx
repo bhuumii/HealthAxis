@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Activity, Languages } from "lucide-react";
+import { Languages } from "lucide-react";
 import { AuthProvider } from "@/components/auth-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Header } from "@/components/header";
@@ -17,17 +17,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthProvider>
           <LanguageProvider>
-            <div className="min-h-screen bg-slate-50">
-              <header className="sticky top-0 z-40 border-b border-slate-200 bg-slate-50/95 px-4 py-3 backdrop-blur lg:px-8">
-                <div className="mx-auto flex max-w-7xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="min-h-screen bg-[#f5f7f8]">
+              <header className="sticky top-0 z-40 border-b border-[#cfd8df] bg-[#f5f7f8]/95 px-4 py-2.5 backdrop-blur lg:px-8">
+                <div className="mx-auto flex max-w-7xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                   <Link className="flex min-w-64 items-center gap-3" href="/overview">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl bg-emerald-700 text-white shadow-sm">
-                      <Activity size={23} />
+                    <span className="grid h-10 w-10 place-items-center rounded-md border border-[#164e63] bg-[#164e63] font-mono text-sm font-bold text-white">
+                      HA
                     </span>
                     <span>
-                      <strong className="block text-lg leading-5 text-slate-950">HealthAxis</strong>
-                      <small className="mt-1 flex items-center gap-1 text-xs font-semibold uppercase tracking-normal text-slate-500">
-                        <Languages size={13} /> District command centre
+                      <strong className="block text-lg leading-5 text-[#17212b]">HealthAxis</strong>
+                      <small className="mt-1 flex items-center gap-1 text-[11px] font-semibold uppercase text-[#5c6873]">
+                        <Languages size={12} strokeWidth={1.75} /> District operations command
                       </small>
                     </span>
                   </Link>

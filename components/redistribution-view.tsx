@@ -13,24 +13,24 @@ export function RedistributionView() {
   const recommendations = getRedistributionRecommendations(data);
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-      <section className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
+      <section className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h1 className="mt-2 text-3xl font-black tracking-normal text-slate-950 lg:text-5xl">{t("redistribution")}</h1>
-          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">Recommended transfers are computed by a deterministic allocation algorithm, with Gemini used only by the assistant route to phrase explanations.</p>
+          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{t("redistribution")}</h1>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#46515c]">Recommended transfers are computed by a deterministic allocation algorithm, with Gemini used only by the assistant route to phrase explanations.</p>
         </div>
         <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
-      <section className="mb-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-        <p className="text-sm font-bold text-slate-950">Allocation method</p>
+      <section className="mb-4 rounded-md border border-[#cfd8df] bg-white p-4">
+        <p className="text-sm font-bold text-[#17212b]">Allocation method</p>
         <p className="mt-1 text-sm leading-6 text-slate-600">{REDISTRIBUTION_METHOD}</p>
       </section>
 
-      <section className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+      <section className="overflow-hidden rounded-md border border-[#cfd8df] bg-white">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-xs uppercase tracking-normal text-slate-500">
+            <thead className="bg-[#f8fafb] text-xs uppercase text-[#5c6873]">
               <tr>
                 <th className="px-4 py-3">Recommended transfer</th>
                 <th className="px-4 py-3">Priority</th>
@@ -39,24 +39,24 @@ export function RedistributionView() {
                 <th className="px-4 py-3">Unmet demand</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#dde4e9]">
               {recommendations.map((recommendation) => (
-                <tr key={`${recommendation.itemId}-${recommendation.fromCentreId}-${recommendation.toCentreId}-${recommendation.quantity}`} className="hover:bg-slate-50">
-                  <td className="px-4 py-4 text-slate-700">
-                    <p className="font-bold text-slate-950">Move {recommendation.quantity} {recommendation.unit} of {recommendation.itemName}</p>
+                <tr key={`${recommendation.itemId}-${recommendation.fromCentreId}-${recommendation.toCentreId}-${recommendation.quantity}`} className="hover:bg-[#f8fafb]">
+                  <td className="px-4 py-3 text-[#46515c]">
+                    <p className="font-bold text-[#17212b]">Move {recommendation.quantity} {recommendation.unit} of {recommendation.itemName}</p>
                     <p className="mt-1 text-sm">
-                      from <Link className="font-semibold text-emerald-700" href={`/centres/${recommendation.fromCentreId}`}>{recommendation.fromCentreName}</Link> to <Link className="font-semibold text-emerald-700" href={`/centres/${recommendation.toCentreId}`}>{recommendation.toCentreName}</Link>
+                      from <Link className="font-semibold text-[#164e63]" href={`/centres/${recommendation.fromCentreId}`}>{recommendation.fromCentreName}</Link> to <Link className="font-semibold text-[#164e63]" href={`/centres/${recommendation.toCentreId}`}>{recommendation.toCentreName}</Link>
                     </p>
                     <p className="mt-1 text-xs text-slate-500">{recommendation.reason}</p>
                   </td>
-                  <td className="px-4 py-4">
-                    <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold ring-1 ${recommendation.priority === "high" ? "bg-red-50 text-red-700 ring-red-200" : "bg-amber-50 text-amber-700 ring-amber-200"}`}>
+                  <td className="px-4 py-3">
+                    <span className={`inline-flex rounded px-2 py-0.5 text-xs font-bold ring-1 ${recommendation.priority === "high" ? "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]" : "bg-[#f7f1e6] text-[#8a6426] ring-[#d5bd91]"}`}>
                       {recommendation.priority === "high" ? "High" : "Medium"}
                     </span>
                   </td>
-                  <td className="px-4 py-4 text-slate-700">{recommendation.fromDaysCoverBefore} {"->"} {recommendation.fromDaysCoverAfter} days</td>
-                  <td className="px-4 py-4 text-slate-700">{recommendation.toDaysCoverBefore} {"->"} {recommendation.toDaysCoverAfter} days</td>
-                  <td className="px-4 py-4 text-slate-700">{recommendation.unmetDemandAfter} {recommendation.unit}</td>
+                  <td className="px-4 py-3 text-[#46515c]">{recommendation.fromDaysCoverBefore} {"->"} {recommendation.fromDaysCoverAfter} days</td>
+                  <td className="px-4 py-3 text-[#46515c]">{recommendation.toDaysCoverBefore} {"->"} {recommendation.toDaysCoverAfter} days</td>
+                  <td className="px-4 py-3 text-[#46515c]">{recommendation.unmetDemandAfter} {recommendation.unit}</td>
                 </tr>
               ))}
               {!recommendations.length ? (

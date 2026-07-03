@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, FlaskConical, UserCheck } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { AnimatedNumber, easeOut, entranceTransition, riseIn, staggerContainer } from "@/components/motion-primitives";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { LiveDataIndicator } from "@/components/live-data-indicator";
 import { StatusBadge } from "@/components/status-badge";
@@ -23,9 +24,9 @@ const trendTabs: Array<{ value: TrendMetric; label: string }> = [
 ];
 
 const severityStyles: Record<Severity, { line: string; chip: string }> = {
-  good: { line: "#047857", chip: "bg-emerald-50 text-emerald-700 ring-emerald-200" },
-  warn: { line: "#b7791f", chip: "bg-amber-50 text-amber-700 ring-amber-200" },
-  bad: { line: "#b42318", chip: "bg-red-50 text-red-700 ring-red-200" }
+  good: { line: "#47705d", chip: "bg-[#eef5f1] text-[#47705d] ring-[#b8cdbc]" },
+  warn: { line: "#8a6426", chip: "bg-[#f7f1e6] text-[#8a6426] ring-[#d5bd91]" },
+  bad: { line: "#9f3a38", chip: "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]" }
 };
 
 function clamp(value: number, min: number, max: number) {
@@ -59,7 +60,7 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
   if (metric === "stock") {
     return {
       title: `${primaryStock.name} stock trend`,
-      subtitle: "Closing stock over the last 30 days from stock history.",
+      subtitle: "Closing stock over 30 days from stock history.",
       unit: primaryStock.unit,
       status: status.stock,
       data: primaryStock.history.slice(-30).map((point) => ({ date: point.date.slice(5), value: point.closing }))
@@ -69,7 +70,7 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
   if (metric === "beds") {
     return {
       title: "Bed occupancy trend",
-      subtitle: "Daily occupied beds as a percentage of total beds over the last 30 days.",
+      subtitle: "Daily occupied beds as a percentage of total beds over 30 days.",
       unit: "%",
       status: status.beds,
       data: centre.beds.history.slice(-30).map((point) => ({
@@ -82,7 +83,7 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
   if (metric === "doctors") {
     return {
       title: "Doctor absenteeism trend",
-      subtitle: "Daily doctor absence percentage from attendance history over the last 30 days.",
+      subtitle: "Daily doctor absence percentage from attendance history over 30 days.",
       unit: "% absent",
       status: status.doctors,
       data: doctorAbsenceTrend(centre)
@@ -91,7 +92,7 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
 
   return {
     title: "Diagnostic test downtime trend",
-    subtitle: "Simulated 30-day trend anchored to today's actual test downtime because per-day test history is not stored yet.",
+    subtitle: "30-day modeled trend anchored to the current diagnostic downtime indicator.",
     unit: "% down",
     status: status.tests,
     data: simulatedTrend(bedDates, status.unavailableTestPct)
@@ -99,7 +100,7 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
 }
 
 function chipClass(severity: Severity, active: boolean) {
-  return active ? severityStyles[severity].chip : "bg-white text-slate-700 ring-slate-200 hover:bg-slate-50";
+  return active ? severityStyles[severity].chip : "bg-white text-[#46515c] ring-[#cfd8df] hover:bg-[#eef3f5]";
 }
 
 export function CentreDetail({ centreId }: { centreId: string }) {
@@ -110,11 +111,11 @@ export function CentreDetail({ centreId }: { centreId: string }) {
 
   if (!centre) {
     return (
-      <main className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-        <Link className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700" href="/overview">
-          <ArrowLeft size={17} /> {t("overview")}
+      <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
+        <Link className="inline-flex items-center gap-2 text-sm font-bold text-[#164e63]" href="/overview">
+          <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
         </Link>
-        <p className="mt-6 rounded-2xl bg-white p-6 text-slate-600 shadow-sm ring-1 ring-slate-200">Centre not found in the current district data.</p>
+        <p className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4 text-[#46515c]">Centre not found in the current district data.</p>
       </main>
     );
   }
@@ -127,43 +128,43 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   const lineColor = severityStyles[trend.status].line;
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8 lg:px-8">
-      <section className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
+      <section className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <Link className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-900" href="/overview">
-            <ArrowLeft size={17} /> {t("overview")}
+          <Link className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" href="/overview">
+            <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
           </Link>
-          <p className="text-sm font-bold uppercase tracking-normal text-emerald-700">{centre.type} · {centre.block}</p>
-          <h1 className="mt-2 text-3xl font-black tracking-normal text-slate-950 lg:text-5xl">{centre.name}</h1>
-          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600">
+          <p className="text-xs font-bold uppercase text-[#164e63]">{centre.type} · {centre.block}</p>
+          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{centre.name}</h1>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#46515c]">
             Catchment population {centre.catchmentPopulation.toLocaleString("en-IN")}. Intervention score {status.interventionScore}/100.
           </p>
         </div>
         <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <motion.section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" variants={staggerContainer} initial="hidden" animate="visible">
         <Kpi label={t("stock")} value={<StatusBadge value={status.stock} />} />
-        <Kpi label={t("occupancy")} value={`${status.bedOccupancyPct}%`} />
-        <Kpi label={t("doctorAttendance")} value={`${(100 - status.doctorAbsenceRate).toFixed(1)}%`} />
-        <Kpi label={t("testAvailability")} value={`${(100 - status.unavailableTestPct).toFixed(1)}%`} />
-      </section>
+        <Kpi label={t("occupancy")} numericValue={status.bedOccupancyPct} suffix="%" />
+        <Kpi label={t("doctorAttendance")} numericValue={100 - status.doctorAbsenceRate} suffix="%" decimals={1} />
+        <Kpi label={t("testAvailability")} numericValue={100 - status.unavailableTestPct} suffix="%" decimals={1} />
+      </motion.section>
 
       {anomalies.length ? (
-        <section className="mt-4 rounded-2xl bg-blue-50 p-4 ring-1 ring-blue-200">
-          <p className="text-sm font-black text-blue-900">Unusual pattern detected</p>
+        <motion.section className="mt-4 rounded-md border border-[#b8c7d0] bg-[#eef3f5] p-3" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={entranceTransition}>
+          <p className="text-sm font-bold text-[#164e63]">Unusual pattern detected</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {anomalies.slice(0, 3).map((anomaly) => (
-              <span className="inline-flex rounded-full bg-white px-2.5 py-1 text-xs font-bold text-blue-700 ring-1 ring-blue-200" key={anomaly.metric + "-" + anomaly.label}>
+              <span className="inline-flex rounded bg-white px-2 py-0.5 text-xs font-bold text-[#164e63] ring-1 ring-[#b8c7d0]" key={anomaly.metric + "-" + anomaly.label}>
                 {anomaly.label}: {anomaly.currentValue} vs {anomaly.baselineMean} baseline ({anomaly.zScore} SD)
               </span>
             ))}
           </div>
-        </section>
+        </motion.section>
       ) : null}
 
-      <section className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_390px]">
-        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+      <motion.section className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
+        <div className="rounded-md border border-[#cfd8df] bg-white p-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <AnimatePresence mode="wait">
@@ -172,9 +173,9 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.24, ease: "easeOut" }}
+                  transition={{ duration: 0.22, ease: easeOut }}
                 >
-                  <h2 className="text-lg font-bold text-slate-950">{trend.title}</h2>
+                  <h2 className="text-lg font-bold text-[#17212b]">{trend.title}</h2>
                   <p className="mt-1 text-sm text-slate-500">{trend.subtitle}</p>
                 </motion.div>
               </AnimatePresence>
@@ -185,7 +186,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                 return (
                   <button
                     key={tab.value}
-                    className={`inline-flex h-9 items-center rounded-full px-3 text-sm font-bold ring-1 transition ${chipClass(tabStatus, activeMetric === tab.value)}`}
+                    className={`inline-flex h-9 items-center rounded px-3 text-sm font-bold ring-1 transition duration-200 ease-out hover:scale-[1.01] ${chipClass(tabStatus, activeMetric === tab.value)}`}
                     type="button"
                     onClick={() => setActiveMetric(tab.value)}
                     aria-pressed={activeMetric === tab.value}
@@ -196,7 +197,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
               })}
             </div>
           </div>
-          <div className="mt-4 h-80 overflow-hidden">
+          <div className="mt-4 h-72 overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeMetric}
@@ -204,7 +205,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.26, ease: "easeOut" }}
+                transition={{ duration: 0.24, ease: easeOut }}
               >
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={trend.data} margin={{ top: 8, right: 12, left: -18, bottom: 0 }}>
@@ -212,7 +213,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                     <XAxis dataKey="date" tick={{ fontSize: 12 }} />
                     <YAxis tick={{ fontSize: 12 }} unit={trend.unit === "%" ? "%" : undefined} />
                     <Tooltip formatter={(value) => [`${value}${trend.unit.startsWith("%") ? "%" : ` ${trend.unit}`}`, trendTabs.find((tab) => tab.value === activeMetric)?.label ?? "Value"]} />
-                    <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={3} dot={false} isAnimationActive animationDuration={280} />
+                    <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
                   </LineChart>
                 </ResponsiveContainer>
               </motion.div>
@@ -220,96 +221,101 @@ export function CentreDetail({ centreId }: { centreId: string }) {
           </div>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             {urgentForecasts.map((forecast) => (
-              <div className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100" key={forecast.medicineId}>
+              <div className="rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={forecast.medicineId}>
                 <p className="text-xs font-bold uppercase tracking-normal text-slate-500">Projected stock-out</p>
-                <p className="mt-1 text-sm font-black text-slate-950">{forecast.medicineName}</p>
-                <p className="mt-1 text-2xl font-black text-slate-950">{forecast.daysUntilStockout} days</p>
+                <p className="mt-1 text-sm font-bold text-[#17212b]">{forecast.medicineName}</p>
+                <p className="mt-1 text-2xl font-bold text-[#17212b]"><AnimatedNumber value={forecast.daysUntilStockout} /> days</p>
                 <p className="mt-1 text-xs text-slate-500">{forecast.projectedStockoutDate ?? "No date projected"}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-          <h2 className="text-lg font-bold text-slate-950">{t("testAvailability")}</h2>
+        <div className="rounded-md border border-[#cfd8df] bg-white p-4">
+          <h2 className="text-lg font-bold text-[#17212b]">{t("testAvailability")}</h2>
           <div className="mt-4 space-y-3">
             {centre.tests.map((test) => (
-              <div className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100" key={test.id}>
+              <div className="flex items-center justify-between gap-3 rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={test.id}>
                 <span>
-                  <strong className="block text-sm text-slate-950">{test.name}</strong>
+                  <strong className="block text-sm text-[#17212b]">{test.name}</strong>
                   <small className="text-slate-500">Unavailable {test.unavailableDays30}/30 days</small>
                 </span>
-                <span className={`inline-flex items-center gap-1 text-sm font-bold ${test.available ? "text-emerald-700" : "text-red-700"}`}>
-                  <FlaskConical size={16} /> {test.available ? "Available" : "Down"}
+                <span className={`inline-flex items-center gap-1 text-sm font-bold ${test.available ? "text-[#47705d]" : "text-[#9f3a38]"}`}>
+                  <FlaskConical size={15} strokeWidth={1.75} /> {test.available ? "Available" : "Down"}
                 </span>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-        <h2 className="text-lg font-bold text-slate-950">{t("forecast")}</h2>
+      <motion.section className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
+        <h2 className="text-lg font-bold text-[#17212b]">{t("forecast")}</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="min-w-full text-left text-sm">
             <thead className="text-xs uppercase tracking-normal text-slate-500">
-              <tr className="border-b border-slate-200">
-                <th className="py-3 pr-4">Item</th>
-                <th className="py-3 pr-4">{t("currentStock")}</th>
-                <th className="py-3 pr-4">{t("dailyUse")}</th>
-                <th className="py-3 pr-4">{t("smoothedDemand")}</th>
-                <th className="py-3 pr-4">Projected stock-out</th>
-                <th className="py-3 pr-4">Method</th>
-                <th className="py-3 pr-4">{t("status")}</th>
+              <tr className="border-b border-[#cfd8df]">
+                <th className="py-2 pr-4">Item</th>
+                <th className="py-2 pr-4">{t("currentStock")}</th>
+                <th className="py-2 pr-4">{t("dailyUse")}</th>
+                <th className="py-2 pr-4">{t("smoothedDemand")}</th>
+                <th className="py-2 pr-4">Projected stock-out</th>
+                <th className="py-2 pr-4">Method</th>
+                <th className="py-2 pr-4">{t("status")}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#dde4e9]">
               {status.forecasts.map((forecast) => (
                 <tr key={forecast.medicineId}>
-                  <td className="py-3 pr-4 font-semibold text-slate-950">{forecast.medicineName}</td>
-                  <td className="py-3 pr-4 text-slate-700">{forecast.currentStock} {forecast.unit}</td>
-                  <td className="py-3 pr-4 text-slate-700">{forecast.avgDailyUse}</td>
-                  <td className="py-3 pr-4 text-slate-700">{forecast.smoothedDemand} · {forecast.daysUntilStockout} days</td>
-                  <td className="py-3 pr-4 text-slate-700">{forecast.projectedStockoutDate ?? "Beyond one year"}</td>
-                  <td className="py-3 pr-4 text-slate-700">{forecast.method}</td>
-                  <td className="py-3 pr-4"><StatusBadge value={forecast.severity} /></td>
+                  <td className="py-2 pr-4 font-semibold text-[#17212b]">{forecast.medicineName}</td>
+                  <td className="py-2 pr-4 text-[#46515c]">{forecast.currentStock} {forecast.unit}</td>
+                  <td className="py-2 pr-4 text-[#46515c]">{forecast.avgDailyUse}</td>
+                  <td className="py-2 pr-4 text-[#46515c]">{forecast.smoothedDemand} · {forecast.daysUntilStockout} days</td>
+                  <td className="py-2 pr-4 text-[#46515c]">{forecast.projectedStockoutDate ?? "Beyond one year"}</td>
+                  <td className="py-2 pr-4 text-[#46515c]">{forecast.method}</td>
+                  <td className="py-2 pr-4"><StatusBadge value={forecast.severity} /></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-        <h2 className="text-lg font-bold text-slate-950">{t("doctorAttendance")}</h2>
+      <motion.section className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
+        <h2 className="text-lg font-bold text-[#17212b]">{t("doctorAttendance")}</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {centre.doctors.map((doctor) => {
             const recent = centre.attendance.filter((record) => record.doctorId === doctor.id && recentDates.includes(record.date));
             const present = recent.filter((record) => record.status === "present").length;
             const rate = recent.length ? Math.round((present / recent.length) * 100) : 0;
             return (
-              <div className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100" key={doctor.id}>
+              <div className="flex items-center justify-between gap-3 rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={doctor.id}>
                 <span>
-                  <strong className="block text-sm text-slate-950">{doctor.name}</strong>
+                  <strong className="block text-sm text-[#17212b]">{doctor.name}</strong>
                   <small className="text-slate-500">{doctor.role} · {doctor.specialty}</small>
                 </span>
-                <span className={`inline-flex items-center gap-1 text-sm font-bold ${rate < 70 ? "text-red-700" : rate < 85 ? "text-amber-700" : "text-emerald-700"}`}>
-                  <UserCheck size={16} /> {rate}%
+                <span className={`inline-flex items-center gap-1 text-sm font-bold ${rate < 70 ? "text-[#9f3a38]" : rate < 85 ? "text-[#8a6426]" : "text-[#47705d]"}`}>
+                  <UserCheck size={15} strokeWidth={1.75} /> <AnimatedNumber value={rate} suffix="%" />
                 </span>
               </div>
             );
           })}
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }
 
-function Kpi({ label, value }: { label: string; value: React.ReactNode }) {
+function Kpi({ label, value, numericValue, suffix = "", decimals = 0 }: { label: string; value?: React.ReactNode; numericValue?: number; suffix?: string; decimals?: number }) {
   return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-      <p className="text-sm font-bold text-slate-500">{label}</p>
-      <div className="mt-3 text-3xl font-black text-slate-950">{value}</div>
-    </div>
+    <motion.div
+      className="rounded-md border border-[#cfd8df] bg-white p-4 transition-colors duration-200 ease-out hover:border-[#b8c7d0] hover:bg-[#fbfcfd]"
+      variants={riseIn}
+      transition={entranceTransition}
+      whileHover={{ scale: 1.01 }}
+    >
+      <p className="text-xs font-bold uppercase text-[#5c6873]">{label}</p>
+      <div className="mt-2 text-3xl font-bold text-[#17212b]">{typeof numericValue === "number" ? <AnimatedNumber value={numericValue} suffix={suffix} decimals={decimals} /> : value}</div>
+    </motion.div>
   );
 }

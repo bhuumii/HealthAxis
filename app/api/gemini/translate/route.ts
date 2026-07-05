@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
 
 const languageLabels: Record<string, string> = {
+  en: "English",
   hi: "Hindi",
   mr: "Marathi",
-  ta: "Tamil",
+  gu: "Gujarati",
   te: "Telugu",
-  en: "English"
+  bn: "Bengali",
+  ta: "Tamil",
+  kn: "Kannada",
+  ml: "Malayalam",
+  pa: "Punjabi",
+  ur: "Urdu"
 };
 
 function geminiModel() {

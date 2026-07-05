@@ -23,7 +23,7 @@ function fallbackAnswer(question: string, warnings: StockForecast[]) {
     .slice(0, 5)
     .map(
       (warning) =>
-        `${warning.centreName}: ${warning.medicineName} has ${warning.currentStock} ${warning.unit} left, about ${warning.daysUntilStockout} days of cover.`
+        `${warning.centreName}: ${warning.medicineName} has ${warning.currentStock} ${warning.unit} left, about ${warning.daysUntilStockout} days left before it runs out.`
     )
     .join(" ");
 }
@@ -45,7 +45,7 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
       const response = await fetch("/api/gemini/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question: asked, language })
+        body: JSON.stringify({ question: asked, language, districtSlug: data.districtSlug })
       });
       if (!response.ok) throw new Error("Gemini route unavailable");
       const payload = (await response.json()) as { answer?: string };

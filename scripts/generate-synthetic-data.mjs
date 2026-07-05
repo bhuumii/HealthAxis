@@ -23,6 +23,10 @@ function isoDate(daysAgo) {
   return date.toISOString().slice(0, 10);
 }
 
+function slugify(value) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 const medicines = [
   ["amox", "Amoxicillin 500mg", "Antibiotic", "strips", 90, true],
   ["azith", "Azithromycin 500mg", "Antibiotic", "strips", 70, true],
@@ -43,151 +47,19 @@ const tests = [
   ["dengue", "Dengue NS1"]
 ];
 
-const centres = [
-  {
-    id: "rampur-chc",
-    name: "Rampur Community Health Centre",
-    type: "CHC",
-    block: "Rampur",
-    catchmentPopulation: 94500,
-    beds: 32,
-    doctors: 7,
-    demand: 1.18,
-    struggling: "beds-doctors-stock",
-    coordinates: { lat: 25.324, lng: 82.983 }
-  },
-  {
-    id: "bhairavpur-phc",
-    name: "Bhairavpur Primary Health Centre",
-    type: "PHC",
-    block: "Bhairavpur",
-    catchmentPopulation: 38600,
-    beds: 8,
-    doctors: 3,
-    demand: 0.82,
-    struggling: "",
-    coordinates: { lat: 25.245, lng: 82.901 }
-  },
-  {
-    id: "nirmalganj-phc",
-    name: "Nirmalganj Primary Health Centre",
-    type: "PHC",
-    block: "Nirmalganj",
-    catchmentPopulation: 42100,
-    beds: 10,
-    doctors: 3,
-    demand: 0.92,
-    struggling: "stock-tests",
-    coordinates: { lat: 25.377, lng: 83.067 }
-  },
-  {
-    id: "kesaripur-chc",
-    name: "Kesaripur Community Health Centre",
-    type: "CHC",
-    block: "Kesaripur",
-    catchmentPopulation: 87200,
-    beds: 28,
-    doctors: 6,
-    demand: 0.98,
-    struggling: "",
-    coordinates: { lat: 25.291, lng: 83.138 }
-  },
-  {
-    id: "sonbarsa-phc",
-    name: "Sonbarsa Primary Health Centre",
-    type: "PHC",
-    block: "Sonbarsa",
-    catchmentPopulation: 33300,
-    beds: 6,
-    doctors: 2,
-    demand: 0.78,
-    struggling: "",
-    coordinates: { lat: 25.184, lng: 83.024 }
-  },
-  {
-    id: "devipur-phc",
-    name: "Devipur Primary Health Centre",
-    type: "PHC",
-    block: "Devipur",
-    catchmentPopulation: 47200,
-    beds: 12,
-    doctors: 4,
-    demand: 1.05,
-    struggling: "overcrowded",
-    coordinates: { lat: 25.421, lng: 82.947 }
-  },
-  {
-    id: "chandipur-phc",
-    name: "Chandipur Primary Health Centre",
-    type: "PHC",
-    block: "Chandipur",
-    catchmentPopulation: 28600,
-    beds: 6,
-    doctors: 2,
-    demand: 0.7,
-    struggling: "",
-    coordinates: { lat: 25.463, lng: 83.019 }
-  },
-  {
-    id: "madhopur-chc",
-    name: "Madhopur Community Health Centre",
-    type: "CHC",
-    block: "Madhopur",
-    catchmentPopulation: 112400,
-    beds: 36,
-    doctors: 8,
-    demand: 1.22,
-    struggling: "beds-stock",
-    coordinates: { lat: 25.512, lng: 83.106 }
-  },
-  {
-    id: "lalganj-phc",
-    name: "Lalganj Primary Health Centre",
-    type: "PHC",
-    block: "Lalganj",
-    catchmentPopulation: 51700,
-    beds: 10,
-    doctors: 3,
-    demand: 0.95,
-    struggling: "tests",
-    coordinates: { lat: 25.142, lng: 82.873 }
-  },
-  {
-    id: "shantipur-phc",
-    name: "Shantipur Primary Health Centre",
-    type: "PHC",
-    block: "Shantipur",
-    catchmentPopulation: 36500,
-    beds: 8,
-    doctors: 3,
-    demand: 0.76,
-    struggling: "doctors",
-    coordinates: { lat: 25.226, lng: 83.211 }
-  },
-  {
-    id: "gauriganj-chc",
-    name: "Gauriganj Community Health Centre",
-    type: "CHC",
-    block: "Gauriganj",
-    catchmentPopulation: 98200,
-    beds: 30,
-    doctors: 7,
-    demand: 1.0,
-    struggling: "",
-    coordinates: { lat: 25.488, lng: 82.812 }
-  },
-  {
-    id: "rajapur-phc",
-    name: "Rajapur Primary Health Centre",
-    type: "PHC",
-    block: "Rajapur",
-    catchmentPopulation: 44200,
-    beds: 9,
-    doctors: 3,
-    demand: 1.08,
-    struggling: "stock",
-    coordinates: { lat: 25.096, lng: 83.071 }
-  }
+const suryanagarCentres = [
+  { id: "rampur-chc", name: "Rampur Community Health Centre", type: "CHC", block: "Rampur", catchmentPopulation: 94500, beds: 32, doctors: 7, demand: 1.18, struggling: "beds-doctors-stock", coordinates: { lat: 25.324, lng: 82.983 } },
+  { id: "bhairavpur-phc", name: "Bhairavpur Primary Health Centre", type: "PHC", block: "Bhairavpur", catchmentPopulation: 38600, beds: 8, doctors: 3, demand: 0.82, struggling: "", coordinates: { lat: 25.245, lng: 82.901 } },
+  { id: "nirmalganj-phc", name: "Nirmalganj Primary Health Centre", type: "PHC", block: "Nirmalganj", catchmentPopulation: 42100, beds: 10, doctors: 3, demand: 0.92, struggling: "stock-tests", coordinates: { lat: 25.377, lng: 83.067 } },
+  { id: "kesaripur-chc", name: "Kesaripur Community Health Centre", type: "CHC", block: "Kesaripur", catchmentPopulation: 87200, beds: 28, doctors: 6, demand: 0.98, struggling: "", coordinates: { lat: 25.291, lng: 83.138 } },
+  { id: "sonbarsa-phc", name: "Sonbarsa Primary Health Centre", type: "PHC", block: "Sonbarsa", catchmentPopulation: 33300, beds: 6, doctors: 2, demand: 0.78, struggling: "", coordinates: { lat: 25.184, lng: 83.024 } },
+  { id: "devipur-phc", name: "Devipur Primary Health Centre", type: "PHC", block: "Devipur", catchmentPopulation: 47200, beds: 12, doctors: 4, demand: 1.05, struggling: "overcrowded", coordinates: { lat: 25.421, lng: 82.947 } },
+  { id: "chandipur-phc", name: "Chandipur Primary Health Centre", type: "PHC", block: "Chandipur", catchmentPopulation: 28600, beds: 6, doctors: 2, demand: 0.7, struggling: "", coordinates: { lat: 25.463, lng: 83.019 } },
+  { id: "madhopur-chc", name: "Madhopur Community Health Centre", type: "CHC", block: "Madhopur", catchmentPopulation: 112400, beds: 36, doctors: 8, demand: 1.22, struggling: "beds-stock", coordinates: { lat: 25.512, lng: 83.106 } },
+  { id: "lalganj-phc", name: "Lalganj Primary Health Centre", type: "PHC", block: "Lalganj", catchmentPopulation: 51700, beds: 10, doctors: 3, demand: 0.95, struggling: "tests", coordinates: { lat: 25.142, lng: 82.873 } },
+  { id: "shantipur-phc", name: "Shantipur Primary Health Centre", type: "PHC", block: "Shantipur", catchmentPopulation: 36500, beds: 8, doctors: 3, demand: 0.76, struggling: "doctors", coordinates: { lat: 25.226, lng: 83.211 } },
+  { id: "gauriganj-chc", name: "Gauriganj Community Health Centre", type: "CHC", block: "Gauriganj", catchmentPopulation: 98200, beds: 30, doctors: 7, demand: 1.0, struggling: "", coordinates: { lat: 25.488, lng: 82.812 } },
+  { id: "rajapur-phc", name: "Rajapur Primary Health Centre", type: "PHC", block: "Rajapur", catchmentPopulation: 44200, beds: 9, doctors: 3, demand: 1.08, struggling: "stock", coordinates: { lat: 25.096, lng: 83.071 } }
 ];
 
 const doctorNames = [
@@ -218,13 +90,43 @@ function createStockHistory(baseDailyUse, startingStock, struggling) {
   return history;
 }
 
-function createCentre(raw, centreIndex) {
+function makeDistrictCentres(config) {
+  if (config.centres) return config.centres;
+
+  const strain = ["", "stock", "tests", "beds", "doctors", "stock-tests", "overcrowded", "", "beds-stock", "stock"];
+  return config.villages.map((village, index) => {
+    const type = index % 4 === 0 || index === config.villages.length - 1 ? "CHC" : "PHC";
+    const beds = type === "CHC" ? intBetween(24, 38) : intBetween(6, 12);
+    const doctors = type === "CHC" ? intBetween(5, 8) : intBetween(2, 4);
+    const catchmentPopulation = type === "CHC" ? intBetween(82000, 118000) : intBetween(28500, 56000);
+    const demand = Number(between(0.72, 1.24).toFixed(2));
+    const struggling = strain[(index + config.strainOffset) % strain.length];
+    const id = `${config.slug}-${slugify(village)}-${type.toLowerCase()}`;
+
+    return {
+      id,
+      name: `${village} ${type === "CHC" ? "Community Health Centre" : "Primary Health Centre"}`,
+      type,
+      block: village,
+      catchmentPopulation,
+      beds,
+      doctors,
+      demand,
+      struggling,
+      coordinates: {
+        lat: Number((config.baseLat + between(-0.22, 0.22)).toFixed(3)),
+        lng: Number((config.baseLng + between(-0.22, 0.22)).toFixed(3))
+      }
+    };
+  });
+}
+
+function createCentre(raw, centreIndex, districtConfig) {
   const isStruggling = Boolean(raw.struggling);
   const centreMedicines = medicines.map(([id, name, category, unit, threshold, critical], medicineIndex) => {
     const baseUse = between(5, 18) * raw.demand * (category === "Antibiotic" ? 1.15 : 1);
-    const lowStockItem =
-      raw.struggling.includes("stock") && ["amox", "azith", "ors", "rapid"].includes(id);
-    const startingStock = Math.round(baseUse * (lowStockItem ? between(12, 19) : between(58, 92)));
+    const lowStockItem = raw.struggling.includes("stock") && ["amox", "azith", "ors", "rapid"].includes(id);
+    const startingStock = Math.round(baseUse * (lowStockItem ? between(42, 56) : between(58, 92)));
 
     return {
       id,
@@ -287,6 +189,9 @@ function createCentre(raw, centreIndex) {
     block: raw.block,
     catchmentPopulation: raw.catchmentPopulation,
     coordinates: raw.coordinates,
+    district: districtConfig.district,
+    districtSlug: districtConfig.slug,
+    state: districtConfig.state,
     medicines: centreMedicines,
     beds: { total: raw.beds, history: bedHistory },
     doctors,
@@ -296,15 +201,51 @@ function createCentre(raw, centreIndex) {
   };
 }
 
-const district = {
-  district: "Suryanagar",
-  state: "Uttar Pradesh",
-  generatedAt: "2026-07-01T00:00:00+05:30",
-  centres: centres.map(createCentre)
-};
+const districtDefinitions = [
+  {
+    district: "Suryanagar",
+    slug: "suryanagar",
+    state: "Uttar Pradesh",
+    generatedAt: "2026-07-01T00:00:00+05:30",
+    centres: suryanagarCentres
+  },
+  {
+    district: "Shivpur Kalan",
+    slug: "shivpur-kalan",
+    state: "Uttar Pradesh",
+    generatedAt: "2026-07-01T00:00:00+05:30",
+    villages: ["Basantpur", "Trilokpur", "Kalyanpur", "Reotipur", "Bhadarsa", "Semri", "Piprauli", "Kachhwa"],
+    baseLat: 26.63,
+    baseLng: 82.12,
+    strainOffset: 2
+  },
+  {
+    district: "Mahadevganj",
+    slug: "mahadevganj",
+    state: "Uttar Pradesh",
+    generatedAt: "2026-07-01T00:00:00+05:30",
+    villages: ["Belwa", "Chitaura", "Jaitpur", "Narayanpur", "Bhaisahi", "Gopalpur", "Baragaon", "Haripur", "Rasulabad", "Tilakpur"],
+    baseLat: 27.1,
+    baseLng: 81.95,
+    strainOffset: 5
+  }
+];
 
-writeFileSync(join(process.cwd(), "data", "district-data.json"), `${JSON.stringify(district, null, 2)}\n`);
-console.log(`Generated ${district.centres.length} centres in data/district-data.json`);
+const districts = districtDefinitions.map((definition) => {
+  const rawCentres = makeDistrictCentres(definition);
+  return {
+    district: definition.district,
+    districtSlug: definition.slug,
+    state: definition.state,
+    generatedAt: definition.generatedAt,
+    centres: rawCentres.map((centre, index) => createCentre(centre, index, definition))
+  };
+});
+
+const primaryDistrict = districts.find((district) => district.districtSlug === "suryanagar") ?? districts[0];
+writeFileSync(join(process.cwd(), "data", "district-data.json"), `${JSON.stringify(primaryDistrict, null, 2)}\n`);
+writeFileSync(join(process.cwd(), "data", "districts-data.json"), `${JSON.stringify(districts, null, 2)}\n`);
+console.log(`Generated ${districts.reduce((sum, district) => sum + district.centres.length, 0)} centres across ${districts.length} districts.`);
 
 function parseServiceAccount() {
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
@@ -352,52 +293,64 @@ async function seedFirestore() {
     }
   }
 
-  for (const centre of district.centres) {
-    await setDocument(db.collection("centres").doc(centre.id), {
-      id: centre.id,
-      name: centre.name,
-      type: centre.type,
-      block: centre.block,
-      catchmentPopulation: centre.catchmentPopulation,
-      coordinates: centre.coordinates,
-      district: district.district,
-      state: district.state,
-      generatedAt: district.generatedAt
-    });
+  for (const district of districts) {
+    for (const centre of district.centres) {
+      const districtFields = {
+        district: district.district,
+        districtSlug: district.districtSlug,
+        state: district.state,
+        generatedAt: district.generatedAt
+      };
 
-    await setDocument(db.collection("beds").doc(centre.id), {
-      centreId: centre.id,
-      total: centre.beds.total,
-      history: centre.beds.history
-    });
-
-    for (const medicine of centre.medicines) {
-      await setDocument(db.collection("stock_items").doc(`${centre.id}_${medicine.id}`), {
-        centreId: centre.id,
-        ...medicine
+      await setDocument(db.collection("centres").doc(centre.id), {
+        id: centre.id,
+        name: centre.name,
+        type: centre.type,
+        block: centre.block,
+        catchmentPopulation: centre.catchmentPopulation,
+        coordinates: centre.coordinates,
+        ...districtFields
       });
-    }
 
-    for (const doctor of centre.doctors) {
-      await setDocument(db.collection("doctors").doc(doctor.id), {
+      await setDocument(db.collection("beds").doc(centre.id), {
         centreId: centre.id,
-        ...doctor,
-        attendance: centre.attendance.filter((record) => record.doctorId === doctor.id)
+        total: centre.beds.total,
+        history: centre.beds.history,
+        ...districtFields
       });
-    }
 
-    for (const test of centre.tests) {
-      await setDocument(db.collection("tests").doc(`${centre.id}_${test.id}`), {
-        centreId: centre.id,
-        ...test
-      });
-    }
+      for (const medicine of centre.medicines) {
+        await setDocument(db.collection("stock_items").doc(`${centre.id}_${medicine.id}`), {
+          centreId: centre.id,
+          ...medicine,
+          ...districtFields
+        });
+      }
 
-    for (const point of centre.patientFootfall) {
-      await setDocument(db.collection("footfall_logs").doc(`${centre.id}_${point.date}`), {
-        centreId: centre.id,
-        ...point
-      });
+      for (const doctor of centre.doctors) {
+        await setDocument(db.collection("doctors").doc(doctor.id), {
+          centreId: centre.id,
+          ...doctor,
+          attendance: centre.attendance.filter((record) => record.doctorId === doctor.id),
+          ...districtFields
+        });
+      }
+
+      for (const test of centre.tests) {
+        await setDocument(db.collection("tests").doc(`${centre.id}_${test.id}`), {
+          centreId: centre.id,
+          ...test,
+          ...districtFields
+        });
+      }
+
+      for (const point of centre.patientFootfall) {
+        await setDocument(db.collection("footfall_logs").doc(`${centre.id}_${point.date}`), {
+          centreId: centre.id,
+          ...point,
+          ...districtFields
+        });
+      }
     }
   }
 
@@ -406,7 +359,7 @@ async function seedFirestore() {
     committedBatches += 1;
   }
 
-  console.log(`Seeded Firestore collections: centres, stock_items, beds, doctors, tests, footfall_logs (${committedBatches} batches)`);
+  console.log(`Seeded Firestore collections for ${districts.length} districts (${committedBatches} batches).`);
 }
 
 await seedFirestore();

@@ -9,9 +9,10 @@ import type {
   PatientFootfallPoint
 } from "@/lib/types";
 
-export type CentreDoc = Omit<HealthCentre, "medicines" | "beds" | "doctors" | "attendance" | "tests" | "patientFootfall"> & {
+export type CentreDoc = Omit<HealthCentre, "medicines" | "beds" | "doctors" | "attendance" | "tests" | "patientFootfall" | "district" | "districtSlug" | "state"> & {
   district?: string;
   state?: string;
+  districtSlug?: string;
   generatedAt?: string;
 };
 
@@ -33,6 +34,7 @@ export function composeDistrictData(snapshot: {
 
   return {
     district: firstCentre?.district ?? "Suryanagar",
+    districtSlug: firstCentre?.districtSlug ?? "suryanagar",
     state: firstCentre?.state ?? "Uttar Pradesh",
     generatedAt: firstCentre?.generatedAt ?? new Date().toISOString(),
     centres: snapshot.centres
@@ -45,6 +47,9 @@ export function composeDistrictData(snapshot: {
           block: centre.block,
           catchmentPopulation: centre.catchmentPopulation,
           coordinates: centre.coordinates,
+          district: centre.district ?? "Suryanagar",
+          districtSlug: centre.districtSlug ?? "suryanagar",
+          state: centre.state ?? "Uttar Pradesh",
           medicines: snapshot.stocks.filter((stock) => stock.centreId === centre.id),
           beds: snapshot.beds.find((bed) => bed.centreId === centre.id) ?? { total: 0, history: [] },
           doctors: centreDoctors.map((doctor) => ({ id: doctor.id, name: doctor.name, role: doctor.role, specialty: doctor.specialty })),

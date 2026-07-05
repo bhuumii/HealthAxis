@@ -57,6 +57,9 @@ export interface HealthCentre {
   type: CentreType;
   block: string;
   catchmentPopulation: number;
+  district: string;
+  districtSlug: string;
+  state: string;
   coordinates: {
     lat: number;
     lng: number;
@@ -74,6 +77,7 @@ export interface HealthCentre {
 
 export interface DistrictData {
   district: string;
+  districtSlug: string;
   state: string;
   generatedAt: string;
   centres: HealthCentre[];

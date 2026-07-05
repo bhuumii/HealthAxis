@@ -1,5 +1,6 @@
 {
   "district": "Suryanagar",
+  "districtSlug": "suryanagar",
   "state": "Uttar Pradesh",
   "generatedAt": "2026-07-01T00:00:00+05:30",
   "centres": [
@@ -13,6 +14,9 @@
         "lat": 25.324,
         "lng": 82.983
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -24,318 +28,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 162,
+              "opening": 547,
               "received": 0,
               "consumed": 12,
-              "closing": 150
+              "closing": 535
             },
             {
               "date": "2026-05-18",
-              "opening": 150,
+              "opening": 535,
               "received": 0,
               "consumed": 11,
-              "closing": 139
+              "closing": 524
             },
             {
               "date": "2026-05-19",
-              "opening": 139,
+              "opening": 524,
               "received": 0,
               "consumed": 16,
-              "closing": 123
+              "closing": 508
             },
             {
               "date": "2026-05-20",
-              "opening": 123,
+              "opening": 508,
               "received": 0,
               "consumed": 16,
-              "closing": 107
+              "closing": 492
             },
             {
               "date": "2026-05-21",
-              "opening": 107,
+              "opening": 492,
               "received": 0,
               "consumed": 15,
-              "closing": 92
+              "closing": 477
             },
             {
               "date": "2026-05-22",
-              "opening": 92,
+              "opening": 477,
               "received": 0,
               "consumed": 15,
-              "closing": 77
+              "closing": 462
             },
             {
               "date": "2026-05-23",
-              "opening": 77,
+              "opening": 462,
               "received": 0,
               "consumed": 15,
-              "closing": 62
+              "closing": 447
             },
             {
               "date": "2026-05-24",
-              "opening": 62,
+              "opening": 447,
               "received": 0,
               "consumed": 12,
-              "closing": 50
+              "closing": 435
             },
             {
               "date": "2026-05-25",
-              "opening": 50,
+              "opening": 435,
               "received": 0,
               "consumed": 13,
-              "closing": 37
+              "closing": 422
             },
             {
               "date": "2026-05-26",
-              "opening": 37,
+              "opening": 422,
               "received": 0,
               "consumed": 12,
-              "closing": 25
+              "closing": 410
             },
             {
               "date": "2026-05-27",
-              "opening": 25,
+              "opening": 410,
               "received": 0,
               "consumed": 11,
-              "closing": 14
+              "closing": 399
             },
             {
               "date": "2026-05-28",
-              "opening": 14,
+              "opening": 399,
               "received": 0,
               "consumed": 11,
-              "closing": 3
+              "closing": 388
             },
             {
               "date": "2026-05-29",
-              "opening": 3,
+              "opening": 388,
               "received": 74,
               "consumed": 14,
-              "closing": 63
+              "closing": 448
             },
             {
               "date": "2026-05-30",
-              "opening": 63,
+              "opening": 448,
               "received": 0,
               "consumed": 13,
-              "closing": 50
+              "closing": 435
             },
             {
               "date": "2026-05-31",
-              "opening": 50,
+              "opening": 435,
               "received": 0,
               "consumed": 12,
-              "closing": 38
+              "closing": 423
             },
             {
               "date": "2026-06-01",
-              "opening": 38,
+              "opening": 423,
               "received": 0,
               "consumed": 16,
-              "closing": 22
+              "closing": 407
             },
             {
               "date": "2026-06-02",
-              "opening": 22,
+              "opening": 407,
               "received": 0,
               "consumed": 16,
-              "closing": 6
+              "closing": 391
             },
             {
               "date": "2026-06-03",
-              "opening": 6,
+              "opening": 391,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 378
             },
             {
               "date": "2026-06-04",
-              "opening": 0,
+              "opening": 378,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 365
             },
             {
               "date": "2026-06-05",
-              "opening": 0,
+              "opening": 365,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 350
             },
             {
               "date": "2026-06-06",
-              "opening": 0,
+              "opening": 350,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 337
             },
             {
               "date": "2026-06-07",
-              "opening": 0,
+              "opening": 337,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 325
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 325,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 310
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 310,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 299
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 299,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 285
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 285,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 270
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 270,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 259
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 259,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 244
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 244,
               "received": 64,
               "consumed": 17,
-              "closing": 47
+              "closing": 291
             },
             {
               "date": "2026-06-15",
-              "opening": 47,
+              "opening": 291,
               "received": 0,
               "consumed": 15,
-              "closing": 32
+              "closing": 276
             },
             {
               "date": "2026-06-16",
-              "opening": 32,
+              "opening": 276,
               "received": 0,
               "consumed": 14,
-              "closing": 18
+              "closing": 262
             },
             {
               "date": "2026-06-17",
-              "opening": 18,
+              "opening": 262,
               "received": 0,
               "consumed": 13,
-              "closing": 5
+              "closing": 249
             },
             {
               "date": "2026-06-18",
-              "opening": 5,
+              "opening": 249,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 237
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 237,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 218
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 218,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 201
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 201,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 189
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 189,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 177
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 177,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 163
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 163,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 145
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 145,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 126
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 126,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 108
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 108,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 91
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 91,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 78
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 78,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 63
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 63,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 44
             }
           ]
         },
@@ -349,318 +353,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 280,
+              "opening": 925,
               "received": 0,
               "consumed": 24,
-              "closing": 256
+              "closing": 901
             },
             {
               "date": "2026-05-18",
-              "opening": 256,
+              "opening": 901,
               "received": 0,
               "consumed": 18,
-              "closing": 238
+              "closing": 883
             },
             {
               "date": "2026-05-19",
-              "opening": 238,
+              "opening": 883,
               "received": 0,
               "consumed": 23,
-              "closing": 215
+              "closing": 860
             },
             {
               "date": "2026-05-20",
-              "opening": 215,
+              "opening": 860,
               "received": 0,
               "consumed": 18,
-              "closing": 197
+              "closing": 842
             },
             {
               "date": "2026-05-21",
-              "opening": 197,
+              "opening": 842,
               "received": 0,
               "consumed": 24,
-              "closing": 173
+              "closing": 818
             },
             {
               "date": "2026-05-22",
-              "opening": 173,
+              "opening": 818,
               "received": 0,
               "consumed": 19,
-              "closing": 154
+              "closing": 799
             },
             {
               "date": "2026-05-23",
-              "opening": 154,
+              "opening": 799,
               "received": 0,
               "consumed": 24,
-              "closing": 130
+              "closing": 775
             },
             {
               "date": "2026-05-24",
-              "opening": 130,
+              "opening": 775,
               "received": 0,
               "consumed": 19,
-              "closing": 111
+              "closing": 756
             },
             {
               "date": "2026-05-25",
-              "opening": 111,
+              "opening": 756,
               "received": 0,
               "consumed": 18,
-              "closing": 93
+              "closing": 738
             },
             {
               "date": "2026-05-26",
-              "opening": 93,
+              "opening": 738,
               "received": 0,
               "consumed": 24,
-              "closing": 69
+              "closing": 714
             },
             {
               "date": "2026-05-27",
-              "opening": 69,
+              "opening": 714,
               "received": 0,
               "consumed": 21,
-              "closing": 48
+              "closing": 693
             },
             {
               "date": "2026-05-28",
-              "opening": 48,
+              "opening": 693,
               "received": 0,
               "consumed": 24,
-              "closing": 24
+              "closing": 669
             },
             {
               "date": "2026-05-29",
-              "opening": 24,
+              "opening": 669,
               "received": 148,
               "consumed": 20,
-              "closing": 152
+              "closing": 797
             },
             {
               "date": "2026-05-30",
-              "opening": 152,
+              "opening": 797,
               "received": 0,
               "consumed": 28,
-              "closing": 124
+              "closing": 769
             },
             {
               "date": "2026-05-31",
-              "opening": 124,
+              "opening": 769,
               "received": 0,
               "consumed": 26,
-              "closing": 98
+              "closing": 743
             },
             {
               "date": "2026-06-01",
-              "opening": 98,
+              "opening": 743,
               "received": 0,
               "consumed": 22,
-              "closing": 76
+              "closing": 721
             },
             {
               "date": "2026-06-02",
-              "opening": 76,
+              "opening": 721,
               "received": 0,
               "consumed": 27,
-              "closing": 49
+              "closing": 694
             },
             {
               "date": "2026-06-03",
-              "opening": 49,
+              "opening": 694,
               "received": 0,
               "consumed": 22,
-              "closing": 27
+              "closing": 672
             },
             {
               "date": "2026-06-04",
-              "opening": 27,
+              "opening": 672,
               "received": 0,
               "consumed": 24,
-              "closing": 3
+              "closing": 648
             },
             {
               "date": "2026-06-05",
-              "opening": 3,
+              "opening": 648,
               "received": 0,
               "consumed": 23,
-              "closing": 0
+              "closing": 625
             },
             {
               "date": "2026-06-06",
-              "opening": 0,
+              "opening": 625,
               "received": 0,
               "consumed": 29,
-              "closing": 0
+              "closing": 596
             },
             {
               "date": "2026-06-07",
-              "opening": 0,
+              "opening": 596,
               "received": 0,
               "consumed": 29,
-              "closing": 0
+              "closing": 567
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 567,
               "received": 0,
               "consumed": 25,
-              "closing": 0
+              "closing": 542
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 542,
               "received": 0,
               "consumed": 29,
-              "closing": 0
+              "closing": 513
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 513,
               "received": 0,
               "consumed": 26,
-              "closing": 0
+              "closing": 487
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 487,
               "received": 0,
               "consumed": 26,
-              "closing": 0
+              "closing": 461
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 461,
               "received": 0,
               "consumed": 25,
-              "closing": 0
+              "closing": 436
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 436,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 414
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 414,
               "received": 103,
               "consumed": 21,
-              "closing": 82
+              "closing": 496
             },
             {
               "date": "2026-06-15",
-              "opening": 82,
+              "opening": 496,
               "received": 0,
               "consumed": 29,
-              "closing": 53
+              "closing": 467
             },
             {
               "date": "2026-06-16",
-              "opening": 53,
+              "opening": 467,
               "received": 0,
               "consumed": 31,
-              "closing": 22
+              "closing": 436
             },
             {
               "date": "2026-06-17",
-              "opening": 22,
+              "opening": 436,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 414
             },
             {
               "date": "2026-06-18",
-              "opening": 0,
+              "opening": 414,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 387
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 387,
               "received": 0,
               "consumed": 31,
-              "closing": 0
+              "closing": 356
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 356,
               "received": 0,
               "consumed": 28,
-              "closing": 0
+              "closing": 328
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 328,
               "received": 0,
               "consumed": 25,
-              "closing": 0
+              "closing": 303
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 303,
               "received": 0,
               "consumed": 30,
-              "closing": 0
+              "closing": 273
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 273,
               "received": 0,
               "consumed": 28,
-              "closing": 0
+              "closing": 245
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 245,
               "received": 0,
               "consumed": 30,
-              "closing": 0
+              "closing": 215
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 215,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 188
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 188,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 161
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 161,
               "received": 0,
               "consumed": 32,
-              "closing": 0
+              "closing": 129
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 129,
               "received": 0,
               "consumed": 33,
-              "closing": 0
+              "closing": 96
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 96,
               "received": 0,
               "consumed": 26,
-              "closing": 0
+              "closing": 70
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 70,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 48
             }
           ]
         },
@@ -999,318 +1003,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 195,
+              "opening": 529,
               "received": 0,
               "consumed": 10,
-              "closing": 185
+              "closing": 519
             },
             {
               "date": "2026-05-18",
-              "opening": 185,
+              "opening": 519,
               "received": 0,
               "consumed": 8,
-              "closing": 177
+              "closing": 511
             },
             {
               "date": "2026-05-19",
-              "opening": 177,
+              "opening": 511,
               "received": 0,
               "consumed": 10,
-              "closing": 167
+              "closing": 501
             },
             {
               "date": "2026-05-20",
-              "opening": 167,
+              "opening": 501,
               "received": 0,
               "consumed": 8,
-              "closing": 159
+              "closing": 493
             },
             {
               "date": "2026-05-21",
-              "opening": 159,
+              "opening": 493,
               "received": 0,
               "consumed": 8,
-              "closing": 151
+              "closing": 485
             },
             {
               "date": "2026-05-22",
-              "opening": 151,
+              "opening": 485,
               "received": 0,
               "consumed": 10,
-              "closing": 141
+              "closing": 475
             },
             {
               "date": "2026-05-23",
-              "opening": 141,
+              "opening": 475,
               "received": 0,
               "consumed": 10,
-              "closing": 131
+              "closing": 465
             },
             {
               "date": "2026-05-24",
-              "opening": 131,
+              "opening": 465,
               "received": 0,
               "consumed": 9,
-              "closing": 122
+              "closing": 456
             },
             {
               "date": "2026-05-25",
-              "opening": 122,
+              "opening": 456,
               "received": 0,
               "consumed": 8,
-              "closing": 114
+              "closing": 448
             },
             {
               "date": "2026-05-26",
-              "opening": 114,
+              "opening": 448,
               "received": 0,
               "consumed": 8,
-              "closing": 106
+              "closing": 440
             },
             {
               "date": "2026-05-27",
-              "opening": 106,
+              "opening": 440,
               "received": 0,
               "consumed": 8,
-              "closing": 98
+              "closing": 432
             },
             {
               "date": "2026-05-28",
-              "opening": 98,
+              "opening": 432,
               "received": 0,
               "consumed": 8,
-              "closing": 90
+              "closing": 424
             },
             {
               "date": "2026-05-29",
-              "opening": 90,
+              "opening": 424,
               "received": 59,
               "consumed": 11,
-              "closing": 138
+              "closing": 472
             },
             {
               "date": "2026-05-30",
-              "opening": 138,
+              "opening": 472,
               "received": 0,
               "consumed": 9,
-              "closing": 129
+              "closing": 463
             },
             {
               "date": "2026-05-31",
-              "opening": 129,
+              "opening": 463,
               "received": 0,
               "consumed": 11,
-              "closing": 118
+              "closing": 452
             },
             {
               "date": "2026-06-01",
-              "opening": 118,
+              "opening": 452,
               "received": 0,
               "consumed": 10,
-              "closing": 108
+              "closing": 442
             },
             {
               "date": "2026-06-02",
-              "opening": 108,
+              "opening": 442,
               "received": 0,
               "consumed": 10,
-              "closing": 98
+              "closing": 432
             },
             {
               "date": "2026-06-03",
-              "opening": 98,
+              "opening": 432,
               "received": 0,
               "consumed": 12,
-              "closing": 86
+              "closing": 420
             },
             {
               "date": "2026-06-04",
-              "opening": 86,
+              "opening": 420,
               "received": 0,
               "consumed": 11,
-              "closing": 75
+              "closing": 409
             },
             {
               "date": "2026-06-05",
-              "opening": 75,
+              "opening": 409,
               "received": 0,
               "consumed": 9,
-              "closing": 66
+              "closing": 400
             },
             {
               "date": "2026-06-06",
-              "opening": 66,
+              "opening": 400,
               "received": 0,
               "consumed": 9,
-              "closing": 57
+              "closing": 391
             },
             {
               "date": "2026-06-07",
-              "opening": 57,
+              "opening": 391,
               "received": 0,
               "consumed": 10,
-              "closing": 47
+              "closing": 381
             },
             {
               "date": "2026-06-08",
-              "opening": 47,
+              "opening": 381,
               "received": 0,
               "consumed": 9,
-              "closing": 38
+              "closing": 372
             },
             {
               "date": "2026-06-09",
-              "opening": 38,
+              "opening": 372,
               "received": 0,
               "consumed": 13,
-              "closing": 25
+              "closing": 359
             },
             {
               "date": "2026-06-10",
-              "opening": 25,
+              "opening": 359,
               "received": 0,
               "consumed": 10,
-              "closing": 15
+              "closing": 349
             },
             {
               "date": "2026-06-11",
-              "opening": 15,
+              "opening": 349,
               "received": 0,
               "consumed": 10,
-              "closing": 5
+              "closing": 339
             },
             {
               "date": "2026-06-12",
-              "opening": 5,
+              "opening": 339,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 328
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 328,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 316
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 316,
               "received": 64,
               "consumed": 13,
-              "closing": 51
+              "closing": 367
             },
             {
               "date": "2026-06-15",
-              "opening": 51,
+              "opening": 367,
               "received": 0,
               "consumed": 9,
-              "closing": 42
+              "closing": 358
             },
             {
               "date": "2026-06-16",
-              "opening": 42,
+              "opening": 358,
               "received": 0,
               "consumed": 8,
-              "closing": 34
+              "closing": 350
             },
             {
               "date": "2026-06-17",
-              "opening": 34,
+              "opening": 350,
               "received": 0,
               "consumed": 10,
-              "closing": 24
+              "closing": 340
             },
             {
               "date": "2026-06-18",
-              "opening": 24,
+              "opening": 340,
               "received": 0,
               "consumed": 12,
-              "closing": 12
+              "closing": 328
             },
             {
               "date": "2026-06-19",
-              "opening": 12,
+              "opening": 328,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 315
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 315,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 301
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 301,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 290
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 290,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 281
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 281,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 268
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 268,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 256
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 256,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 247
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 247,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 234
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 234,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 225
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 225,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 211
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 211,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 202
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 202,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 189
             }
           ]
         },
@@ -2299,318 +2303,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 161,
+              "opening": 400,
               "received": 0,
               "consumed": 8,
-              "closing": 153
+              "closing": 392
             },
             {
               "date": "2026-05-18",
-              "opening": 153,
+              "opening": 392,
               "received": 0,
               "consumed": 8,
-              "closing": 145
+              "closing": 384
             },
             {
               "date": "2026-05-19",
-              "opening": 145,
+              "opening": 384,
               "received": 0,
               "consumed": 9,
-              "closing": 136
+              "closing": 375
             },
             {
               "date": "2026-05-20",
-              "opening": 136,
+              "opening": 375,
               "received": 0,
               "consumed": 7,
-              "closing": 129
+              "closing": 368
             },
             {
               "date": "2026-05-21",
-              "opening": 129,
+              "opening": 368,
               "received": 0,
               "consumed": 8,
-              "closing": 121
+              "closing": 360
             },
             {
               "date": "2026-05-22",
-              "opening": 121,
+              "opening": 360,
               "received": 0,
               "consumed": 8,
-              "closing": 113
+              "closing": 352
             },
             {
               "date": "2026-05-23",
-              "opening": 113,
+              "opening": 352,
               "received": 0,
               "consumed": 9,
-              "closing": 104
+              "closing": 343
             },
             {
               "date": "2026-05-24",
-              "opening": 104,
+              "opening": 343,
               "received": 0,
               "consumed": 8,
-              "closing": 96
+              "closing": 335
             },
             {
               "date": "2026-05-25",
-              "opening": 96,
+              "opening": 335,
               "received": 0,
               "consumed": 8,
-              "closing": 88
+              "closing": 327
             },
             {
               "date": "2026-05-26",
-              "opening": 88,
+              "opening": 327,
               "received": 0,
               "consumed": 8,
-              "closing": 80
+              "closing": 319
             },
             {
               "date": "2026-05-27",
-              "opening": 80,
+              "opening": 319,
               "received": 0,
               "consumed": 8,
-              "closing": 72
+              "closing": 311
             },
             {
               "date": "2026-05-28",
-              "opening": 72,
+              "opening": 311,
               "received": 0,
               "consumed": 10,
-              "closing": 62
+              "closing": 301
             },
             {
               "date": "2026-05-29",
-              "opening": 62,
+              "opening": 301,
               "received": 57,
               "consumed": 9,
-              "closing": 110
+              "closing": 349
             },
             {
               "date": "2026-05-30",
-              "opening": 110,
+              "opening": 349,
               "received": 0,
               "consumed": 7,
-              "closing": 103
+              "closing": 342
             },
             {
               "date": "2026-05-31",
-              "opening": 103,
+              "opening": 342,
               "received": 0,
               "consumed": 10,
-              "closing": 93
+              "closing": 332
             },
             {
               "date": "2026-06-01",
-              "opening": 93,
+              "opening": 332,
               "received": 0,
               "consumed": 7,
-              "closing": 86
+              "closing": 325
             },
             {
               "date": "2026-06-02",
-              "opening": 86,
+              "opening": 325,
               "received": 0,
               "consumed": 9,
-              "closing": 77
+              "closing": 316
             },
             {
               "date": "2026-06-03",
-              "opening": 77,
+              "opening": 316,
               "received": 0,
               "consumed": 9,
-              "closing": 68
+              "closing": 307
             },
             {
               "date": "2026-06-04",
-              "opening": 68,
+              "opening": 307,
               "received": 0,
               "consumed": 8,
-              "closing": 60
+              "closing": 299
             },
             {
               "date": "2026-06-05",
-              "opening": 60,
+              "opening": 299,
               "received": 0,
               "consumed": 7,
-              "closing": 53
+              "closing": 292
             },
             {
               "date": "2026-06-06",
-              "opening": 53,
+              "opening": 292,
               "received": 0,
               "consumed": 10,
-              "closing": 43
+              "closing": 282
             },
             {
               "date": "2026-06-07",
-              "opening": 43,
+              "opening": 282,
               "received": 0,
               "consumed": 7,
-              "closing": 36
+              "closing": 275
             },
             {
               "date": "2026-06-08",
-              "opening": 36,
+              "opening": 275,
               "received": 0,
               "consumed": 9,
-              "closing": 27
+              "closing": 266
             },
             {
               "date": "2026-06-09",
-              "opening": 27,
+              "opening": 266,
               "received": 0,
               "consumed": 10,
-              "closing": 17
+              "closing": 256
             },
             {
               "date": "2026-06-10",
-              "opening": 17,
+              "opening": 256,
               "received": 0,
               "consumed": 11,
-              "closing": 6
+              "closing": 245
             },
             {
               "date": "2026-06-11",
-              "opening": 6,
+              "opening": 245,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 237
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 237,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 228
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 228,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 219
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 219,
               "received": 34,
               "consumed": 8,
-              "closing": 26
+              "closing": 245
             },
             {
               "date": "2026-06-15",
-              "opening": 26,
+              "opening": 245,
               "received": 0,
               "consumed": 10,
-              "closing": 16
+              "closing": 235
             },
             {
               "date": "2026-06-16",
-              "opening": 16,
+              "opening": 235,
               "received": 0,
               "consumed": 7,
-              "closing": 9
+              "closing": 228
             },
             {
               "date": "2026-06-17",
-              "opening": 9,
+              "opening": 228,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 217
             },
             {
               "date": "2026-06-18",
-              "opening": 0,
+              "opening": 217,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 207
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 207,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 197
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 197,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 189
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 189,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 181
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 181,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 173
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 173,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 164
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 164,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 156
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 156,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 146
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 146,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 137
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 137,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 125
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 125,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 117
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 117,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 109
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 109,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 99
             }
           ]
         }
@@ -4697,6 +4701,9 @@
         "lat": 25.245,
         "lng": 82.901
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -8457,6 +8464,9 @@
         "lat": 25.377,
         "lng": 83.067
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -8468,318 +8478,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 187,
+              "opening": 638,
               "received": 0,
               "consumed": 13,
-              "closing": 174
+              "closing": 625
             },
             {
               "date": "2026-05-18",
-              "opening": 174,
+              "opening": 625,
               "received": 0,
               "consumed": 16,
-              "closing": 158
+              "closing": 609
             },
             {
               "date": "2026-05-19",
-              "opening": 158,
+              "opening": 609,
               "received": 0,
               "consumed": 14,
-              "closing": 144
+              "closing": 595
             },
             {
               "date": "2026-05-20",
-              "opening": 144,
+              "opening": 595,
               "received": 0,
               "consumed": 14,
-              "closing": 130
+              "closing": 581
             },
             {
               "date": "2026-05-21",
-              "opening": 130,
+              "opening": 581,
               "received": 0,
               "consumed": 19,
-              "closing": 111
+              "closing": 562
             },
             {
               "date": "2026-05-22",
-              "opening": 111,
+              "opening": 562,
               "received": 0,
               "consumed": 18,
-              "closing": 93
+              "closing": 544
             },
             {
               "date": "2026-05-23",
-              "opening": 93,
+              "opening": 544,
               "received": 0,
               "consumed": 14,
-              "closing": 79
+              "closing": 530
             },
             {
               "date": "2026-05-24",
-              "opening": 79,
+              "opening": 530,
               "received": 0,
               "consumed": 18,
-              "closing": 61
+              "closing": 512
             },
             {
               "date": "2026-05-25",
-              "opening": 61,
+              "opening": 512,
               "received": 0,
               "consumed": 19,
-              "closing": 42
+              "closing": 493
             },
             {
               "date": "2026-05-26",
-              "opening": 42,
+              "opening": 493,
               "received": 0,
               "consumed": 17,
-              "closing": 25
+              "closing": 476
             },
             {
               "date": "2026-05-27",
-              "opening": 25,
+              "opening": 476,
               "received": 0,
               "consumed": 16,
-              "closing": 9
+              "closing": 460
             },
             {
               "date": "2026-05-28",
-              "opening": 9,
+              "opening": 460,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 441
             },
             {
               "date": "2026-05-29",
-              "opening": 0,
+              "opening": 441,
               "received": 92,
               "consumed": 15,
-              "closing": 77
+              "closing": 518
             },
             {
               "date": "2026-05-30",
-              "opening": 77,
+              "opening": 518,
               "received": 0,
               "consumed": 14,
-              "closing": 63
+              "closing": 504
             },
             {
               "date": "2026-05-31",
-              "opening": 63,
+              "opening": 504,
               "received": 0,
               "consumed": 19,
-              "closing": 44
+              "closing": 485
             },
             {
               "date": "2026-06-01",
-              "opening": 44,
+              "opening": 485,
               "received": 0,
               "consumed": 19,
-              "closing": 25
+              "closing": 466
             },
             {
               "date": "2026-06-02",
-              "opening": 25,
+              "opening": 466,
               "received": 0,
               "consumed": 14,
-              "closing": 11
+              "closing": 452
             },
             {
               "date": "2026-06-03",
-              "opening": 11,
+              "opening": 452,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 432
             },
             {
               "date": "2026-06-04",
-              "opening": 0,
+              "opening": 432,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 418
             },
             {
               "date": "2026-06-05",
-              "opening": 0,
+              "opening": 418,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 397
             },
             {
               "date": "2026-06-06",
-              "opening": 0,
+              "opening": 397,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 379
             },
             {
               "date": "2026-06-07",
-              "opening": 0,
+              "opening": 379,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 360
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 360,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 347
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 347,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 333
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 333,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 320
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 320,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 304
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 304,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 286
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 286,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 270
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 270,
               "received": 81,
               "consumed": 19,
-              "closing": 62
+              "closing": 332
             },
             {
               "date": "2026-06-15",
-              "opening": 62,
+              "opening": 332,
               "received": 0,
               "consumed": 16,
-              "closing": 46
+              "closing": 316
             },
             {
               "date": "2026-06-16",
-              "opening": 46,
+              "opening": 316,
               "received": 0,
               "consumed": 19,
-              "closing": 27
+              "closing": 297
             },
             {
               "date": "2026-06-17",
-              "opening": 27,
+              "opening": 297,
               "received": 0,
               "consumed": 15,
-              "closing": 12
+              "closing": 282
             },
             {
               "date": "2026-06-18",
-              "opening": 12,
+              "opening": 282,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 261
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 261,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 241
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 241,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 223
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 223,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 207
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 207,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 193
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 193,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 173
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 173,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 153
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 153,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 132
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 132,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 110
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 110,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 93
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 93,
               "received": 0,
               "consumed": 23,
-              "closing": 0
+              "closing": 70
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 70,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 48
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 48,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 32
             }
           ]
         },
@@ -8793,318 +8803,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 192,
+              "opening": 565,
               "received": 0,
               "consumed": 13,
-              "closing": 179
+              "closing": 552
             },
             {
               "date": "2026-05-18",
-              "opening": 179,
+              "opening": 552,
               "received": 0,
               "consumed": 12,
-              "closing": 167
+              "closing": 540
             },
             {
               "date": "2026-05-19",
-              "opening": 167,
+              "opening": 540,
               "received": 0,
               "consumed": 10,
-              "closing": 157
+              "closing": 530
             },
             {
               "date": "2026-05-20",
-              "opening": 157,
+              "opening": 530,
               "received": 0,
               "consumed": 12,
-              "closing": 145
+              "closing": 518
             },
             {
               "date": "2026-05-21",
-              "opening": 145,
+              "opening": 518,
               "received": 0,
               "consumed": 12,
-              "closing": 133
+              "closing": 506
             },
             {
               "date": "2026-05-22",
-              "opening": 133,
+              "opening": 506,
               "received": 0,
               "consumed": 11,
-              "closing": 122
+              "closing": 495
             },
             {
               "date": "2026-05-23",
-              "opening": 122,
+              "opening": 495,
               "received": 0,
               "consumed": 11,
-              "closing": 111
+              "closing": 484
             },
             {
               "date": "2026-05-24",
-              "opening": 111,
+              "opening": 484,
               "received": 0,
               "consumed": 11,
-              "closing": 100
+              "closing": 473
             },
             {
               "date": "2026-05-25",
-              "opening": 100,
+              "opening": 473,
               "received": 0,
               "consumed": 10,
-              "closing": 90
+              "closing": 463
             },
             {
               "date": "2026-05-26",
-              "opening": 90,
+              "opening": 463,
               "received": 0,
               "consumed": 12,
-              "closing": 78
+              "closing": 451
             },
             {
               "date": "2026-05-27",
-              "opening": 78,
+              "opening": 451,
               "received": 0,
               "consumed": 9,
-              "closing": 69
+              "closing": 442
             },
             {
               "date": "2026-05-28",
-              "opening": 69,
+              "opening": 442,
               "received": 0,
               "consumed": 12,
-              "closing": 57
+              "closing": 430
             },
             {
               "date": "2026-05-29",
-              "opening": 57,
+              "opening": 430,
               "received": 75,
               "consumed": 14,
-              "closing": 118
+              "closing": 491
             },
             {
               "date": "2026-05-30",
-              "opening": 118,
+              "opening": 491,
               "received": 0,
               "consumed": 14,
-              "closing": 104
+              "closing": 477
             },
             {
               "date": "2026-05-31",
-              "opening": 104,
+              "opening": 477,
               "received": 0,
               "consumed": 10,
-              "closing": 94
+              "closing": 467
             },
             {
               "date": "2026-06-01",
-              "opening": 94,
+              "opening": 467,
               "received": 0,
               "consumed": 10,
-              "closing": 84
+              "closing": 457
             },
             {
               "date": "2026-06-02",
-              "opening": 84,
+              "opening": 457,
               "received": 0,
               "consumed": 11,
-              "closing": 73
+              "closing": 446
             },
             {
               "date": "2026-06-03",
-              "opening": 73,
+              "opening": 446,
               "received": 0,
               "consumed": 10,
-              "closing": 63
+              "closing": 436
             },
             {
               "date": "2026-06-04",
-              "opening": 63,
+              "opening": 436,
               "received": 0,
               "consumed": 12,
-              "closing": 51
+              "closing": 424
             },
             {
               "date": "2026-06-05",
-              "opening": 51,
+              "opening": 424,
               "received": 0,
               "consumed": 12,
-              "closing": 39
+              "closing": 412
             },
             {
               "date": "2026-06-06",
-              "opening": 39,
+              "opening": 412,
               "received": 0,
               "consumed": 12,
-              "closing": 27
+              "closing": 400
             },
             {
               "date": "2026-06-07",
-              "opening": 27,
+              "opening": 400,
               "received": 0,
               "consumed": 12,
-              "closing": 15
+              "closing": 388
             },
             {
               "date": "2026-06-08",
-              "opening": 15,
+              "opening": 388,
               "received": 0,
               "consumed": 11,
-              "closing": 4
+              "closing": 377
             },
             {
               "date": "2026-06-09",
-              "opening": 4,
+              "opening": 377,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 366
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 366,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 352
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 352,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 339
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 339,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 327
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 327,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 315
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 315,
               "received": 73,
               "consumed": 15,
-              "closing": 58
+              "closing": 373
             },
             {
               "date": "2026-06-15",
-              "opening": 58,
+              "opening": 373,
               "received": 0,
               "consumed": 10,
-              "closing": 48
+              "closing": 363
             },
             {
               "date": "2026-06-16",
-              "opening": 48,
+              "opening": 363,
               "received": 0,
               "consumed": 12,
-              "closing": 36
+              "closing": 351
             },
             {
               "date": "2026-06-17",
-              "opening": 36,
+              "opening": 351,
               "received": 0,
               "consumed": 16,
-              "closing": 20
+              "closing": 335
             },
             {
               "date": "2026-06-18",
-              "opening": 20,
+              "opening": 335,
               "received": 0,
               "consumed": 12,
-              "closing": 8
+              "closing": 323
             },
             {
               "date": "2026-06-19",
-              "opening": 8,
+              "opening": 323,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 310
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 310,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 300
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 300,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 289
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 289,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 275
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 275,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 263
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 263,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 249
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 249,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 233
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 233,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 220
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 220,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 206
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 206,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 196
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 196,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 182
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 182,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 168
             }
           ]
         },
@@ -9443,318 +9453,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 210,
+              "opening": 598,
               "received": 0,
               "consumed": 13,
-              "closing": 197
+              "closing": 585
             },
             {
               "date": "2026-05-18",
-              "opening": 197,
+              "opening": 585,
               "received": 0,
               "consumed": 12,
-              "closing": 185
+              "closing": 573
             },
             {
               "date": "2026-05-19",
-              "opening": 185,
+              "opening": 573,
               "received": 0,
               "consumed": 12,
-              "closing": 173
+              "closing": 561
             },
             {
               "date": "2026-05-20",
-              "opening": 173,
+              "opening": 561,
               "received": 0,
               "consumed": 10,
-              "closing": 163
+              "closing": 551
             },
             {
               "date": "2026-05-21",
-              "opening": 163,
+              "opening": 551,
               "received": 0,
               "consumed": 15,
-              "closing": 148
+              "closing": 536
             },
             {
               "date": "2026-05-22",
-              "opening": 148,
+              "opening": 536,
               "received": 0,
               "consumed": 13,
-              "closing": 135
+              "closing": 523
             },
             {
               "date": "2026-05-23",
-              "opening": 135,
+              "opening": 523,
               "received": 0,
               "consumed": 10,
-              "closing": 125
+              "closing": 513
             },
             {
               "date": "2026-05-24",
-              "opening": 125,
+              "opening": 513,
               "received": 0,
               "consumed": 11,
-              "closing": 114
+              "closing": 502
             },
             {
               "date": "2026-05-25",
-              "opening": 114,
+              "opening": 502,
               "received": 0,
               "consumed": 13,
-              "closing": 101
+              "closing": 489
             },
             {
               "date": "2026-05-26",
-              "opening": 101,
+              "opening": 489,
               "received": 0,
               "consumed": 11,
-              "closing": 90
+              "closing": 478
             },
             {
               "date": "2026-05-27",
-              "opening": 90,
+              "opening": 478,
               "received": 0,
               "consumed": 13,
-              "closing": 77
+              "closing": 465
             },
             {
               "date": "2026-05-28",
-              "opening": 77,
+              "opening": 465,
               "received": 0,
               "consumed": 12,
-              "closing": 65
+              "closing": 453
             },
             {
               "date": "2026-05-29",
-              "opening": 65,
+              "opening": 453,
               "received": 78,
               "consumed": 15,
-              "closing": 128
+              "closing": 516
             },
             {
               "date": "2026-05-30",
-              "opening": 128,
+              "opening": 516,
               "received": 0,
               "consumed": 12,
-              "closing": 116
+              "closing": 504
             },
             {
               "date": "2026-05-31",
-              "opening": 116,
+              "opening": 504,
               "received": 0,
               "consumed": 14,
-              "closing": 102
+              "closing": 490
             },
             {
               "date": "2026-06-01",
-              "opening": 102,
+              "opening": 490,
               "received": 0,
               "consumed": 13,
-              "closing": 89
+              "closing": 477
             },
             {
               "date": "2026-06-02",
-              "opening": 89,
+              "opening": 477,
               "received": 0,
               "consumed": 13,
-              "closing": 76
+              "closing": 464
             },
             {
               "date": "2026-06-03",
-              "opening": 76,
+              "opening": 464,
               "received": 0,
               "consumed": 14,
-              "closing": 62
+              "closing": 450
             },
             {
               "date": "2026-06-04",
-              "opening": 62,
+              "opening": 450,
               "received": 0,
               "consumed": 15,
-              "closing": 47
+              "closing": 435
             },
             {
               "date": "2026-06-05",
-              "opening": 47,
+              "opening": 435,
               "received": 0,
               "consumed": 14,
-              "closing": 33
+              "closing": 421
             },
             {
               "date": "2026-06-06",
-              "opening": 33,
+              "opening": 421,
               "received": 0,
               "consumed": 14,
-              "closing": 19
+              "closing": 407
             },
             {
               "date": "2026-06-07",
-              "opening": 19,
+              "opening": 407,
               "received": 0,
               "consumed": 14,
-              "closing": 5
+              "closing": 393
             },
             {
               "date": "2026-06-08",
-              "opening": 5,
+              "opening": 393,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 378
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 378,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 366
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 366,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 352
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 352,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 337
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 337,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 325
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 325,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 312
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 312,
               "received": 56,
               "consumed": 15,
-              "closing": 41
+              "closing": 353
             },
             {
               "date": "2026-06-15",
-              "opening": 41,
+              "opening": 353,
               "received": 0,
               "consumed": 16,
-              "closing": 25
+              "closing": 337
             },
             {
               "date": "2026-06-16",
-              "opening": 25,
+              "opening": 337,
               "received": 0,
               "consumed": 13,
-              "closing": 12
+              "closing": 324
             },
             {
               "date": "2026-06-17",
-              "opening": 12,
+              "opening": 324,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 308
             },
             {
               "date": "2026-06-18",
-              "opening": 0,
+              "opening": 308,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 291
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 291,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 278
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 278,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 267
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 267,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 254
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 254,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 238
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 238,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 222
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 222,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 208
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 208,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 191
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 191,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 179
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 179,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 163
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 163,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 149
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 149,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 135
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 135,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 123
             }
           ]
         },
@@ -10743,318 +10753,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 168,
+              "opening": 389,
               "received": 0,
               "consumed": 7,
-              "closing": 161
+              "closing": 382
             },
             {
               "date": "2026-05-18",
-              "opening": 161,
+              "opening": 382,
               "received": 0,
               "consumed": 5,
-              "closing": 156
+              "closing": 377
             },
             {
               "date": "2026-05-19",
-              "opening": 156,
+              "opening": 377,
               "received": 0,
               "consumed": 6,
-              "closing": 150
+              "closing": 371
             },
             {
               "date": "2026-05-20",
-              "opening": 150,
+              "opening": 371,
               "received": 0,
               "consumed": 6,
-              "closing": 144
+              "closing": 365
             },
             {
               "date": "2026-05-21",
-              "opening": 144,
+              "opening": 365,
               "received": 0,
               "consumed": 5,
-              "closing": 139
+              "closing": 360
             },
             {
               "date": "2026-05-22",
-              "opening": 139,
+              "opening": 360,
               "received": 0,
               "consumed": 5,
-              "closing": 134
+              "closing": 355
             },
             {
               "date": "2026-05-23",
-              "opening": 134,
+              "opening": 355,
               "received": 0,
               "consumed": 6,
-              "closing": 128
+              "closing": 349
             },
             {
               "date": "2026-05-24",
-              "opening": 128,
+              "opening": 349,
               "received": 0,
               "consumed": 7,
-              "closing": 121
+              "closing": 342
             },
             {
               "date": "2026-05-25",
-              "opening": 121,
+              "opening": 342,
               "received": 0,
               "consumed": 7,
-              "closing": 114
+              "closing": 335
             },
             {
               "date": "2026-05-26",
-              "opening": 114,
+              "opening": 335,
               "received": 0,
               "consumed": 7,
-              "closing": 107
+              "closing": 328
             },
             {
               "date": "2026-05-27",
-              "opening": 107,
+              "opening": 328,
               "received": 0,
               "consumed": 7,
-              "closing": 100
+              "closing": 321
             },
             {
               "date": "2026-05-28",
-              "opening": 100,
+              "opening": 321,
               "received": 0,
               "consumed": 8,
-              "closing": 92
+              "closing": 313
             },
             {
               "date": "2026-05-29",
-              "opening": 92,
+              "opening": 313,
               "received": 47,
               "consumed": 8,
-              "closing": 131
+              "closing": 352
             },
             {
               "date": "2026-05-30",
-              "opening": 131,
+              "opening": 352,
               "received": 0,
               "consumed": 5,
-              "closing": 126
+              "closing": 347
             },
             {
               "date": "2026-05-31",
-              "opening": 126,
+              "opening": 347,
               "received": 0,
               "consumed": 7,
-              "closing": 119
+              "closing": 340
             },
             {
               "date": "2026-06-01",
-              "opening": 119,
+              "opening": 340,
               "received": 0,
               "consumed": 6,
-              "closing": 113
+              "closing": 334
             },
             {
               "date": "2026-06-02",
-              "opening": 113,
+              "opening": 334,
               "received": 0,
               "consumed": 6,
-              "closing": 107
+              "closing": 328
             },
             {
               "date": "2026-06-03",
-              "opening": 107,
+              "opening": 328,
               "received": 0,
               "consumed": 7,
-              "closing": 100
+              "closing": 321
             },
             {
               "date": "2026-06-04",
-              "opening": 100,
+              "opening": 321,
               "received": 0,
               "consumed": 7,
-              "closing": 93
+              "closing": 314
             },
             {
               "date": "2026-06-05",
-              "opening": 93,
+              "opening": 314,
               "received": 0,
               "consumed": 6,
-              "closing": 87
+              "closing": 308
             },
             {
               "date": "2026-06-06",
-              "opening": 87,
+              "opening": 308,
               "received": 0,
               "consumed": 6,
-              "closing": 81
+              "closing": 302
             },
             {
               "date": "2026-06-07",
-              "opening": 81,
+              "opening": 302,
               "received": 0,
               "consumed": 7,
-              "closing": 74
+              "closing": 295
             },
             {
               "date": "2026-06-08",
-              "opening": 74,
+              "opening": 295,
               "received": 0,
               "consumed": 8,
-              "closing": 66
+              "closing": 287
             },
             {
               "date": "2026-06-09",
-              "opening": 66,
+              "opening": 287,
               "received": 0,
               "consumed": 5,
-              "closing": 61
+              "closing": 282
             },
             {
               "date": "2026-06-10",
-              "opening": 61,
+              "opening": 282,
               "received": 0,
               "consumed": 8,
-              "closing": 53
+              "closing": 274
             },
             {
               "date": "2026-06-11",
-              "opening": 53,
+              "opening": 274,
               "received": 0,
               "consumed": 7,
-              "closing": 46
+              "closing": 267
             },
             {
               "date": "2026-06-12",
-              "opening": 46,
+              "opening": 267,
               "received": 0,
               "consumed": 7,
-              "closing": 39
+              "closing": 260
             },
             {
               "date": "2026-06-13",
-              "opening": 39,
+              "opening": 260,
               "received": 0,
               "consumed": 7,
-              "closing": 32
+              "closing": 253
             },
             {
               "date": "2026-06-14",
-              "opening": 32,
+              "opening": 253,
               "received": 29,
               "consumed": 7,
-              "closing": 54
+              "closing": 275
             },
             {
               "date": "2026-06-15",
-              "opening": 54,
+              "opening": 275,
               "received": 0,
               "consumed": 6,
-              "closing": 48
+              "closing": 269
             },
             {
               "date": "2026-06-16",
-              "opening": 48,
+              "opening": 269,
               "received": 0,
               "consumed": 9,
-              "closing": 39
+              "closing": 260
             },
             {
               "date": "2026-06-17",
-              "opening": 39,
+              "opening": 260,
               "received": 0,
               "consumed": 6,
-              "closing": 33
+              "closing": 254
             },
             {
               "date": "2026-06-18",
-              "opening": 33,
+              "opening": 254,
               "received": 0,
               "consumed": 7,
-              "closing": 26
+              "closing": 247
             },
             {
               "date": "2026-06-19",
-              "opening": 26,
+              "opening": 247,
               "received": 0,
               "consumed": 6,
-              "closing": 20
+              "closing": 241
             },
             {
               "date": "2026-06-20",
-              "opening": 20,
+              "opening": 241,
               "received": 0,
               "consumed": 9,
-              "closing": 11
+              "closing": 232
             },
             {
               "date": "2026-06-21",
-              "opening": 11,
+              "opening": 232,
               "received": 0,
               "consumed": 7,
-              "closing": 4
+              "closing": 225
             },
             {
               "date": "2026-06-22",
-              "opening": 4,
+              "opening": 225,
               "received": 0,
               "consumed": 6,
-              "closing": 0
+              "closing": 219
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 219,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 211
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 211,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 204
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 204,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 195
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 195,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 187
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 187,
               "received": 0,
               "consumed": 6,
-              "closing": 0
+              "closing": 181
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 181,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 174
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 174,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 167
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 167,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 160
             }
           ]
         }
@@ -12217,6 +12227,9 @@
         "lat": 25.291,
         "lng": 83.138
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -16670,6 +16683,9 @@
         "lat": 25.184,
         "lng": 83.024
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -20199,6 +20215,9 @@
         "lat": 25.421,
         "lng": 82.947
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -24190,6 +24209,9 @@
         "lat": 25.463,
         "lng": 83.019
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -27719,6 +27741,9 @@
         "lat": 25.512,
         "lng": 83.106
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -27730,318 +27755,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 114,
+              "opening": 394,
               "received": 0,
               "consumed": 9,
-              "closing": 105
+              "closing": 385
             },
             {
               "date": "2026-05-18",
-              "opening": 105,
+              "opening": 385,
               "received": 0,
               "consumed": 9,
-              "closing": 96
+              "closing": 376
             },
             {
               "date": "2026-05-19",
-              "opening": 96,
+              "opening": 376,
               "received": 0,
               "consumed": 8,
-              "closing": 88
+              "closing": 368
             },
             {
               "date": "2026-05-20",
-              "opening": 88,
+              "opening": 368,
               "received": 0,
               "consumed": 11,
-              "closing": 77
+              "closing": 357
             },
             {
               "date": "2026-05-21",
-              "opening": 77,
+              "opening": 357,
               "received": 0,
               "consumed": 9,
-              "closing": 68
+              "closing": 348
             },
             {
               "date": "2026-05-22",
-              "opening": 68,
+              "opening": 348,
               "received": 0,
               "consumed": 9,
-              "closing": 59
+              "closing": 339
             },
             {
               "date": "2026-05-23",
-              "opening": 59,
+              "opening": 339,
               "received": 0,
               "consumed": 8,
-              "closing": 51
+              "closing": 331
             },
             {
               "date": "2026-05-24",
-              "opening": 51,
+              "opening": 331,
               "received": 0,
               "consumed": 9,
-              "closing": 42
+              "closing": 322
             },
             {
               "date": "2026-05-25",
-              "opening": 42,
+              "opening": 322,
               "received": 0,
               "consumed": 12,
-              "closing": 30
+              "closing": 310
             },
             {
               "date": "2026-05-26",
-              "opening": 30,
+              "opening": 310,
               "received": 0,
               "consumed": 10,
-              "closing": 20
+              "closing": 300
             },
             {
               "date": "2026-05-27",
-              "opening": 20,
+              "opening": 300,
               "received": 0,
               "consumed": 9,
-              "closing": 11
+              "closing": 291
             },
             {
               "date": "2026-05-28",
-              "opening": 11,
+              "opening": 291,
               "received": 0,
               "consumed": 10,
-              "closing": 1
+              "closing": 281
             },
             {
               "date": "2026-05-29",
-              "opening": 1,
+              "opening": 281,
               "received": 56,
               "consumed": 8,
-              "closing": 49
+              "closing": 329
             },
             {
               "date": "2026-05-30",
-              "opening": 49,
+              "opening": 329,
               "received": 0,
               "consumed": 11,
-              "closing": 38
+              "closing": 318
             },
             {
               "date": "2026-05-31",
-              "opening": 38,
+              "opening": 318,
               "received": 0,
               "consumed": 12,
-              "closing": 26
+              "closing": 306
             },
             {
               "date": "2026-06-01",
-              "opening": 26,
+              "opening": 306,
               "received": 0,
               "consumed": 11,
-              "closing": 15
+              "closing": 295
             },
             {
               "date": "2026-06-02",
-              "opening": 15,
+              "opening": 295,
               "received": 0,
               "consumed": 12,
-              "closing": 3
+              "closing": 283
             },
             {
               "date": "2026-06-03",
-              "opening": 3,
+              "opening": 283,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 271
             },
             {
               "date": "2026-06-04",
-              "opening": 0,
+              "opening": 271,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 259
             },
             {
               "date": "2026-06-05",
-              "opening": 0,
+              "opening": 259,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 248
             },
             {
               "date": "2026-06-06",
-              "opening": 0,
+              "opening": 248,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 236
             },
             {
               "date": "2026-06-07",
-              "opening": 0,
+              "opening": 236,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 226
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 226,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 213
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 213,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 205
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 205,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 192
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 192,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 181
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 181,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 172
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 172,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 161
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 161,
               "received": 60,
               "consumed": 11,
-              "closing": 49
+              "closing": 210
             },
             {
               "date": "2026-06-15",
-              "opening": 49,
+              "opening": 210,
               "received": 0,
               "consumed": 10,
-              "closing": 39
+              "closing": 200
             },
             {
               "date": "2026-06-16",
-              "opening": 39,
+              "opening": 200,
               "received": 0,
               "consumed": 9,
-              "closing": 30
+              "closing": 191
             },
             {
               "date": "2026-06-17",
-              "opening": 30,
+              "opening": 191,
               "received": 0,
               "consumed": 9,
-              "closing": 21
+              "closing": 182
             },
             {
               "date": "2026-06-18",
-              "opening": 21,
+              "opening": 182,
               "received": 0,
               "consumed": 13,
-              "closing": 8
+              "closing": 169
             },
             {
               "date": "2026-06-19",
-              "opening": 8,
+              "opening": 169,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 155
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 155,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 143
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 143,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 131
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 131,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 119
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 119,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 109
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 109,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 95
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 95,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 85
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 85,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 73
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 73,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 61
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 61,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 52
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 52,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 37
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 37,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 26
             }
           ]
         },
@@ -28055,318 +28080,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 164,
+              "opening": 478,
               "received": 0,
               "consumed": 9,
-              "closing": 155
+              "closing": 469
             },
             {
               "date": "2026-05-18",
-              "opening": 155,
+              "opening": 469,
               "received": 0,
               "consumed": 11,
-              "closing": 144
+              "closing": 458
             },
             {
               "date": "2026-05-19",
-              "opening": 144,
+              "opening": 458,
               "received": 0,
               "consumed": 11,
-              "closing": 133
+              "closing": 447
             },
             {
               "date": "2026-05-20",
-              "opening": 133,
+              "opening": 447,
               "received": 0,
               "consumed": 8,
-              "closing": 125
+              "closing": 439
             },
             {
               "date": "2026-05-21",
-              "opening": 125,
+              "opening": 439,
               "received": 0,
               "consumed": 7,
-              "closing": 118
+              "closing": 432
             },
             {
               "date": "2026-05-22",
-              "opening": 118,
+              "opening": 432,
               "received": 0,
               "consumed": 9,
-              "closing": 109
+              "closing": 423
             },
             {
               "date": "2026-05-23",
-              "opening": 109,
+              "opening": 423,
               "received": 0,
               "consumed": 11,
-              "closing": 98
+              "closing": 412
             },
             {
               "date": "2026-05-24",
-              "opening": 98,
+              "opening": 412,
               "received": 0,
               "consumed": 9,
-              "closing": 89
+              "closing": 403
             },
             {
               "date": "2026-05-25",
-              "opening": 89,
+              "opening": 403,
               "received": 0,
               "consumed": 8,
-              "closing": 81
+              "closing": 395
             },
             {
               "date": "2026-05-26",
-              "opening": 81,
+              "opening": 395,
               "received": 0,
               "consumed": 11,
-              "closing": 70
+              "closing": 384
             },
             {
               "date": "2026-05-27",
-              "opening": 70,
+              "opening": 384,
               "received": 0,
               "consumed": 11,
-              "closing": 59
+              "closing": 373
             },
             {
               "date": "2026-05-28",
-              "opening": 59,
+              "opening": 373,
               "received": 0,
               "consumed": 8,
-              "closing": 51
+              "closing": 365
             },
             {
               "date": "2026-05-29",
-              "opening": 51,
+              "opening": 365,
               "received": 51,
               "consumed": 11,
-              "closing": 91
+              "closing": 405
             },
             {
               "date": "2026-05-30",
-              "opening": 91,
+              "opening": 405,
               "received": 0,
               "consumed": 7,
-              "closing": 84
+              "closing": 398
             },
             {
               "date": "2026-05-31",
-              "opening": 84,
+              "opening": 398,
               "received": 0,
               "consumed": 8,
-              "closing": 76
+              "closing": 390
             },
             {
               "date": "2026-06-01",
-              "opening": 76,
+              "opening": 390,
               "received": 0,
               "consumed": 12,
-              "closing": 64
+              "closing": 378
             },
             {
               "date": "2026-06-02",
-              "opening": 64,
+              "opening": 378,
               "received": 0,
               "consumed": 11,
-              "closing": 53
+              "closing": 367
             },
             {
               "date": "2026-06-03",
-              "opening": 53,
+              "opening": 367,
               "received": 0,
               "consumed": 12,
-              "closing": 41
+              "closing": 355
             },
             {
               "date": "2026-06-04",
-              "opening": 41,
+              "opening": 355,
               "received": 0,
               "consumed": 8,
-              "closing": 33
+              "closing": 347
             },
             {
               "date": "2026-06-05",
-              "opening": 33,
+              "opening": 347,
               "received": 0,
               "consumed": 11,
-              "closing": 22
+              "closing": 336
             },
             {
               "date": "2026-06-06",
-              "opening": 22,
+              "opening": 336,
               "received": 0,
               "consumed": 11,
-              "closing": 11
+              "closing": 325
             },
             {
               "date": "2026-06-07",
-              "opening": 11,
+              "opening": 325,
               "received": 0,
               "consumed": 8,
-              "closing": 3
+              "closing": 317
             },
             {
               "date": "2026-06-08",
-              "opening": 3,
+              "opening": 317,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 309
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 309,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 300
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 300,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 289
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 289,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 280
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 280,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 270
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 270,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 259
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 259,
               "received": 67,
               "consumed": 10,
-              "closing": 57
+              "closing": 316
             },
             {
               "date": "2026-06-15",
-              "opening": 57,
+              "opening": 316,
               "received": 0,
               "consumed": 8,
-              "closing": 49
+              "closing": 308
             },
             {
               "date": "2026-06-16",
-              "opening": 49,
+              "opening": 308,
               "received": 0,
               "consumed": 9,
-              "closing": 40
+              "closing": 299
             },
             {
               "date": "2026-06-17",
-              "opening": 40,
+              "opening": 299,
               "received": 0,
               "consumed": 11,
-              "closing": 29
+              "closing": 288
             },
             {
               "date": "2026-06-18",
-              "opening": 29,
+              "opening": 288,
               "received": 0,
               "consumed": 11,
-              "closing": 18
+              "closing": 277
             },
             {
               "date": "2026-06-19",
-              "opening": 18,
+              "opening": 277,
               "received": 0,
               "consumed": 11,
-              "closing": 7
+              "closing": 266
             },
             {
               "date": "2026-06-20",
-              "opening": 7,
+              "opening": 266,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 254
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 254,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 245
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 245,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 232
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 232,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 219
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 219,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 209
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 209,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 197
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 197,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 184
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 184,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 175
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 175,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 163
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 163,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 152
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 152,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 138
             }
           ]
         },
@@ -28705,318 +28730,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 154,
+              "opening": 410,
               "received": 0,
               "consumed": 6,
-              "closing": 148
+              "closing": 404
             },
             {
               "date": "2026-05-18",
-              "opening": 148,
+              "opening": 404,
               "received": 0,
               "consumed": 7,
-              "closing": 141
+              "closing": 397
             },
             {
               "date": "2026-05-19",
-              "opening": 141,
+              "opening": 397,
               "received": 0,
               "consumed": 9,
-              "closing": 132
+              "closing": 388
             },
             {
               "date": "2026-05-20",
-              "opening": 132,
+              "opening": 388,
               "received": 0,
               "consumed": 6,
-              "closing": 126
+              "closing": 382
             },
             {
               "date": "2026-05-21",
-              "opening": 126,
+              "opening": 382,
               "received": 0,
               "consumed": 8,
-              "closing": 118
+              "closing": 374
             },
             {
               "date": "2026-05-22",
-              "opening": 118,
+              "opening": 374,
               "received": 0,
               "consumed": 6,
-              "closing": 112
+              "closing": 368
             },
             {
               "date": "2026-05-23",
-              "opening": 112,
+              "opening": 368,
               "received": 0,
               "consumed": 6,
-              "closing": 106
+              "closing": 362
             },
             {
               "date": "2026-05-24",
-              "opening": 106,
+              "opening": 362,
               "received": 0,
               "consumed": 9,
-              "closing": 97
+              "closing": 353
             },
             {
               "date": "2026-05-25",
-              "opening": 97,
+              "opening": 353,
               "received": 0,
               "consumed": 6,
-              "closing": 91
+              "closing": 347
             },
             {
               "date": "2026-05-26",
-              "opening": 91,
+              "opening": 347,
               "received": 0,
               "consumed": 8,
-              "closing": 83
+              "closing": 339
             },
             {
               "date": "2026-05-27",
-              "opening": 83,
+              "opening": 339,
               "received": 0,
               "consumed": 7,
-              "closing": 76
+              "closing": 332
             },
             {
               "date": "2026-05-28",
-              "opening": 76,
+              "opening": 332,
               "received": 0,
               "consumed": 9,
-              "closing": 67
+              "closing": 323
             },
             {
               "date": "2026-05-29",
-              "opening": 67,
+              "opening": 323,
               "received": 33,
               "consumed": 6,
-              "closing": 94
+              "closing": 350
             },
             {
               "date": "2026-05-30",
-              "opening": 94,
+              "opening": 350,
               "received": 0,
               "consumed": 9,
-              "closing": 85
+              "closing": 341
             },
             {
               "date": "2026-05-31",
-              "opening": 85,
+              "opening": 341,
               "received": 0,
               "consumed": 7,
-              "closing": 78
+              "closing": 334
             },
             {
               "date": "2026-06-01",
-              "opening": 78,
+              "opening": 334,
               "received": 0,
               "consumed": 8,
-              "closing": 70
+              "closing": 326
             },
             {
               "date": "2026-06-02",
-              "opening": 70,
+              "opening": 326,
               "received": 0,
               "consumed": 7,
-              "closing": 63
+              "closing": 319
             },
             {
               "date": "2026-06-03",
-              "opening": 63,
+              "opening": 319,
               "received": 0,
               "consumed": 6,
-              "closing": 57
+              "closing": 313
             },
             {
               "date": "2026-06-04",
-              "opening": 57,
+              "opening": 313,
               "received": 0,
               "consumed": 9,
-              "closing": 48
+              "closing": 304
             },
             {
               "date": "2026-06-05",
-              "opening": 48,
+              "opening": 304,
               "received": 0,
               "consumed": 8,
-              "closing": 40
+              "closing": 296
             },
             {
               "date": "2026-06-06",
-              "opening": 40,
+              "opening": 296,
               "received": 0,
               "consumed": 8,
-              "closing": 32
+              "closing": 288
             },
             {
               "date": "2026-06-07",
-              "opening": 32,
+              "opening": 288,
               "received": 0,
               "consumed": 9,
-              "closing": 23
+              "closing": 279
             },
             {
               "date": "2026-06-08",
-              "opening": 23,
+              "opening": 279,
               "received": 0,
               "consumed": 8,
-              "closing": 15
+              "closing": 271
             },
             {
               "date": "2026-06-09",
-              "opening": 15,
+              "opening": 271,
               "received": 0,
               "consumed": 8,
-              "closing": 7
+              "closing": 263
             },
             {
               "date": "2026-06-10",
-              "opening": 7,
+              "opening": 263,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 256
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 256,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 246
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 246,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 236
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 236,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 228
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 228,
               "received": 40,
               "consumed": 8,
-              "closing": 32
+              "closing": 260
             },
             {
               "date": "2026-06-15",
-              "opening": 32,
+              "opening": 260,
               "received": 0,
               "consumed": 10,
-              "closing": 22
+              "closing": 250
             },
             {
               "date": "2026-06-16",
-              "opening": 22,
+              "opening": 250,
               "received": 0,
               "consumed": 9,
-              "closing": 13
+              "closing": 241
             },
             {
               "date": "2026-06-17",
-              "opening": 13,
+              "opening": 241,
               "received": 0,
               "consumed": 8,
-              "closing": 5
+              "closing": 233
             },
             {
               "date": "2026-06-18",
-              "opening": 5,
+              "opening": 233,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 224
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 224,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 214
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 214,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 204
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 204,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 195
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 195,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 186
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 186,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 179
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 179,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 172
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 172,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 165
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 165,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 157
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 157,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 146
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 146,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 139
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 139,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 132
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 132,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 122
             }
           ]
         },
@@ -30005,318 +30030,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 385,
+              "opening": 1037,
               "received": 0,
               "consumed": 23,
-              "closing": 362
+              "closing": 1014
             },
             {
               "date": "2026-05-18",
-              "opening": 362,
+              "opening": 1014,
               "received": 0,
               "consumed": 19,
-              "closing": 343
+              "closing": 995
             },
             {
               "date": "2026-05-19",
-              "opening": 343,
+              "opening": 995,
               "received": 0,
               "consumed": 20,
-              "closing": 323
+              "closing": 975
             },
             {
               "date": "2026-05-20",
-              "opening": 323,
+              "opening": 975,
               "received": 0,
               "consumed": 20,
-              "closing": 303
+              "closing": 955
             },
             {
               "date": "2026-05-21",
-              "opening": 303,
+              "opening": 955,
               "received": 0,
               "consumed": 22,
-              "closing": 281
+              "closing": 933
             },
             {
               "date": "2026-05-22",
-              "opening": 281,
+              "opening": 933,
               "received": 0,
               "consumed": 15,
-              "closing": 266
+              "closing": 918
             },
             {
               "date": "2026-05-23",
-              "opening": 266,
+              "opening": 918,
               "received": 0,
               "consumed": 20,
-              "closing": 246
+              "closing": 898
             },
             {
               "date": "2026-05-24",
-              "opening": 246,
+              "opening": 898,
               "received": 0,
               "consumed": 16,
-              "closing": 230
+              "closing": 882
             },
             {
               "date": "2026-05-25",
-              "opening": 230,
+              "opening": 882,
               "received": 0,
               "consumed": 24,
-              "closing": 206
+              "closing": 858
             },
             {
               "date": "2026-05-26",
-              "opening": 206,
+              "opening": 858,
               "received": 0,
               "consumed": 19,
-              "closing": 187
+              "closing": 839
             },
             {
               "date": "2026-05-27",
-              "opening": 187,
+              "opening": 839,
               "received": 0,
               "consumed": 16,
-              "closing": 171
+              "closing": 823
             },
             {
               "date": "2026-05-28",
-              "opening": 171,
+              "opening": 823,
               "received": 0,
               "consumed": 15,
-              "closing": 156
+              "closing": 808
             },
             {
               "date": "2026-05-29",
-              "opening": 156,
+              "opening": 808,
               "received": 109,
               "consumed": 17,
-              "closing": 248
+              "closing": 900
             },
             {
               "date": "2026-05-30",
-              "opening": 248,
+              "opening": 900,
               "received": 0,
               "consumed": 24,
-              "closing": 224
+              "closing": 876
             },
             {
               "date": "2026-05-31",
-              "opening": 224,
+              "opening": 876,
               "received": 0,
               "consumed": 18,
-              "closing": 206
+              "closing": 858
             },
             {
               "date": "2026-06-01",
-              "opening": 206,
+              "opening": 858,
               "received": 0,
               "consumed": 24,
-              "closing": 182
+              "closing": 834
             },
             {
               "date": "2026-06-02",
-              "opening": 182,
+              "opening": 834,
               "received": 0,
               "consumed": 22,
-              "closing": 160
+              "closing": 812
             },
             {
               "date": "2026-06-03",
-              "opening": 160,
+              "opening": 812,
               "received": 0,
               "consumed": 20,
-              "closing": 140
+              "closing": 792
             },
             {
               "date": "2026-06-04",
-              "opening": 140,
+              "opening": 792,
               "received": 0,
               "consumed": 23,
-              "closing": 117
+              "closing": 769
             },
             {
               "date": "2026-06-05",
-              "opening": 117,
+              "opening": 769,
               "received": 0,
               "consumed": 22,
-              "closing": 95
+              "closing": 747
             },
             {
               "date": "2026-06-06",
-              "opening": 95,
+              "opening": 747,
               "received": 0,
               "consumed": 23,
-              "closing": 72
+              "closing": 724
             },
             {
               "date": "2026-06-07",
-              "opening": 72,
+              "opening": 724,
               "received": 0,
               "consumed": 20,
-              "closing": 52
+              "closing": 704
             },
             {
               "date": "2026-06-08",
-              "opening": 52,
+              "opening": 704,
               "received": 0,
               "consumed": 17,
-              "closing": 35
+              "closing": 687
             },
             {
               "date": "2026-06-09",
-              "opening": 35,
+              "opening": 687,
               "received": 0,
               "consumed": 21,
-              "closing": 14
+              "closing": 666
             },
             {
               "date": "2026-06-10",
-              "opening": 14,
+              "opening": 666,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 644
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 644,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 627
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 627,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 609
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 609,
               "received": 0,
               "consumed": 26,
-              "closing": 0
+              "closing": 583
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 583,
               "received": 123,
               "consumed": 21,
-              "closing": 102
+              "closing": 685
             },
             {
               "date": "2026-06-15",
-              "opening": 102,
+              "opening": 685,
               "received": 0,
               "consumed": 17,
-              "closing": 85
+              "closing": 668
             },
             {
               "date": "2026-06-16",
-              "opening": 85,
+              "opening": 668,
               "received": 0,
               "consumed": 24,
-              "closing": 61
+              "closing": 644
             },
             {
               "date": "2026-06-17",
-              "opening": 61,
+              "opening": 644,
               "received": 0,
               "consumed": 19,
-              "closing": 42
+              "closing": 625
             },
             {
               "date": "2026-06-18",
-              "opening": 42,
+              "opening": 625,
               "received": 0,
               "consumed": 24,
-              "closing": 18
+              "closing": 601
             },
             {
               "date": "2026-06-19",
-              "opening": 18,
+              "opening": 601,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 574
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 574,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 554
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 554,
               "received": 0,
               "consumed": 23,
-              "closing": 0
+              "closing": 531
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 531,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 504
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 504,
               "received": 0,
               "consumed": 24,
-              "closing": 0
+              "closing": 480
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 480,
               "received": 0,
               "consumed": 24,
-              "closing": 0
+              "closing": 456
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 456,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 439
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 439,
               "received": 0,
               "consumed": 24,
-              "closing": 0
+              "closing": 415
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 415,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 394
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 394,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 373
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 373,
               "received": 0,
               "consumed": 28,
-              "closing": 0
+              "closing": 345
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 345,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 326
             }
           ]
         }
@@ -32634,6 +32659,9 @@
         "lat": 25.142,
         "lng": 82.873
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -36394,6 +36422,9 @@
         "lat": 25.226,
         "lng": 83.211
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -40154,6 +40185,9 @@
         "lat": 25.488,
         "lng": 82.812
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -44838,6 +44872,9 @@
         "lat": 25.096,
         "lng": 83.071
       },
+      "district": "Suryanagar",
+      "districtSlug": "suryanagar",
+      "state": "Uttar Pradesh",
       "medicines": [
         {
           "id": "amox",
@@ -44849,318 +44886,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 399,
+              "opening": 1197,
               "received": 0,
               "consumed": 18,
-              "closing": 381
+              "closing": 1179
             },
             {
               "date": "2026-05-18",
-              "opening": 381,
+              "opening": 1179,
               "received": 0,
               "consumed": 25,
-              "closing": 356
+              "closing": 1154
             },
             {
               "date": "2026-05-19",
-              "opening": 356,
+              "opening": 1154,
               "received": 0,
               "consumed": 18,
-              "closing": 338
+              "closing": 1136
             },
             {
               "date": "2026-05-20",
-              "opening": 338,
+              "opening": 1136,
               "received": 0,
               "consumed": 20,
-              "closing": 318
+              "closing": 1116
             },
             {
               "date": "2026-05-21",
-              "opening": 318,
+              "opening": 1116,
               "received": 0,
               "consumed": 23,
-              "closing": 295
+              "closing": 1093
             },
             {
               "date": "2026-05-22",
-              "opening": 295,
+              "opening": 1093,
               "received": 0,
               "consumed": 18,
-              "closing": 277
+              "closing": 1075
             },
             {
               "date": "2026-05-23",
-              "opening": 277,
+              "opening": 1075,
               "received": 0,
               "consumed": 20,
-              "closing": 257
+              "closing": 1055
             },
             {
               "date": "2026-05-24",
-              "opening": 257,
+              "opening": 1055,
               "received": 0,
               "consumed": 29,
-              "closing": 228
+              "closing": 1026
             },
             {
               "date": "2026-05-25",
-              "opening": 228,
+              "opening": 1026,
               "received": 0,
               "consumed": 21,
-              "closing": 207
+              "closing": 1005
             },
             {
               "date": "2026-05-26",
-              "opening": 207,
+              "opening": 1005,
               "received": 0,
               "consumed": 25,
-              "closing": 182
+              "closing": 980
             },
             {
               "date": "2026-05-27",
-              "opening": 182,
+              "opening": 980,
               "received": 0,
               "consumed": 20,
-              "closing": 162
+              "closing": 960
             },
             {
               "date": "2026-05-28",
-              "opening": 162,
+              "opening": 960,
               "received": 0,
               "consumed": 25,
-              "closing": 137
+              "closing": 935
             },
             {
               "date": "2026-05-29",
-              "opening": 137,
+              "opening": 935,
               "received": 117,
               "consumed": 24,
-              "closing": 230
+              "closing": 1028
             },
             {
               "date": "2026-05-30",
-              "opening": 230,
+              "opening": 1028,
               "received": 0,
               "consumed": 25,
-              "closing": 205
+              "closing": 1003
             },
             {
               "date": "2026-05-31",
-              "opening": 205,
+              "opening": 1003,
               "received": 0,
               "consumed": 23,
-              "closing": 182
+              "closing": 980
             },
             {
               "date": "2026-06-01",
-              "opening": 182,
+              "opening": 980,
               "received": 0,
               "consumed": 27,
-              "closing": 155
+              "closing": 953
             },
             {
               "date": "2026-06-02",
-              "opening": 155,
+              "opening": 953,
               "received": 0,
               "consumed": 26,
-              "closing": 129
+              "closing": 927
             },
             {
               "date": "2026-06-03",
-              "opening": 129,
+              "opening": 927,
               "received": 0,
               "consumed": 27,
-              "closing": 102
+              "closing": 900
             },
             {
               "date": "2026-06-04",
-              "opening": 102,
+              "opening": 900,
               "received": 0,
               "consumed": 30,
-              "closing": 72
+              "closing": 870
             },
             {
               "date": "2026-06-05",
-              "opening": 72,
+              "opening": 870,
               "received": 0,
               "consumed": 21,
-              "closing": 51
+              "closing": 849
             },
             {
               "date": "2026-06-06",
-              "opening": 51,
+              "opening": 849,
               "received": 0,
               "consumed": 25,
-              "closing": 26
+              "closing": 824
             },
             {
               "date": "2026-06-07",
-              "opening": 26,
+              "opening": 824,
               "received": 0,
               "consumed": 21,
-              "closing": 5
+              "closing": 803
             },
             {
               "date": "2026-06-08",
-              "opening": 5,
+              "opening": 803,
               "received": 0,
               "consumed": 24,
-              "closing": 0
+              "closing": 779
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 779,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 758
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 758,
               "received": 0,
               "consumed": 21,
-              "closing": 0
+              "closing": 737
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 737,
               "received": 0,
               "consumed": 27,
-              "closing": 0
+              "closing": 710
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 710,
               "received": 0,
               "consumed": 29,
-              "closing": 0
+              "closing": 681
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 681,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 659
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 659,
               "received": 115,
               "consumed": 29,
-              "closing": 86
+              "closing": 745
             },
             {
               "date": "2026-06-15",
-              "opening": 86,
+              "opening": 745,
               "received": 0,
               "consumed": 27,
-              "closing": 59
+              "closing": 718
             },
             {
               "date": "2026-06-16",
-              "opening": 59,
+              "opening": 718,
               "received": 0,
               "consumed": 28,
-              "closing": 31
+              "closing": 690
             },
             {
               "date": "2026-06-17",
-              "opening": 31,
+              "opening": 690,
               "received": 0,
               "consumed": 22,
-              "closing": 9
+              "closing": 668
             },
             {
               "date": "2026-06-18",
-              "opening": 9,
+              "opening": 668,
               "received": 0,
               "consumed": 25,
-              "closing": 0
+              "closing": 643
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 643,
               "received": 0,
               "consumed": 33,
-              "closing": 0
+              "closing": 610
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 610,
               "received": 0,
               "consumed": 30,
-              "closing": 0
+              "closing": 580
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 580,
               "received": 0,
               "consumed": 31,
-              "closing": 0
+              "closing": 549
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 549,
               "received": 0,
               "consumed": 31,
-              "closing": 0
+              "closing": 518
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 518,
               "received": 0,
               "consumed": 22,
-              "closing": 0
+              "closing": 496
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 496,
               "received": 0,
               "consumed": 32,
-              "closing": 0
+              "closing": 464
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 464,
               "received": 0,
               "consumed": 33,
-              "closing": 0
+              "closing": 431
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 431,
               "received": 0,
               "consumed": 35,
-              "closing": 0
+              "closing": 396
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 396,
               "received": 0,
               "consumed": 24,
-              "closing": 0
+              "closing": 372
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 372,
               "received": 0,
               "consumed": 26,
-              "closing": 0
+              "closing": 346
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 346,
               "received": 0,
               "consumed": 30,
-              "closing": 0
+              "closing": 316
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 316,
               "received": 0,
               "consumed": 30,
-              "closing": 0
+              "closing": 286
             }
           ]
         },
@@ -45174,318 +45211,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 258,
+              "opening": 773,
               "received": 0,
               "consumed": 13,
-              "closing": 245
+              "closing": 760
             },
             {
               "date": "2026-05-18",
-              "opening": 245,
+              "opening": 760,
               "received": 0,
               "consumed": 15,
-              "closing": 230
+              "closing": 745
             },
             {
               "date": "2026-05-19",
-              "opening": 230,
+              "opening": 745,
               "received": 0,
               "consumed": 15,
-              "closing": 215
+              "closing": 730
             },
             {
               "date": "2026-05-20",
-              "opening": 215,
+              "opening": 730,
               "received": 0,
               "consumed": 19,
-              "closing": 196
+              "closing": 711
             },
             {
               "date": "2026-05-21",
-              "opening": 196,
+              "opening": 711,
               "received": 0,
               "consumed": 15,
-              "closing": 181
+              "closing": 696
             },
             {
               "date": "2026-05-22",
-              "opening": 181,
+              "opening": 696,
               "received": 0,
               "consumed": 16,
-              "closing": 165
+              "closing": 680
             },
             {
               "date": "2026-05-23",
-              "opening": 165,
+              "opening": 680,
               "received": 0,
               "consumed": 18,
-              "closing": 147
+              "closing": 662
             },
             {
               "date": "2026-05-24",
-              "opening": 147,
+              "opening": 662,
               "received": 0,
               "consumed": 16,
-              "closing": 131
+              "closing": 646
             },
             {
               "date": "2026-05-25",
-              "opening": 131,
+              "opening": 646,
               "received": 0,
               "consumed": 18,
-              "closing": 113
+              "closing": 628
             },
             {
               "date": "2026-05-26",
-              "opening": 113,
+              "opening": 628,
               "received": 0,
               "consumed": 15,
-              "closing": 98
+              "closing": 613
             },
             {
               "date": "2026-05-27",
-              "opening": 98,
+              "opening": 613,
               "received": 0,
               "consumed": 17,
-              "closing": 81
+              "closing": 596
             },
             {
               "date": "2026-05-28",
-              "opening": 81,
+              "opening": 596,
               "received": 0,
               "consumed": 14,
-              "closing": 67
+              "closing": 582
             },
             {
               "date": "2026-05-29",
-              "opening": 67,
+              "opening": 582,
               "received": 96,
               "consumed": 16,
-              "closing": 147
+              "closing": 662
             },
             {
               "date": "2026-05-30",
-              "opening": 147,
+              "opening": 662,
               "received": 0,
               "consumed": 19,
-              "closing": 128
+              "closing": 643
             },
             {
               "date": "2026-05-31",
-              "opening": 128,
+              "opening": 643,
               "received": 0,
               "consumed": 16,
-              "closing": 112
+              "closing": 627
             },
             {
               "date": "2026-06-01",
-              "opening": 112,
+              "opening": 627,
               "received": 0,
               "consumed": 17,
-              "closing": 95
+              "closing": 610
             },
             {
               "date": "2026-06-02",
-              "opening": 95,
+              "opening": 610,
               "received": 0,
               "consumed": 19,
-              "closing": 76
+              "closing": 591
             },
             {
               "date": "2026-06-03",
-              "opening": 76,
+              "opening": 591,
               "received": 0,
               "consumed": 19,
-              "closing": 57
+              "closing": 572
             },
             {
               "date": "2026-06-04",
-              "opening": 57,
+              "opening": 572,
               "received": 0,
               "consumed": 19,
-              "closing": 38
+              "closing": 553
             },
             {
               "date": "2026-06-05",
-              "opening": 38,
+              "opening": 553,
               "received": 0,
               "consumed": 14,
-              "closing": 24
+              "closing": 539
             },
             {
               "date": "2026-06-06",
-              "opening": 24,
+              "opening": 539,
               "received": 0,
               "consumed": 18,
-              "closing": 6
+              "closing": 521
             },
             {
               "date": "2026-06-07",
-              "opening": 6,
+              "opening": 521,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 506
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 506,
               "received": 0,
               "consumed": 13,
-              "closing": 0
+              "closing": 493
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 493,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 476
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 476,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 457
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 457,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 438
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 438,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 421
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 421,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 407
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 407,
               "received": 94,
               "consumed": 16,
-              "closing": 78
+              "closing": 485
             },
             {
               "date": "2026-06-15",
-              "opening": 78,
+              "opening": 485,
               "received": 0,
               "consumed": 15,
-              "closing": 63
+              "closing": 470
             },
             {
               "date": "2026-06-16",
-              "opening": 63,
+              "opening": 470,
               "received": 0,
               "consumed": 14,
-              "closing": 49
+              "closing": 456
             },
             {
               "date": "2026-06-17",
-              "opening": 49,
+              "opening": 456,
               "received": 0,
               "consumed": 19,
-              "closing": 30
+              "closing": 437
             },
             {
               "date": "2026-06-18",
-              "opening": 30,
+              "opening": 437,
               "received": 0,
               "consumed": 17,
-              "closing": 13
+              "closing": 420
             },
             {
               "date": "2026-06-19",
-              "opening": 13,
+              "opening": 420,
               "received": 0,
               "consumed": 20,
-              "closing": 0
+              "closing": 400
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 400,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 384
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 384,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 367
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 367,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 351
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 351,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 336
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 336,
               "received": 0,
               "consumed": 19,
-              "closing": 0
+              "closing": 317
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 317,
               "received": 0,
               "consumed": 23,
-              "closing": 0
+              "closing": 294
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 294,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 276
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 276,
               "received": 0,
               "consumed": 23,
-              "closing": 0
+              "closing": 253
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 253,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 235
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 235,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 217
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 217,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 199
             }
           ]
         },
@@ -45824,318 +45861,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 150,
+              "opening": 412,
               "received": 0,
               "consumed": 8,
-              "closing": 142
+              "closing": 404
             },
             {
               "date": "2026-05-18",
-              "opening": 142,
+              "opening": 404,
               "received": 0,
               "consumed": 9,
-              "closing": 133
+              "closing": 395
             },
             {
               "date": "2026-05-19",
-              "opening": 133,
+              "opening": 395,
               "received": 0,
               "consumed": 6,
-              "closing": 127
+              "closing": 389
             },
             {
               "date": "2026-05-20",
-              "opening": 127,
+              "opening": 389,
               "received": 0,
               "consumed": 9,
-              "closing": 118
+              "closing": 380
             },
             {
               "date": "2026-05-21",
-              "opening": 118,
+              "opening": 380,
               "received": 0,
               "consumed": 7,
-              "closing": 111
+              "closing": 373
             },
             {
               "date": "2026-05-22",
-              "opening": 111,
+              "opening": 373,
               "received": 0,
               "consumed": 8,
-              "closing": 103
+              "closing": 365
             },
             {
               "date": "2026-05-23",
-              "opening": 103,
+              "opening": 365,
               "received": 0,
               "consumed": 7,
-              "closing": 96
+              "closing": 358
             },
             {
               "date": "2026-05-24",
-              "opening": 96,
+              "opening": 358,
               "received": 0,
               "consumed": 9,
-              "closing": 87
+              "closing": 349
             },
             {
               "date": "2026-05-25",
-              "opening": 87,
+              "opening": 349,
               "received": 0,
               "consumed": 10,
-              "closing": 77
+              "closing": 339
             },
             {
               "date": "2026-05-26",
-              "opening": 77,
+              "opening": 339,
               "received": 0,
               "consumed": 8,
-              "closing": 69
+              "closing": 331
             },
             {
               "date": "2026-05-27",
-              "opening": 69,
+              "opening": 331,
               "received": 0,
               "consumed": 9,
-              "closing": 60
+              "closing": 322
             },
             {
               "date": "2026-05-28",
-              "opening": 60,
+              "opening": 322,
               "received": 0,
               "consumed": 8,
-              "closing": 52
+              "closing": 314
             },
             {
               "date": "2026-05-29",
-              "opening": 52,
+              "opening": 314,
               "received": 46,
               "consumed": 7,
-              "closing": 91
+              "closing": 353
             },
             {
               "date": "2026-05-30",
-              "opening": 91,
+              "opening": 353,
               "received": 0,
               "consumed": 8,
-              "closing": 83
+              "closing": 345
             },
             {
               "date": "2026-05-31",
-              "opening": 83,
+              "opening": 345,
               "received": 0,
               "consumed": 10,
-              "closing": 73
+              "closing": 335
             },
             {
               "date": "2026-06-01",
-              "opening": 73,
+              "opening": 335,
               "received": 0,
               "consumed": 8,
-              "closing": 65
+              "closing": 327
             },
             {
               "date": "2026-06-02",
-              "opening": 65,
+              "opening": 327,
               "received": 0,
               "consumed": 7,
-              "closing": 58
+              "closing": 320
             },
             {
               "date": "2026-06-03",
-              "opening": 58,
+              "opening": 320,
               "received": 0,
               "consumed": 10,
-              "closing": 48
+              "closing": 310
             },
             {
               "date": "2026-06-04",
-              "opening": 48,
+              "opening": 310,
               "received": 0,
               "consumed": 9,
-              "closing": 39
+              "closing": 301
             },
             {
               "date": "2026-06-05",
-              "opening": 39,
+              "opening": 301,
               "received": 0,
               "consumed": 9,
-              "closing": 30
+              "closing": 292
             },
             {
               "date": "2026-06-06",
-              "opening": 30,
+              "opening": 292,
               "received": 0,
               "consumed": 7,
-              "closing": 23
+              "closing": 285
             },
             {
               "date": "2026-06-07",
-              "opening": 23,
+              "opening": 285,
               "received": 0,
               "consumed": 10,
-              "closing": 13
+              "closing": 275
             },
             {
               "date": "2026-06-08",
-              "opening": 13,
+              "opening": 275,
               "received": 0,
               "consumed": 11,
-              "closing": 2
+              "closing": 264
             },
             {
               "date": "2026-06-09",
-              "opening": 2,
+              "opening": 264,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 255
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 255,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 248
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 248,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 237
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 237,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 227
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 227,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 218
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 218,
               "received": 31,
               "consumed": 11,
-              "closing": 20
+              "closing": 238
             },
             {
               "date": "2026-06-15",
-              "opening": 20,
+              "opening": 238,
               "received": 0,
               "consumed": 11,
-              "closing": 9
+              "closing": 227
             },
             {
               "date": "2026-06-16",
-              "opening": 9,
+              "opening": 227,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 216
             },
             {
               "date": "2026-06-17",
-              "opening": 0,
+              "opening": 216,
               "received": 0,
               "consumed": 7,
-              "closing": 0
+              "closing": 209
             },
             {
               "date": "2026-06-18",
-              "opening": 0,
+              "opening": 209,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 199
             },
             {
               "date": "2026-06-19",
-              "opening": 0,
+              "opening": 199,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 188
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 188,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 177
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 177,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 167
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 167,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 156
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 156,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 144
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 144,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 136
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 136,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 126
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 126,
               "received": 0,
               "consumed": 9,
-              "closing": 0
+              "closing": 117
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 117,
               "received": 0,
               "consumed": 10,
-              "closing": 0
+              "closing": 107
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 107,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 96
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 96,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 85
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 85,
               "received": 0,
               "consumed": 8,
-              "closing": 0
+              "closing": 77
             }
           ]
         },
@@ -47124,318 +47161,318 @@
           "history": [
             {
               "date": "2026-05-17",
-              "opening": 209,
+              "opening": 573,
               "received": 0,
               "consumed": 11,
-              "closing": 198
+              "closing": 562
             },
             {
               "date": "2026-05-18",
-              "opening": 198,
+              "opening": 562,
               "received": 0,
               "consumed": 11,
-              "closing": 187
+              "closing": 551
             },
             {
               "date": "2026-05-19",
-              "opening": 187,
+              "opening": 551,
               "received": 0,
               "consumed": 12,
-              "closing": 175
+              "closing": 539
             },
             {
               "date": "2026-05-20",
-              "opening": 175,
+              "opening": 539,
               "received": 0,
               "consumed": 11,
-              "closing": 164
+              "closing": 528
             },
             {
               "date": "2026-05-21",
-              "opening": 164,
+              "opening": 528,
               "received": 0,
               "consumed": 11,
-              "closing": 153
+              "closing": 517
             },
             {
               "date": "2026-05-22",
-              "opening": 153,
+              "opening": 517,
               "received": 0,
               "consumed": 15,
-              "closing": 138
+              "closing": 502
             },
             {
               "date": "2026-05-23",
-              "opening": 138,
+              "opening": 502,
               "received": 0,
               "consumed": 15,
-              "closing": 123
+              "closing": 487
             },
             {
               "date": "2026-05-24",
-              "opening": 123,
+              "opening": 487,
               "received": 0,
               "consumed": 13,
-              "closing": 110
+              "closing": 474
             },
             {
               "date": "2026-05-25",
-              "opening": 110,
+              "opening": 474,
               "received": 0,
               "consumed": 10,
-              "closing": 100
+              "closing": 464
             },
             {
               "date": "2026-05-26",
-              "opening": 100,
+              "opening": 464,
               "received": 0,
               "consumed": 14,
-              "closing": 86
+              "closing": 450
             },
             {
               "date": "2026-05-27",
-              "opening": 86,
+              "opening": 450,
               "received": 0,
               "consumed": 11,
-              "closing": 75
+              "closing": 439
             },
             {
               "date": "2026-05-28",
-              "opening": 75,
+              "opening": 439,
               "received": 0,
               "consumed": 12,
-              "closing": 63
+              "closing": 427
             },
             {
               "date": "2026-05-29",
-              "opening": 63,
+              "opening": 427,
               "received": 64,
               "consumed": 15,
-              "closing": 112
+              "closing": 476
             },
             {
               "date": "2026-05-30",
-              "opening": 112,
+              "opening": 476,
               "received": 0,
               "consumed": 15,
-              "closing": 97
+              "closing": 461
             },
             {
               "date": "2026-05-31",
-              "opening": 97,
+              "opening": 461,
               "received": 0,
               "consumed": 16,
-              "closing": 81
+              "closing": 445
             },
             {
               "date": "2026-06-01",
-              "opening": 81,
+              "opening": 445,
               "received": 0,
               "consumed": 15,
-              "closing": 66
+              "closing": 430
             },
             {
               "date": "2026-06-02",
-              "opening": 66,
+              "opening": 430,
               "received": 0,
               "consumed": 16,
-              "closing": 50
+              "closing": 414
             },
             {
               "date": "2026-06-03",
-              "opening": 50,
+              "opening": 414,
               "received": 0,
               "consumed": 14,
-              "closing": 36
+              "closing": 400
             },
             {
               "date": "2026-06-04",
-              "opening": 36,
+              "opening": 400,
               "received": 0,
               "consumed": 15,
-              "closing": 21
+              "closing": 385
             },
             {
               "date": "2026-06-05",
-              "opening": 21,
+              "opening": 385,
               "received": 0,
               "consumed": 13,
-              "closing": 8
+              "closing": 372
             },
             {
               "date": "2026-06-06",
-              "opening": 8,
+              "opening": 372,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 360
             },
             {
               "date": "2026-06-07",
-              "opening": 0,
+              "opening": 360,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 349
             },
             {
               "date": "2026-06-08",
-              "opening": 0,
+              "opening": 349,
               "received": 0,
               "consumed": 12,
-              "closing": 0
+              "closing": 337
             },
             {
               "date": "2026-06-09",
-              "opening": 0,
+              "opening": 337,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 320
             },
             {
               "date": "2026-06-10",
-              "opening": 0,
+              "opening": 320,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 306
             },
             {
               "date": "2026-06-11",
-              "opening": 0,
+              "opening": 306,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 289
             },
             {
               "date": "2026-06-12",
-              "opening": 0,
+              "opening": 289,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 275
             },
             {
               "date": "2026-06-13",
-              "opening": 0,
+              "opening": 275,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 264
             },
             {
               "date": "2026-06-14",
-              "opening": 0,
+              "opening": 264,
               "received": 74,
               "consumed": 17,
-              "closing": 57
+              "closing": 321
             },
             {
               "date": "2026-06-15",
-              "opening": 57,
+              "opening": 321,
               "received": 0,
               "consumed": 11,
-              "closing": 46
+              "closing": 310
             },
             {
               "date": "2026-06-16",
-              "opening": 46,
+              "opening": 310,
               "received": 0,
               "consumed": 14,
-              "closing": 32
+              "closing": 296
             },
             {
               "date": "2026-06-17",
-              "opening": 32,
+              "opening": 296,
               "received": 0,
               "consumed": 12,
-              "closing": 20
+              "closing": 284
             },
             {
               "date": "2026-06-18",
-              "opening": 20,
+              "opening": 284,
               "received": 0,
               "consumed": 15,
-              "closing": 5
+              "closing": 269
             },
             {
               "date": "2026-06-19",
-              "opening": 5,
+              "opening": 269,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 252
             },
             {
               "date": "2026-06-20",
-              "opening": 0,
+              "opening": 252,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 235
             },
             {
               "date": "2026-06-21",
-              "opening": 0,
+              "opening": 235,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 224
             },
             {
               "date": "2026-06-22",
-              "opening": 0,
+              "opening": 224,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 207
             },
             {
               "date": "2026-06-23",
-              "opening": 0,
+              "opening": 207,
               "received": 0,
               "consumed": 16,
-              "closing": 0
+              "closing": 191
             },
             {
               "date": "2026-06-24",
-              "opening": 0,
+              "opening": 191,
               "received": 0,
               "consumed": 11,
-              "closing": 0
+              "closing": 180
             },
             {
               "date": "2026-06-25",
-              "opening": 0,
+              "opening": 180,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 165
             },
             {
               "date": "2026-06-26",
-              "opening": 0,
+              "opening": 165,
               "received": 0,
               "consumed": 14,
-              "closing": 0
+              "closing": 151
             },
             {
               "date": "2026-06-27",
-              "opening": 0,
+              "opening": 151,
               "received": 0,
               "consumed": 18,
-              "closing": 0
+              "closing": 133
             },
             {
               "date": "2026-06-28",
-              "opening": 0,
+              "opening": 133,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 116
             },
             {
               "date": "2026-06-29",
-              "opening": 0,
+              "opening": 116,
               "received": 0,
               "consumed": 15,
-              "closing": 0
+              "closing": 101
             },
             {
               "date": "2026-06-30",
-              "opening": 0,
+              "opening": 101,
               "received": 0,
               "consumed": 17,
-              "closing": 0
+              "closing": 84
             }
           ]
         }

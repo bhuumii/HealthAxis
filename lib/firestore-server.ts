@@ -1,3 +1,4 @@
+import { getDistrictBySlug } from "@/lib/districts";
 import type { DistrictData } from "@/lib/types";
 import {
   composeDistrictData,
@@ -10,18 +11,23 @@ import {
 } from "@/lib/firestore-compose";
 import { getAdminFirestore } from "@/lib/firebase-admin";
 
-export async function getDistrictDataFromFirestore(): Promise<DistrictData | null> {
+export async function getDistrictDataFromFirestore(districtSlug = "suryanagar"): Promise<DistrictData | null> {
   const db = getAdminFirestore();
   if (!db) return null;
 
+  const district = getDistrictBySlug(districtSlug);
+  const byDistrict = (collectionName: string) => db.collection(collectionName).where("district", "==", district.name).get();
+
   const [centres, stocks, beds, doctors, tests, footfall] = await Promise.all([
-    db.collection("centres").get(),
-    db.collection("stock_items").get(),
-    db.collection("beds").get(),
-    db.collection("doctors").get(),
-    db.collection("tests").get(),
-    db.collection("footfall_logs").get()
+    byDistrict("centres"),
+    byDistrict("stock_items"),
+    byDistrict("beds"),
+    byDistrict("doctors"),
+    byDistrict("tests"),
+    byDistrict("footfall_logs")
   ]);
+
+  if (centres.empty) return null;
 
   return composeDistrictData({
     centres: centres.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as CentreDoc),

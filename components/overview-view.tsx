@@ -7,17 +7,26 @@ import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis
 import { AnimatePresence, motion } from "framer-motion";
 import { AnimatedNumber, easeOut, entranceTransition, riseIn, staggerContainer } from "@/components/motion-primitives";
 import { AssistantPanel } from "@/components/assistant-panel";
+import { useAuth } from "@/components/auth-provider";
+import { DISTRICTS, useDistrictSelection } from "@/components/district-provider";
+import { CustomSelect } from "@/components/custom-select";
+import type { DistrictSlug } from "@/lib/districts";
 import { LiveDataIndicator } from "@/components/live-data-indicator";
 import { StatusBadge } from "@/components/status-badge";
 import { useLanguage } from "@/components/language-provider";
 import { districtKpis, getDistrictStatuses } from "@/lib/analytics";
 import { detectCentreAnomalies } from "@/lib/anomalyDetection";
 import { useDistrictData } from "@/lib/use-district-data";
-import type { CentreStatus, Severity } from "@/lib/types";
+import type { AnomalySignal, CentreStatus, Severity } from "@/lib/types";
 
 type StatusFilter = "all" | "bad" | "warn" | "good";
 type SortMode = "critical" | "patients" | "az";
 type OverviewChartMetric = "beds" | "stock" | "doctors" | "tests";
+
+function displayUserName(displayName?: string | null, email?: string | null) {
+  const rawName = displayName?.trim() || email?.split("@")[0] || "User";
+  return rawName.charAt(0).toUpperCase() + rawName.slice(1);
+}
 
 const filterOptions: Array<{ value: StatusFilter; label: string }> = [
   { value: "all", label: "All" },
@@ -108,16 +117,34 @@ function chipClass(value: StatusFilter, active: boolean) {
   return "bg-[#164e63] text-white ring-[#164e63]";
 }
 
+function formatStockCountdown(days: number) {
+  if (days <= 0) return "runs out today";
+  if (days < 1) return "less than 1 day left";
+  return `~${Math.ceil(days)} days left`;
+}
+
 function stockOutRisk(status: CentreStatus) {
   const lowestDays = Math.min(...status.forecasts.map((forecast) => forecast.daysUntilStockout));
-  if (lowestDays < 7) return { label: "High stock-out risk: " + lowestDays + " days", className: "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]" };
-  if (lowestDays < 14) return { label: "Medium stock-out risk: " + lowestDays + " days", className: "bg-[#f7f1e6] text-[#8a6426] ring-[#d5bd91]" };
+  if (lowestDays < 7) return { label: `Stock-out risk: ${formatStockCountdown(lowestDays)}`, className: "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]" };
+  if (lowestDays < 14) return { label: `Stock-out risk: ${formatStockCountdown(lowestDays)}`, className: "bg-[#f7f1e6] text-[#8a6426] ring-[#d5bd91]" };
   return null;
+}
+
+function plainAnomalyText(anomaly: AnomalySignal) {
+  const direction = anomaly.direction === "below" ? "far below" : "far above";
+  if (anomaly.metric === "stock") {
+    return `Unusual pattern: ${anomaly.label.replace(/ closing stock$/i, '')} stock level is ${direction} its normal trend for this centre`;
+  }
+  if (anomaly.metric === "beds") return `Unusual pattern: bed occupancy is ${direction} its normal trend for this centre`;
+  if (anomaly.metric === "doctors") return `Unusual pattern: doctor absence is ${direction} its normal trend for this centre`;
+  return `Unusual pattern: patient visits are ${direction} their normal trend for this centre`;
 }
 
 export function OverviewView() {
   const { data, error, isLive, livePulse, lastUpdatedAt } = useDistrictData();
   const { t } = useLanguage();
+  const { user } = useAuth();
+  const { districtSlug, setDistrictSlug, hrefWithDistrict } = useDistrictSelection();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [sortMode, setSortMode] = useState<SortMode>("critical");
@@ -152,13 +179,25 @@ export function OverviewView() {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-      <section className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-        <div>
+      <section className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="min-w-0 flex-1">
           <p className="text-xs font-bold uppercase text-[#164e63]">{data.district}, {data.state}</p>
-          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{t("districtOverview")}</h1>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#46515c]">{t("districtLead")}</p>
+          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">Welcome, {displayUserName(user?.displayName, user?.email)}</h1>
+          <p className="mt-2 text-sm leading-6 text-[#46515c]">Select a district to view its current operational status.</p>
         </div>
-        <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+          <div className="block text-sm font-bold text-[#46515c]">
+            <span>District</span>
+            <CustomSelect
+              value={districtSlug}
+              options={DISTRICTS.map((district) => ({ value: district.slug as DistrictSlug, label: district.name }))}
+              onChange={setDistrictSlug}
+              ariaLabel="District"
+              className="mt-2 min-w-56"
+            />
+          </div>
+          <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
+        </div>
       </section>
 
       {error ? <p className="mb-4 rounded-md border border-[#d5bd91] bg-[#f7f1e6] px-3 py-2 text-sm text-[#8a6426]">Some live data could not be loaded. Showing the latest available district data.</p> : null}
@@ -181,7 +220,7 @@ export function OverviewView() {
             <h2 className="text-lg font-bold text-[#17212b]">{t("centreReadiness")}</h2>
             <p className="mt-1 text-sm text-slate-500">Showing {visibleStatuses.length} of {statuses.length} centres.</p>
           </div>
-          <Link className="text-sm font-bold text-[#164e63] transition duration-200 ease-out hover:text-[#0d3848] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href="/intervention">
+          <Link className="text-sm font-bold text-[#164e63] transition duration-200 ease-out hover:text-[#0d3848] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict("/intervention")}>
             {t("needsIntervention")}
           </Link>
         </div>
@@ -252,7 +291,7 @@ export function OverviewView() {
                     <h3 className="mt-1 text-base font-bold text-[#17212b]">{status.centre.name}</h3>
                     <p className="mt-1 text-sm text-slate-500">{status.footfallToday} {t("patientsToday").toLowerCase()}</p>
                   </div>
-                  <Link className="grid h-10 w-10 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] transition duration-200 ease-out hover:scale-[1.02] hover:border-[#164e63] hover:bg-[#f8fafb] hover:text-[#164e63] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={`/centres/${status.centre.id}`} aria-label={`Open ${status.centre.name}`}>
+                  <Link className="grid h-10 w-10 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] transition duration-200 ease-out hover:scale-[1.02] hover:border-[#164e63] hover:bg-[#f8fafb] hover:text-[#164e63] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict(`/centres/${status.centre.id}`)} aria-label={`Open ${status.centre.name}`}>
                     <ArrowRight size={16} strokeWidth={1.75} />
                   </Link>
                 </div>
@@ -265,7 +304,7 @@ export function OverviewView() {
                 {risk || anomalies.length ? (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {risk ? <span className={"inline-flex rounded px-2 py-0.5 text-xs font-bold ring-1 " + risk.className}>{risk.label}</span> : null}
-                    {anomalies.length ? <span className="inline-flex rounded bg-[#eef3f5] px-2 py-0.5 text-xs font-bold text-[#164e63] ring-1 ring-[#b8c7d0]">Unusual pattern: {anomalies[0].label}</span> : null}
+                    {anomalies.length ? <span className="inline-flex rounded bg-[#eef3f5] px-2 py-0.5 text-xs font-bold text-[#164e63] ring-1 ring-[#b8c7d0]">{plainAnomalyText(anomalies[0])}</span> : null}
                   </div>
                 ) : null}
               </motion.article>

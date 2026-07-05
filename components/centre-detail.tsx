@@ -9,10 +9,11 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 import { LiveDataIndicator } from "@/components/live-data-indicator";
 import { StatusBadge } from "@/components/status-badge";
 import { useLanguage } from "@/components/language-provider";
+import { useDistrictSelection } from "@/components/district-provider";
 import { getCentreStatus } from "@/lib/analytics";
 import { detectCentreAnomalies } from "@/lib/anomalyDetection";
 import { useDistrictData } from "@/lib/use-district-data";
-import type { HealthCentre, Severity } from "@/lib/types";
+import type { AnomalySignal, HealthCentre, Severity } from "@/lib/types";
 
 type TrendMetric = "stock" | "beds" | "doctors" | "tests";
 
@@ -103,8 +104,17 @@ function chipClass(severity: Severity, active: boolean) {
   return active ? severityStyles[severity].chip : "bg-white text-[#46515c] ring-[#cfd8df] hover:bg-[#eef3f5]";
 }
 
+function plainAnomalyText(anomaly: AnomalySignal) {
+  const direction = anomaly.direction === "below" ? "far below" : "far above";
+  if (anomaly.metric === "stock") return ` ${anomaly.label.replace(/ closing stock$/i, '')} stock level is ${direction} its normal trend for this centre.`;
+  if (anomaly.metric === "beds") return ` Bed occupancy is ${direction} its normal trend for this centre.`;
+  if (anomaly.metric === "doctors") return ` Doctor absence is ${direction} its normal trend for this centre.`;
+  return ` Patient visits are ${direction} their normal trend for this centre.`;
+}
+
 export function CentreDetail({ centreId }: { centreId: string }) {
   const { t } = useLanguage();
+  const { hrefWithDistrict } = useDistrictSelection();
   const { data, isLive, livePulse, lastUpdatedAt } = useDistrictData();
   const [activeMetric, setActiveMetric] = useState<TrendMetric>("stock");
   const centre = data.centres.find((candidate) => candidate.id === centreId);
@@ -112,7 +122,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   if (!centre) {
     return (
       <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-        <Link className="inline-flex items-center gap-2 text-sm font-bold text-[#164e63]" href="/overview">
+        <Link className="inline-flex items-center gap-2 text-sm font-bold text-[#164e63]" href={hrefWithDistrict("/overview")}>
           <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
         </Link>
         <p className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4 text-[#46515c]">Centre not found in the current district data.</p>
@@ -130,13 +140,13 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   return (
     <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
       <section className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <Link className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" href="/overview">
+        <div className="min-w-0 flex-1">
+          <Link className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" href={hrefWithDistrict("/overview")}>
             <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
           </Link>
           <p className="text-xs font-bold uppercase text-[#164e63]">{centre.type} · {centre.block}</p>
           <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{centre.name}</h1>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#46515c]">
+          <p className="mt-2 text-sm leading-6 text-[#46515c]">
             Catchment population {centre.catchmentPopulation.toLocaleString("en-IN")}. Intervention score {status.interventionScore}/100.
           </p>
         </div>
@@ -156,7 +166,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
           <div className="mt-2 flex flex-wrap gap-2">
             {anomalies.slice(0, 3).map((anomaly) => (
               <span className="inline-flex rounded bg-white px-2 py-0.5 text-xs font-bold text-[#164e63] ring-1 ring-[#b8c7d0]" key={anomaly.metric + "-" + anomaly.label}>
-                {anomaly.label}: {anomaly.currentValue} vs {anomaly.baselineMean} baseline ({anomaly.zScore} SD)
+                {plainAnomalyText(anomaly)} {anomaly.currentValue} vs {anomaly.baselineMean} baseline ({anomaly.zScore} SD)
               </span>
             ))}
           </div>

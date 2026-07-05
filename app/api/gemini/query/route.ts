@@ -8,8 +8,14 @@ const languageLabels: Record<string, string> = {
   en: "English",
   hi: "Hindi",
   mr: "Marathi",
+  gu: "Gujarati",
+  te: "Telugu",
+  bn: "Bengali",
   ta: "Tamil",
-  te: "Telugu"
+  kn: "Kannada",
+  ml: "Malayalam",
+  pa: "Punjabi",
+  ur: "Urdu"
 };
 
 function geminiModel() {
@@ -24,7 +30,7 @@ function centreSummary(status: CentreStatus) {
     .filter((forecast) => forecast.severity !== "good")
     .sort((a, b) => a.daysUntilStockout - b.daysUntilStockout)
     .slice(0, 3)
-    .map((forecast) => `${forecast.medicineName} (${forecast.daysUntilStockout} days cover, ${forecast.currentStock} ${forecast.unit})`);
+    .map((forecast) => `${forecast.medicineName} (${forecast.daysUntilStockout} days left, ${forecast.currentStock} ${forecast.unit} in stock)`);
   const unavailableTests = status.centre.tests.filter((test) => !test.available).map((test) => test.name);
 
   return {
@@ -224,14 +230,14 @@ function localAnswer(question: string, data: DistrictData) {
 }
 
 export async function POST(request: Request) {
-  const { question, language = "en" } = (await request.json()) as { question?: string; language?: string };
+  const { question, language = "en", districtSlug = "suryanagar" } = (await request.json()) as { question?: string; language?: string; districtSlug?: string };
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!question?.trim()) {
     return NextResponse.json({ answer: "Ask a question about stock, beds, doctors, tests, or flagged centres." });
   }
 
-  const data = (await getDistrictDataFromFirestore()) ?? getDistrictData();
+  const data = (await getDistrictDataFromFirestore(districtSlug)) ?? getDistrictData(districtSlug);
   const directAnswer = directMetricAnswer(question, data);
 
   if (directAnswer) {
@@ -246,7 +252,7 @@ export async function POST(request: Request) {
   const answerLanguage = languageLabels[language] ?? "English";
   const prompt = `You are a district health operations assistant for Indian PHC/CHC administrators.
 
-Answer using only this summarized current district context. If the user asks for one specific metric for one named centre, answer only that metric in one short sentence. Do not return a ranked list for a specific metric question. Do not enumerate raw stock records one by one. Synthesize and rank centres by interventionScore unless the user explicitly asks for a specific centre, metric, medicine, or transfer. For questions like "which centre needs help most today", name the single most urgent centre first, then explain the 2-4 worst factors driving that ranking in 2-4 concise sentences. Mention exact metrics from the centre summaries when useful. If comparing centres, keep the answer short and ranked. Reply in ${answerLanguage}.
+Answer using only this summarized current district context. If the user asks for one specific metric for one named centre, answer only that metric in one short sentence. Do not return a ranked list for a specific metric question. Do not enumerate raw stock records one by one. When describing stock forecasts, say days left or days remaining rather than days cover. Synthesize and rank centres by interventionScore unless the user explicitly asks for a specific centre, metric, medicine, or transfer. For questions like "which centre needs help most today", name the single most urgent centre first, then explain the 2-4 worst factors driving that ranking in 2-4 concise sentences. Mention exact metrics from the centre summaries when useful. If comparing centres, keep the answer short and ranked. Reply in ${answerLanguage}.
 
 Summarized context:
 ${JSON.stringify(context)}

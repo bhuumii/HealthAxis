@@ -5,6 +5,7 @@ import { Languages } from "lucide-react";
 import { AuthProvider } from "@/components/auth-provider";
 import { LanguageProvider } from "@/components/language-provider";
 import { Header } from "@/components/header";
+import { DistrictProvider } from "@/components/district-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -26,10 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthProvider>
           <LanguageProvider>
+            <DistrictProvider>
             <div className="min-h-screen bg-[#f5f7f8]">
               <header className="sticky top-0 z-40 border-b border-[#cfd8df] bg-[#f5f7f8]/95 px-4 py-2.5 backdrop-blur lg:px-8">
-                <div className="mx-auto flex max-w-7xl flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                  <Link className="flex min-w-64 items-center gap-3" href="/overview">
+                <div className="flex w-full flex-col gap-3 lg:flex-row lg:items-center lg:gap-8">
+                  <Link className="flex shrink-0 items-center gap-3" href="/overview">
                     <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full">
                       <Image
                         src="/logo.png"
@@ -52,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </header>
               {children}
             </div>
+            </DistrictProvider>
           </LanguageProvider>
         </AuthProvider>
       </body>

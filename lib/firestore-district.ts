@@ -1,8 +1,9 @@
 "use client";
 
-import { collection, onSnapshot, type DocumentData, type Firestore, type Unsubscribe } from "firebase/firestore";
+import { collection, onSnapshot, query, where, type DocumentData, type Firestore, type Unsubscribe } from "firebase/firestore";
 import { getClientFirestore } from "@/lib/firebase-client";
 import { composeDistrictData, type BedDoc, type CentreDoc, type DoctorDoc, type FootfallDoc, type StockDoc, type TestDoc } from "@/lib/firestore-compose";
+import type { DistrictOption } from "@/lib/districts";
 import type { DistrictData } from "@/lib/types";
 
 function asRecord(data: DocumentData): Record<string, unknown> {
@@ -24,7 +25,7 @@ function readArray<T>(record: Record<string, unknown>, key: string): T[] {
   return Array.isArray(value) ? (value as T[]) : [];
 }
 
-function normalizeCentre(id: string, data: DocumentData): CentreDoc {
+function normalizeCentre(id: string, data: DocumentData, district: DistrictOption): CentreDoc {
   const record = asRecord(data);
   const type = readString(record, "type") === "CHC" ? "CHC" : "PHC";
   const coordinates = (record.coordinates ?? {}) as { lat?: unknown; lng?: unknown };
@@ -39,8 +40,9 @@ function normalizeCentre(id: string, data: DocumentData): CentreDoc {
       lat: typeof coordinates.lat === "number" ? coordinates.lat : 0,
       lng: typeof coordinates.lng === "number" ? coordinates.lng : 0
     },
-    district: readString(record, "district", "Suryanagar"),
-    state: readString(record, "state", "Uttar Pradesh"),
+    district: readString(record, "district", district.name),
+    districtSlug: readString(record, "districtSlug", district.slug),
+    state: readString(record, "state", district.state),
     generatedAt: readString(record, "generatedAt", new Date().toISOString())
   };
 }
@@ -101,6 +103,7 @@ function normalizeFootfall(data: DocumentData): FootfallDoc {
 }
 
 export function subscribeToDistrictData(
+  district: DistrictOption,
   onData: (data: DistrictData) => void,
   onError: (error: Error) => void
 ): Unsubscribe {
@@ -110,10 +113,14 @@ export function subscribeToDistrictData(
     return () => undefined;
   }
 
-  return subscribeWithDb(db, onData, onError);
+  return subscribeWithDb(db, district, onData, onError);
 }
 
-function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, onError: (error: Error) => void): Unsubscribe {
+function districtCollection(db: Firestore, collectionName: string, district: DistrictOption) {
+  return query(collection(db, collectionName), where("district", "==", district.name));
+}
+
+function subscribeWithDb(db: Firestore, district: DistrictOption, onData: (data: DistrictData) => void, onError: (error: Error) => void): Unsubscribe {
   const snapshot = {
     centres: [] as CentreDoc[],
     stocks: [] as StockDoc[],
@@ -130,16 +137,16 @@ function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, on
 
   const subscriptions = [
     onSnapshot(
-      collection(db, "centres"),
+      districtCollection(db, "centres", district),
       (querySnapshot) => {
-        snapshot.centres = querySnapshot.docs.map((doc) => normalizeCentre(doc.id, doc.data()));
+        snapshot.centres = querySnapshot.docs.map((doc) => normalizeCentre(doc.id, doc.data(), district));
         loaded.add("centres");
         emit();
       },
       onError
     ),
     onSnapshot(
-      collection(db, "stock_items"),
+      districtCollection(db, "stock_items", district),
       (querySnapshot) => {
         snapshot.stocks = querySnapshot.docs.map((doc) => normalizeStock(doc.id, doc.data()));
         loaded.add("stock_items");
@@ -148,7 +155,7 @@ function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, on
       onError
     ),
     onSnapshot(
-      collection(db, "beds"),
+      districtCollection(db, "beds", district),
       (querySnapshot) => {
         snapshot.beds = querySnapshot.docs.map((doc) => normalizeBed(doc.data()));
         loaded.add("beds");
@@ -157,7 +164,7 @@ function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, on
       onError
     ),
     onSnapshot(
-      collection(db, "doctors"),
+      districtCollection(db, "doctors", district),
       (querySnapshot) => {
         snapshot.doctors = querySnapshot.docs.map((doc) => normalizeDoctor(doc.id, doc.data()));
         loaded.add("doctors");
@@ -166,7 +173,7 @@ function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, on
       onError
     ),
     onSnapshot(
-      collection(db, "tests"),
+      districtCollection(db, "tests", district),
       (querySnapshot) => {
         snapshot.tests = querySnapshot.docs.map((doc) => normalizeTest(doc.id, doc.data()));
         loaded.add("tests");
@@ -175,7 +182,7 @@ function subscribeWithDb(db: Firestore, onData: (data: DistrictData) => void, on
       onError
     ),
     onSnapshot(
-      collection(db, "footfall_logs"),
+      districtCollection(db, "footfall_logs", district),
       (querySnapshot) => {
         snapshot.footfall = querySnapshot.docs.map((doc) => normalizeFootfall(doc.data()));
         loaded.add("footfall_logs");

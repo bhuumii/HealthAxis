@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { entranceTransition, riseIn, staggerContainer } from "@/components/motion-primitives";
 import { ArrowRight, Siren } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
+import { useDistrictSelection } from "@/components/district-provider";
 import { useLanguage } from "@/components/language-provider";
 import { getDistrictStatuses } from "@/lib/analytics";
 import { useDistrictData } from "@/lib/use-district-data";
@@ -12,6 +13,7 @@ import { useDistrictData } from "@/lib/use-district-data";
 export function InterventionView() {
   const { data } = useDistrictData();
   const { t } = useLanguage();
+  const { hrefWithDistrict } = useDistrictSelection();
   const flagged = getDistrictStatuses(data).filter((status) => status.flagged);
 
   return (
@@ -19,7 +21,7 @@ export function InterventionView() {
       <section className="mb-6">
         <p className="text-xs font-bold uppercase text-[#164e63]">{data.district}, {data.state}</p>
         <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{t("needsIntervention")}</h1>
-        <p className="mt-2 max-w-3xl text-sm leading-6 text-[#46515c]">{t("interventionLead")}</p>
+        <p className="mt-2 text-sm leading-6 text-[#46515c]">{t("interventionLead")}</p>
       </section>
 
       {flagged.length === 0 ? (
@@ -33,14 +35,15 @@ export function InterventionView() {
                   <p className="text-xs font-bold uppercase tracking-normal text-slate-500">{status.centre.type} · {status.centre.block}</p>
                   <h2 className="mt-1 text-lg font-bold text-[#17212b]">{status.centre.name}</h2>
                 </div>
-                <Link className="inline-flex items-center gap-2 rounded-md bg-[#164e63] px-3 py-2 text-sm font-bold text-white hover:bg-[#0d3848]" href={`/centres/${status.centre.id}`}>
+                <Link className="inline-flex items-center gap-2 rounded-md bg-[#164e63] px-3 py-2 text-sm font-bold text-white hover:bg-[#0d3848]" href={hrefWithDistrict(`/centres/${status.centre.id}`)}>
                   {t("open")} <ArrowRight size={15} strokeWidth={1.75} />
                 </Link>
               </div>
-              <div className="mt-5 flex items-center gap-3">
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Siren size={20} className="text-[#9f3a38]" />
                 <span className="text-sm font-bold text-slate-500">{t("score")}</span>
                 <span className="text-2xl font-bold text-[#17212b]">{status.interventionScore}</span>
+                <span className="text-xs leading-5 text-slate-500">0-100 combined risk across stock, beds, doctors, and tests. Higher means more urgent.</span>
               </div>
               <div className="mt-3 h-3 overflow-hidden rounded-sm bg-[#eef3f5]">
                 <div className={`h-full ${status.interventionScore >= 70 ? "bg-[#9f3a38]" : "bg-[#9a6a22]"}`} style={{ width: `${status.interventionScore}%` }} />

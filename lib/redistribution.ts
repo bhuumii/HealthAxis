@@ -66,6 +66,17 @@ function buildDonor(item: CentreMedicine): Donor | null {
   return { ...item, available };
 }
 
+function shortCentreName(name: string) {
+  return name.replace(/\s+(Primary|Community) Health Centre$/i, "");
+}
+
+function redistributionReason(deficit: Deficit, donor: Donor) {
+  const recipient = shortCentreName(deficit.centre.name);
+  const donorName = shortCentreName(donor.centre.name);
+  const urgency = deficit.priority === "high" ? "critically low" : "running low";
+  return recipient + " is " + urgency + "; " + donorName + " has enough spare stock to share safely.";
+}
+
 export function buildRedistributionPlan(data: DistrictData): RedistributionRecommendation[] {
   const recommendations: RedistributionRecommendation[] = [];
   const itemIds = [...new Set(data.centres.flatMap((centre) => centre.medicines.map((medicine) => medicine.id)))];
@@ -126,7 +137,7 @@ export function buildRedistributionPlan(data: DistrictData): RedistributionRecom
           toDaysCoverBefore: toBefore,
           toDaysCoverAfter: toAfter,
           unmetDemandAfter: Math.max(0, remainingNeed),
-          reason: `Move ${quantity} ${deficit.medicine.unit} of ${deficit.medicine.name} from ${donor.centre.name} to ${deficit.centre.name}. ${deficit.centre.name} is ${deficit.priority} priority at ${toBefore} days cover; ${donor.centre.name} remains above its ${DONOR_BUFFER_DAYS}-day or 1.5x-threshold buffer at ${fromAfter} days cover.`
+          reason: redistributionReason(deficit, donor)
         });
       }
     }

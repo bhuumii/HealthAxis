@@ -25,7 +25,9 @@ type OverviewChartMetric = "beds" | "stock" | "doctors" | "tests";
 
 function displayUserName(displayName?: string | null, email?: string | null) {
   const rawName = displayName?.trim() || email?.split("@")[0] || "User";
-  return rawName.charAt(0).toUpperCase() + rawName.slice(1);
+  const withoutTrailingId = rawName.replace(/\s+\d{4,}$/, "").replace(/\d+$/, "").trim();
+  const firstName = withoutTrailingId.split(/[\s._-]+/)[0] || "User";
+  return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
 }
 
 const filterOptions: Array<{ value: StatusFilter; label: string }> = [
@@ -178,12 +180,12 @@ export function OverviewView() {
   }, [search, sortMode, statusFilter, statuses]);
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-      <section className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <main className="craft-page mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="mb-7 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-bold uppercase text-[#164e63]">{data.district}, {data.state}</p>
-          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">Welcome, {displayUserName(user?.displayName, user?.email)}</h1>
-          <p className="mt-2 text-sm leading-6 text-[#46515c]">Select a district to view its current operational status.</p>
+          <p className="craft-eyebrow">{data.district}, {data.state}</p>
+          <h1 className="craft-title mt-3">Welcome, {displayUserName(user?.displayName, user?.email)}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#46515c]">Select a district to view its current operational status.</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="block text-sm font-bold text-[#46515c]">
@@ -202,30 +204,30 @@ export function OverviewView() {
 
       {error ? <p className="mb-4 rounded-md border border-[#d5bd91] bg-[#f7f1e6] px-3 py-2 text-sm text-[#8a6426]">Some live data could not be loaded. Showing the latest available district data.</p> : null}
 
-      <motion.section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" variants={staggerContainer} initial="hidden" animate="visible">
+      <motion.section key={`stats-${districtSlug}`} className="craft-hero-band grid gap-3 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-4 lg:p-6" variants={staggerContainer} initial="hidden" animate="visible">
         <StatCard label={t("centres")} value={kpis.centres} />
         <StatCard label={t("stockWarnings")} value={kpis.warnings} />
         <StatCard label={t("flaggedCentres")} value={kpis.flagged} />
         <StatCard label={t("avgBedUse")} value={kpis.avgBeds} suffix="%" />
       </motion.section>
 
-      <motion.section className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
+      <motion.section key={`ops-${districtSlug}`} className="mt-7 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
         <motion.div variants={riseIn} transition={entranceTransition}><MetricChartStack statuses={statuses} activeIndex={activeChart} setActiveIndex={setActiveChart} /></motion.div>
         <motion.div variants={riseIn} transition={entranceTransition}><AssistantPanel data={data} /></motion.div>
       </motion.section>
 
-      <motion.section className="mt-6" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
+      <motion.section className="mt-8" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
         <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-lg font-bold text-[#17212b]">{t("centreReadiness")}</h2>
+            <h2 className="craft-section-title">{t("centreReadiness")}</h2>
             <p className="mt-1 text-sm text-slate-500">Showing {visibleStatuses.length} of {statuses.length} centres.</p>
           </div>
-          <Link className="text-sm font-bold text-[#164e63] transition duration-200 ease-out hover:text-[#0d3848] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict("/intervention")}>
+          <Link className="craft-button inline-flex rounded-md px-3 py-2 text-sm font-bold text-[#164e63] hover:bg-white hover:text-[#0d3848] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict("/intervention")}>
             {t("needsIntervention")}
           </Link>
         </div>
 
-        <div className="mb-4 grid gap-3 rounded-md border border-[#cfd8df] bg-white p-3 lg:grid-cols-[minmax(260px,1fr)_auto_230px] lg:items-center">
+        <div className="craft-card mb-4 grid gap-3 p-3 lg:grid-cols-[minmax(260px,1fr)_auto_230px] lg:items-center">
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} strokeWidth={1.75} />
             <input
@@ -252,7 +254,7 @@ export function OverviewView() {
             {filterOptions.map((option) => (
               <button
                 key={option.value}
-                className={`inline-flex h-9 items-center rounded px-3 text-sm font-bold ring-1 transition duration-200 ease-out hover:scale-[1.01] ${chipClass(option.value, statusFilter === option.value)}`}
+                className={`craft-button inline-flex h-9 items-center rounded-md px-3 text-sm font-bold ring-1 ${chipClass(option.value, statusFilter === option.value)}`}
                 type="button"
                 onClick={() => setStatusFilter(option.value)}
                 aria-pressed={statusFilter === option.value}
@@ -284,14 +286,14 @@ export function OverviewView() {
               const risk = stockOutRisk(status);
 
               return (
-              <motion.article key={status.centre.id} className="rounded-md border border-[#cfd8df] bg-white p-4 transition-colors duration-200 ease-out hover:border-[#b8c7d0]" variants={riseIn} transition={entranceTransition} whileHover={{ scale: 1.01 }}>
+              <motion.article key={status.centre.id} className="craft-card craft-lift p-4" variants={riseIn} transition={entranceTransition} whileHover={{ y: -4, scale: 1.01 }}>
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-normal text-slate-500">{status.centre.type} · {status.centre.block}</p>
-                    <h3 className="mt-1 text-base font-bold text-[#17212b]">{status.centre.name}</h3>
+                    <p className="text-xs font-extrabold uppercase text-slate-500">{status.centre.type} · {status.centre.block}</p>
+                    <h3 className="mt-1 text-lg font-extrabold leading-tight text-[#17212b]">{status.centre.name}</h3>
                     <p className="mt-1 text-sm text-slate-500">{status.footfallToday} {t("patientsToday").toLowerCase()}</p>
                   </div>
-                  <Link className="grid h-10 w-10 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] transition duration-200 ease-out hover:scale-[1.02] hover:border-[#164e63] hover:bg-[#f8fafb] hover:text-[#164e63] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict(`/centres/${status.centre.id}`)} aria-label={`Open ${status.centre.name}`}>
+                  <Link className="craft-icon-button grid h-10 w-10 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:bg-[#f8fafb] hover:text-[#164e63] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict(`/centres/${status.centre.id}`)} aria-label={`Open ${status.centre.name}`}>
                     <ArrowRight size={16} strokeWidth={1.75} />
                   </Link>
                 </div>
@@ -312,7 +314,7 @@ export function OverviewView() {
             })}
           </motion.div>
         ) : (
-          <div className="rounded-md border border-[#cfd8df] bg-white p-6 text-center">
+          <div className="craft-card p-6 text-center">
             <p className="text-base font-bold text-slate-950">No centres match your search or filter</p>
             <p className="mt-1 text-sm text-slate-500">Try clearing the search or selecting a different status.</p>
           </div>
@@ -350,7 +352,7 @@ function MetricChartStack({
       {peekingCards.reverse().map(({ chart, index, offset }) => (
         <button
           key={`${chart.metric}-${offset}`}
-          className="absolute left-3 right-3 h-24 rounded-md border border-[#cfd8df] bg-white text-left transition hover:-translate-y-0.5"
+          className="craft-card craft-lift absolute left-3 right-3 h-24 text-left"
           style={{
             top: `${(3 - offset) * 14}px`,
             zIndex: 10 - offset,
@@ -363,7 +365,6 @@ function MetricChartStack({
         >
           <div className="flex items-center justify-between px-5 pt-3">
             <span className="text-sm font-bold text-[#17212b]">{chart.title}</span>
-            <span className="h-2 w-12 rounded-sm" style={{ backgroundColor: chart.color }} />
           </div>
         </button>
       ))}
@@ -371,7 +372,7 @@ function MetricChartStack({
       <AnimatePresence mode="wait">
         <motion.div
           key={activeChart.metric}
-          className="absolute inset-x-0 top-12 z-20 rounded-md border border-[#cfd8df] bg-white p-4"
+          className="craft-card absolute inset-x-0 top-12 z-20 p-5"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -379,12 +380,12 @@ function MetricChartStack({
         >
           <div className="mb-4 flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-lg font-bold text-slate-950">{activeChart.title} by centre</h2>
+              <h2 className="craft-section-title">{activeChart.title} by centre</h2>
               <p className="text-sm text-slate-500">{activeChart.subtitle}</p>
             </div>
             <div className="flex items-center gap-2">
               <button
-                className="grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
+                className="craft-icon-button grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
                 type="button"
                 onClick={() => setActiveIndex(previousIndex)}
                 aria-label="Previous chart"
@@ -392,7 +393,7 @@ function MetricChartStack({
                 <ArrowLeft size={15} strokeWidth={1.75} />
               </button>
               <button
-                className="grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
+                className="craft-icon-button grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
                 type="button"
                 onClick={() => setActiveIndex(nextIndex)}
                 aria-label="Next chart"
@@ -441,21 +442,21 @@ function MetricChartStack({
 function StatCard({ label, value, suffix = "" }: { label: string; value: number; suffix?: string }) {
   return (
     <motion.div
-      className="rounded-md border border-[#cfd8df] bg-white p-4 transition-colors duration-200 ease-out hover:border-[#b8c7d0] hover:bg-[#fbfcfd]"
+      className="craft-dark-tile craft-lift p-5"
       variants={riseIn}
       transition={entranceTransition}
       whileHover={{ scale: 1.01 }}
     >
-      <div className="text-xs font-bold uppercase text-[#5c6873]">{label}</div>
-      <p className="mt-4 text-3xl font-bold text-[#17212b]"><AnimatedNumber value={value} suffix={suffix} /></p>
+      <div className="text-xs font-extrabold uppercase text-[#5c6873]">{label}</div>
+      <p className="craft-number mt-6 bg-gradient-to-br from-[#17212b] to-[#164e63] bg-clip-text text-4xl font-extrabold leading-none text-transparent lg:text-5xl"><AnimatedNumber value={value} suffix={suffix} /></p>
     </motion.div>
   );
 }
 
 function PillMetric({ label, badge }: { label: string; badge: React.ReactNode }) {
   return (
-    <div className="rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5">
-      <p className="mb-2 text-xs font-bold uppercase tracking-normal text-slate-500">{label}</p>
+    <div className="craft-card-muted p-3">
+      <p className="mb-2 text-xs font-extrabold uppercase text-slate-500">{label}</p>
       {badge}
     </div>
   );

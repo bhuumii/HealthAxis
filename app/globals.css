@@ -49,3 +49,127 @@ strong {
   font-family: var(--font-heading);
   letter-spacing: 0;
 }
+
+
+::selection {
+  background: #cfe3ea;
+  color: #0f2f3b;
+}
+
+.craft-page {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.craft-eyebrow {
+  color: #164e63;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.craft-title {
+  color: #17212b;
+  font-family: var(--font-heading);
+  font-size: clamp(2.1rem, 3vw, 3.35rem);
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.craft-section-title {
+  color: #17212b;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.craft-card {
+  border: 1px solid rgba(190, 203, 213, 0.88);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1px 1px rgba(23, 33, 43, 0.04), 0 14px 36px rgba(23, 33, 43, 0.075);
+}
+
+.craft-card-muted {
+  border: 1px solid rgba(210, 221, 228, 0.9);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+}
+
+.craft-lift {
+  transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease, transform 220ms ease, color 180ms ease;
+}
+
+.craft-lift:hover {
+  transform: translateY(-3px);
+  border-color: rgba(22, 78, 99, 0.28);
+  box-shadow: 0 2px 4px rgba(23, 33, 43, 0.05), 0 20px 48px rgba(22, 78, 99, 0.13);
+}
+
+.craft-button {
+  box-shadow: 0 8px 18px rgba(22, 78, 99, 0.14);
+  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 220ms ease, transform 220ms ease, color 180ms ease;
+}
+
+.craft-button:hover {
+  transform: translateY(-1px) scale(1.015);
+  box-shadow: 0 12px 26px rgba(22, 78, 99, 0.2);
+}
+
+.craft-icon-button {
+  box-shadow: 0 8px 22px rgba(23, 33, 43, 0.08);
+  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 220ms ease, transform 220ms ease, color 180ms ease;
+}
+
+.craft-icon-button:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 14px 28px rgba(23, 33, 43, 0.12);
+}
+
+.craft-number {
+  font-family: var(--font-heading);
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.035em;
+}
+
+.craft-hero-band {
+  border: 1px solid rgba(190, 203, 213, 0.88);
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafb 100%);
+  box-shadow: 0 1px 1px rgba(23, 33, 43, 0.04), 0 18px 46px rgba(23, 33, 43, 0.08);
+}
+
+
+
+.craft-dark-tile {
+  border: 1px solid rgba(214, 221, 227, 0.92);
+  border-radius: 0.85rem;
+  background: #ffffff;
+  box-shadow: 0 1px 1px rgba(23, 33, 43, 0.035), 0 10px 24px rgba(23, 33, 43, 0.06);
+}
+
+.craft-dark-tile:hover {
+  background: #fbfcfd;
+  border-color: rgba(22, 78, 99, 0.2);
+  box-shadow: 0 2px 4px rgba(23, 33, 43, 0.045), 0 18px 38px rgba(23, 33, 43, 0.09);
+}
+
+.craft-table-shell {
+  border: 1px solid rgba(190, 203, 213, 0.88);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1px 1px rgba(23, 33, 43, 0.035), 0 16px 42px rgba(23, 33, 43, 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

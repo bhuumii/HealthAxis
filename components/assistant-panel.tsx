@@ -58,9 +58,9 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
   }
 
   return (
-    <section className="rounded-md border border-[#cfd8df] bg-white p-4">
+    <section className="craft-card p-5">
       <div className="mb-4">
-        <h2 className="text-lg font-bold text-[#17212b]">{t("askAi")}</h2>
+        <h2 className="craft-section-title">{t("askAi")}</h2>
         <p className="mt-1 text-sm text-slate-500">Run structured questions against the current district operating dataset.</p>
       </div>
       <div className="flex gap-2">
@@ -74,7 +74,7 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
           }}
         />
         <button
-          className="inline-flex items-center gap-2 rounded-md bg-[#164e63] px-4 py-2 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
+          className="craft-button inline-flex items-center gap-2 rounded-md bg-[#164e63] px-4 py-2 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
           type="button"
           onClick={askAssistant}
           disabled={loading}
@@ -83,7 +83,7 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
           {loading ? t("thinking") : t("ask")}
         </button>
       </div>
-      <div className="mt-4 max-h-72 space-y-3 overflow-y-auto rounded-md border border-[#dde4e9] bg-[#f8fafb] p-3">
+      <div className="craft-card-muted mt-4 max-h-72 space-y-3 overflow-y-auto p-3">
         {answers.length ? (
           answers.map((answer, index) => (
             <p key={`${answer}-${index}`} className="rounded border border-[#dde4e9] bg-white p-2.5 text-sm leading-6 text-[#46515c]">

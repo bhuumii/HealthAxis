@@ -7,22 +7,22 @@ export const easeOut = [0.16, 1, 0.3, 1] as const;
 export const easeInOut = [0.45, 0, 0.2, 1] as const;
 
 export const riseIn = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { opacity: 1, y: 0 }
+  hidden: { opacity: 0, y: 16, scale: 0.985 },
+  visible: { opacity: 1, y: 0, scale: 1 }
 };
 
 export const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.045,
-      delayChildren: 0.03
+      staggerChildren: 0.065,
+      delayChildren: 0.04
     }
   }
 };
 
 export const entranceTransition = {
-  duration: 0.24,
+  duration: 0.34,
   ease: easeOut
 };
 
@@ -45,7 +45,7 @@ export function AnimatedNumber({
 
   useEffect(() => {
     const controls = animate(motionValue, value, {
-      duration: 0.34,
+      duration: 0.58,
       ease: easeOut
     });
 

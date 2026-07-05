@@ -121,11 +121,11 @@ export function CentreDetail({ centreId }: { centreId: string }) {
 
   if (!centre) {
     return (
-      <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-        <Link className="inline-flex items-center gap-2 text-sm font-bold text-[#164e63]" href={hrefWithDistrict("/overview")}>
-          <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
+      <main className="craft-page mx-auto max-w-7xl px-4 lg:px-8">
+        <Link className="craft-button inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-bold text-[#164e63] hover:bg-white" href={hrefWithDistrict("/overview")}>
+          <ArrowLeft size={16} strokeWidth={1.55} /> {t("overview")}
         </Link>
-        <p className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4 text-[#46515c]">Centre not found in the current district data.</p>
+        <p className="craft-card mt-6 p-5 text-[#46515c]">Centre not found in the current district data.</p>
       </main>
     );
   }
@@ -138,22 +138,22 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   const lineColor = severityStyles[trend.status].line;
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-6 lg:px-8">
-      <section className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+    <main className="craft-page mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0 flex-1">
-          <Link className="mb-4 inline-flex items-center gap-2 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" href={hrefWithDistrict("/overview")}>
-            <ArrowLeft size={16} strokeWidth={1.75} /> {t("overview")}
+          <Link className="craft-button mb-5 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-bold text-[#164e63] hover:bg-white hover:text-[#0d3848]" href={hrefWithDistrict("/overview")}>
+            <ArrowLeft size={16} strokeWidth={1.55} /> {t("overview")}
           </Link>
-          <p className="text-xs font-bold uppercase text-[#164e63]">{centre.type} · {centre.block}</p>
-          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">{centre.name}</h1>
-          <p className="mt-2 text-sm leading-6 text-[#46515c]">
+          <p className="craft-eyebrow">{centre.type} · {centre.block}</p>
+          <h1 className="craft-title mt-3">{centre.name}</h1>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-[#46515c]">
             Catchment population {centre.catchmentPopulation.toLocaleString("en-IN")}. Intervention score {status.interventionScore}/100.
           </p>
         </div>
         <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
-      <motion.section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" variants={staggerContainer} initial="hidden" animate="visible">
+      <motion.section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" variants={staggerContainer} initial="hidden" animate="visible">
         <Kpi label={t("stock")} value={<StatusBadge value={status.stock} />} />
         <Kpi label={t("occupancy")} numericValue={status.bedOccupancyPct} suffix="%" />
         <Kpi label={t("doctorAttendance")} numericValue={100 - status.doctorAbsenceRate} suffix="%" decimals={1} />
@@ -161,7 +161,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
       </motion.section>
 
       {anomalies.length ? (
-        <motion.section className="mt-4 rounded-md border border-[#b8c7d0] bg-[#eef3f5] p-3" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={entranceTransition}>
+        <motion.section className="craft-card mt-5 bg-[#eef3f5] p-4" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={entranceTransition}>
           <p className="text-sm font-bold text-[#164e63]">Unusual pattern detected</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {anomalies.slice(0, 3).map((anomaly) => (
@@ -173,8 +173,8 @@ export function CentreDetail({ centreId }: { centreId: string }) {
         </motion.section>
       ) : null}
 
-      <motion.section className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
-        <div className="rounded-md border border-[#cfd8df] bg-white p-4">
+      <motion.section className="mt-7 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
+        <div className="craft-card p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <AnimatePresence mode="wait">
@@ -185,7 +185,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.22, ease: easeOut }}
                 >
-                  <h2 className="text-lg font-bold text-[#17212b]">{trend.title}</h2>
+                  <h2 className="craft-section-title">{trend.title}</h2>
                   <p className="mt-1 text-sm text-slate-500">{trend.subtitle}</p>
                 </motion.div>
               </AnimatePresence>
@@ -196,7 +196,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                 return (
                   <button
                     key={tab.value}
-                    className={`inline-flex h-9 items-center rounded px-3 text-sm font-bold ring-1 transition duration-200 ease-out hover:scale-[1.01] ${chipClass(tabStatus, activeMetric === tab.value)}`}
+                    className={`craft-button inline-flex h-9 items-center rounded-md px-3 text-sm font-bold ring-1 ${chipClass(tabStatus, activeMetric === tab.value)}`}
                     type="button"
                     onClick={() => setActiveMetric(tab.value)}
                     aria-pressed={activeMetric === tab.value}
@@ -231,27 +231,27 @@ export function CentreDetail({ centreId }: { centreId: string }) {
           </div>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             {urgentForecasts.map((forecast) => (
-              <div className="rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={forecast.medicineId}>
-                <p className="text-xs font-bold uppercase tracking-normal text-slate-500">Projected stock-out</p>
+              <div className="craft-card-muted p-3" key={forecast.medicineId}>
+                <p className="text-xs font-extrabold uppercase text-slate-500">Projected stock-out</p>
                 <p className="mt-1 text-sm font-bold text-[#17212b]">{forecast.medicineName}</p>
-                <p className="mt-1 text-2xl font-bold text-[#17212b]"><AnimatedNumber value={forecast.daysUntilStockout} /> days</p>
+                <p className="craft-number mt-2 text-4xl font-extrabold leading-none text-[#17212b]"><AnimatedNumber value={forecast.daysUntilStockout} /> <span className="text-sm font-bold tracking-normal text-slate-500">days</span></p>
                 <p className="mt-1 text-xs text-slate-500">{forecast.projectedStockoutDate ?? "No date projected"}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-md border border-[#cfd8df] bg-white p-4">
-          <h2 className="text-lg font-bold text-[#17212b]">{t("testAvailability")}</h2>
+        <div className="craft-card p-5">
+          <h2 className="craft-section-title">{t("testAvailability")}</h2>
           <div className="mt-4 space-y-3">
             {centre.tests.map((test) => (
-              <div className="flex items-center justify-between gap-3 rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={test.id}>
+              <div className="craft-card-muted flex items-center justify-between gap-3 p-3" key={test.id}>
                 <span>
                   <strong className="block text-sm text-[#17212b]">{test.name}</strong>
                   <small className="text-slate-500">Unavailable {test.unavailableDays30}/30 days</small>
                 </span>
                 <span className={`inline-flex items-center gap-1 text-sm font-bold ${test.available ? "text-[#47705d]" : "text-[#9f3a38]"}`}>
-                  <FlaskConical size={15} strokeWidth={1.75} /> {test.available ? "Available" : "Down"}
+                  <FlaskConical size={15} strokeWidth={1.55} /> {test.available ? "Available" : "Down"}
                 </span>
               </div>
             ))}
@@ -259,8 +259,8 @@ export function CentreDetail({ centreId }: { centreId: string }) {
         </div>
       </motion.section>
 
-      <motion.section className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
-        <h2 className="text-lg font-bold text-[#17212b]">{t("forecast")}</h2>
+      <motion.section className="craft-card mt-7 p-5" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
+        <h2 className="craft-section-title">{t("forecast")}</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="min-w-full text-left text-sm">
             <thead className="text-xs uppercase tracking-normal text-slate-500">
@@ -291,21 +291,21 @@ export function CentreDetail({ centreId }: { centreId: string }) {
         </div>
       </motion.section>
 
-      <motion.section className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
-        <h2 className="text-lg font-bold text-[#17212b]">{t("doctorAttendance")}</h2>
+      <motion.section className="craft-card mt-7 p-5" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
+        <h2 className="craft-section-title">{t("doctorAttendance")}</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {centre.doctors.map((doctor) => {
             const recent = centre.attendance.filter((record) => record.doctorId === doctor.id && recentDates.includes(record.date));
             const present = recent.filter((record) => record.status === "present").length;
             const rate = recent.length ? Math.round((present / recent.length) * 100) : 0;
             return (
-              <div className="flex items-center justify-between gap-3 rounded-md border border-[#dde4e9] bg-[#f8fafb] p-2.5" key={doctor.id}>
+              <div className="craft-card-muted flex items-center justify-between gap-3 p-3" key={doctor.id}>
                 <span>
                   <strong className="block text-sm text-[#17212b]">{doctor.name}</strong>
                   <small className="text-slate-500">{doctor.role} · {doctor.specialty}</small>
                 </span>
                 <span className={`inline-flex items-center gap-1 text-sm font-bold ${rate < 70 ? "text-[#9f3a38]" : rate < 85 ? "text-[#8a6426]" : "text-[#47705d]"}`}>
-                  <UserCheck size={15} strokeWidth={1.75} /> <AnimatedNumber value={rate} suffix="%" />
+                  <UserCheck size={15} strokeWidth={1.55} /> <AnimatedNumber value={rate} suffix="%" />
                 </span>
               </div>
             );
@@ -319,13 +319,13 @@ export function CentreDetail({ centreId }: { centreId: string }) {
 function Kpi({ label, value, numericValue, suffix = "", decimals = 0 }: { label: string; value?: React.ReactNode; numericValue?: number; suffix?: string; decimals?: number }) {
   return (
     <motion.div
-      className="rounded-md border border-[#cfd8df] bg-white p-4 transition-colors duration-200 ease-out hover:border-[#b8c7d0] hover:bg-[#fbfcfd]"
+      className="craft-card craft-lift p-5"
       variants={riseIn}
       transition={entranceTransition}
-      whileHover={{ scale: 1.01 }}
+      whileHover={{ y: -4, scale: 1.01 }}
     >
-      <p className="text-xs font-bold uppercase text-[#5c6873]">{label}</p>
-      <div className="mt-2 text-3xl font-bold text-[#17212b]">{typeof numericValue === "number" ? <AnimatedNumber value={numericValue} suffix={suffix} decimals={decimals} /> : value}</div>
+      <p className="text-xs font-extrabold uppercase text-[#5c6873]">{label}</p>
+      <div className="craft-number mt-4 text-4xl font-extrabold leading-none text-[#17212b] lg:text-5xl">{typeof numericValue === "number" ? <AnimatedNumber value={numericValue} suffix={suffix} decimals={decimals} /> : value}</div>
     </motion.div>
   );
 }

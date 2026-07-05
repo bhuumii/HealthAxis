@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { Activity, Mail, ShieldCheck } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useAuth } from "@/components/auth-provider";
 
 function authErrorMessage(error: unknown) {
@@ -104,22 +104,18 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     <main className="mx-auto grid min-h-[calc(100vh-86px)] max-w-7xl items-center px-4 py-8 lg:px-8">
       <section className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,0.7fr)] lg:items-center">
         <div>
-          <p className="text-xs font-bold uppercase text-[#164e63]">Secure district command centre</p>
+          <p className="text-xs font-bold uppercase text-[#164e63]">District health operations</p>
           <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">HealthAxis</h1>
           <p className="mt-3 max-w-xl text-sm leading-6 text-[#46515c]">
-            Sign in to monitor PHC/CHC stock, beds, doctors, tests, intervention flags, and live district recommendations.
+            Sign in to access stock levels, bed occupancy, staff attendance, and diagnostic readiness across your district&apos;s health centres.
           </p>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-md border border-[#cfd8df] bg-white p-4">
-              <Activity className="text-[#5c6873]" size={18} strokeWidth={1.75} />
-              <p className="mt-3 text-sm font-bold text-slate-950">Real-time district data</p>
-              <p className="mt-1 text-sm text-slate-500">Protected operational reads for authenticated users.</p>
-            </div>
-            <div className="rounded-md border border-[#cfd8df] bg-white p-4">
-              <ShieldCheck className="text-[#5c6873]" size={18} strokeWidth={1.75} />
-              <p className="mt-3 text-sm font-bold text-slate-950">District admin access</p>
-              <p className="mt-1 text-sm text-slate-500">Email/password and Google sign-in supported.</p>
-            </div>
+          <div className="mt-6 rounded-md border border-[#cfd8df] bg-white p-4 text-sm leading-6 text-[#46515c]">
+            <p>
+              <span className="font-bold text-slate-950">Who this is for:</span> District health officers and PHC/CHC administrators with an authorized HealthAxis account.
+            </p>
+            <p className="mt-2">
+              <span className="font-bold text-slate-950">Don&apos;t have access?</span> Contact your district health office to request an account.
+            </p>
           </div>
         </div>
 

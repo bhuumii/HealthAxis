@@ -36,13 +36,12 @@ function authErrorMessage(error: unknown, t: (key: string) => string) {
 export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { user, loading, signIn, signUp, signInWithGoogle, resetPassword } = useAuth();
+  const { user, loading, signIn, signUp, signInWithGoogle } = useAuth();
   const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
   const next = searchParams.get("next") || "/overview";
   const isLogin = mode === "login";
 
@@ -54,8 +53,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
     event.preventDefault();
     setBusy(true);
     setError(null);
-    setMessage(null);
-
     try {
       if (isLogin) await signIn(email, password);
       else await signUp(email, password);
@@ -70,31 +67,9 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   async function googleSignIn() {
     setBusy(true);
     setError(null);
-    setMessage(null);
-
     try {
       await signInWithGoogle();
       router.replace(next);
-    } catch (nextError) {
-      setError(authErrorMessage(nextError, t));
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function forgotPassword() {
-    setError(null);
-    setMessage(null);
-
-    if (!email) {
-      setError(t("authResetEmailRequired"));
-      return;
-    }
-
-    setBusy(true);
-    try {
-      await resetPassword(email);
-      setMessage(t("authResetSent"));
     } catch (nextError) {
       setError(authErrorMessage(nextError, t));
     } finally {
@@ -107,7 +82,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       <section className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,0.7fr)] lg:items-center">
         <div>
           <p className="text-xs font-bold uppercase text-[#164e63]">{t("authEyebrow")}</p>
-          <h1 className="mt-2 text-3xl font-bold text-[#17212b] lg:text-4xl">HealthAxis</h1>
+          <h1 className="craft-title mt-2">HealthAxis</h1>
           <p className="mt-3 max-w-xl text-sm leading-6 text-[#46515c]">
             {t("authLead")}
           </p>
@@ -123,15 +98,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
 
         <form className="rounded-md border border-[#cfd8df] bg-white p-5" onSubmit={submit}>
           <div className="mb-5">
-            <h2 className="text-2xl font-bold text-[#17212b]">{isLogin ? t("signIn") : t("createAccount")}</h2>
+            <h2 className="craft-section-title">{isLogin ? t("signIn") : t("createAccount")}</h2>
             <p className="mt-1 text-sm text-slate-500">
               {isLogin ? t("authLoginSubtext") : t("authSignupSubtext")}
             </p>
           </div>
 
           {error ? <p className="mb-4 rounded-md bg-[#f8eeee] px-3 py-2 text-sm font-semibold text-[#9f3a38] ring-1 ring-[#d7aaaa]">{error}</p> : null}
-          {message ? <p className="mb-4 rounded-md bg-[#eef5f1] px-3 py-2 text-sm font-semibold text-[#47705d] ring-1 ring-[#b8cdbc]">{message}</p> : null}
-
           <label className="block text-sm font-bold text-slate-700" htmlFor="email">{t("email")}</label>
           <input
             className="mt-2 h-11 w-full rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 text-sm outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
@@ -154,10 +127,6 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             onChange={(event) => setPassword(event.target.value)}
             required
           />
-
-          {isLogin ? (
-            <button className="mt-3 text-sm font-bold text-[#164e63] hover:text-[#0d3848]" type="button" onClick={forgotPassword} disabled={busy}>{t("forgotPassword")}</button>
-          ) : null}
 
           <button
             className="mt-5 inline-flex h-11 w-full items-center justify-center rounded-md bg-[#164e63] px-4 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"

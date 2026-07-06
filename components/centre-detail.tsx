@@ -325,7 +325,7 @@ function Kpi({ label, value, numericValue, suffix = "", decimals = 0 }: { label:
       whileHover={{ y: -4, scale: 1.01 }}
     >
       <p className="text-xs font-extrabold uppercase text-[#5c6873]">{label}</p>
-      <div className="craft-number mt-4 text-4xl font-extrabold leading-none text-[#17212b] lg:text-5xl">{typeof numericValue === "number" ? <AnimatedNumber value={numericValue} suffix={suffix} decimals={decimals} /> : value}</div>
+      <div className="craft-number mt-6 bg-gradient-to-br from-[#17212b] to-[#164e63] bg-clip-text text-3xl font-extrabold leading-none text-transparent lg:text-4xl">{typeof numericValue === "number" ? <AnimatedNumber value={numericValue} suffix={suffix} decimals={decimals} /> : value}</div>
     </motion.div>
   );
 }

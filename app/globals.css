@@ -72,17 +72,17 @@ strong {
 .craft-title {
   color: #17212b;
   font-family: var(--font-heading);
-  font-size: clamp(2.1rem, 3vw, 3.35rem);
+  font-size: clamp(1.85rem, 2.25vw, 2.55rem);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1.05;
 }
 
 .craft-section-title {
   color: #17212b;
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 1.8vw, 1.7rem);
+  font-size: clamp(1.05rem, 1.2vw, 1.3rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .craft-card {

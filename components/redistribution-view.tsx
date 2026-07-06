@@ -28,7 +28,7 @@ export function RedistributionView() {
       </section>
 
       <motion.section className="craft-card mb-5 p-5" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
-        <p className="craft-section-title text-base">Allocation method</p>
+        <p className="craft-section-title">Allocation method</p>
         <p className="mt-1 text-sm leading-6 text-slate-600">{REDISTRIBUTION_METHOD}</p>
       </motion.section>
 

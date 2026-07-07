@@ -336,6 +336,7 @@ function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
   const stackRef = useRef<HTMLDivElement | null>(null);
   const wheelLockRef = useRef(false);
   const wheelDeltaRef = useRef(0);
+  const wheelDirectionRef = useRef(0);
   const touchStartYRef = useRef<number | null>(null);
 
   function nextIndexFor(direction: number) {
@@ -362,20 +363,28 @@ function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
       const nextIndex = Math.max(0, Math.min(overviewCharts.length - 1, activeIndex + direction));
       if (nextIndex === activeIndex) {
         wheelDeltaRef.current = 0;
+        wheelDirectionRef.current = 0;
         return;
       }
 
       event.preventDefault();
+      if (wheelDirectionRef.current !== direction) {
+        wheelDirectionRef.current = direction;
+        wheelDeltaRef.current = 0;
+      }
       wheelDeltaRef.current += event.deltaY;
 
-      if (wheelLockRef.current || Math.abs(wheelDeltaRef.current) < 220) return;
+      const transitionThreshold = direction > 0 ? 220 : 145;
+      const transitionLockMs = direction > 0 ? 580 : 500;
+
+      if (wheelLockRef.current || Math.abs(wheelDeltaRef.current) < transitionThreshold) return;
 
       wheelLockRef.current = true;
       wheelDeltaRef.current = 0;
       setActiveIndex(nextIndex);
       window.setTimeout(() => {
         wheelLockRef.current = false;
-      }, 580);
+      }, transitionLockMs);
     }
 
     window.addEventListener("wheel", handleWindowWheel, { passive: false });

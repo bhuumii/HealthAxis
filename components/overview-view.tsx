@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type TouchEvent } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ChevronDown, Search, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Search, X } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { AnimatePresence, motion } from "framer-motion";
-import { AnimatedNumber, easeOut, entranceTransition, riseIn, staggerContainer } from "@/components/motion-primitives";
+import { motion } from "framer-motion";
+import { AnimatedNumber, entranceTransition, riseIn, staggerContainer } from "@/components/motion-primitives";
 import { AssistantPanel } from "@/components/assistant-panel";
 import { useAuth } from "@/components/auth-provider";
 import { DISTRICTS, useDistrictSelection } from "@/components/district-provider";
@@ -158,7 +158,6 @@ export function OverviewView() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [sortMode, setSortMode] = useState<SortMode>("critical");
-  const [activeChart, setActiveChart] = useState(0);
   const statuses = getDistrictStatuses(data);
   const kpis = districtKpis(data);
 
@@ -220,7 +219,7 @@ export function OverviewView() {
       </motion.section>
 
       <motion.section key={`ops-${districtSlug}`} className="mt-7 grid gap-5 lg:grid-cols-[minmax(0,1fr)_390px]" variants={staggerContainer} initial="hidden" animate="visible">
-        <motion.div variants={riseIn} transition={entranceTransition}><MetricChartStack statuses={statuses} activeIndex={activeChart} setActiveIndex={setActiveChart} /></motion.div>
+        <motion.div variants={riseIn} transition={entranceTransition}><MetricChartStack statuses={statuses} /></motion.div>
         <motion.div variants={riseIn} transition={entranceTransition}><AssistantPanel data={data} /></motion.div>
       </motion.section>
 
@@ -332,121 +331,141 @@ export function OverviewView() {
   );
 }
 
-function MetricChartStack({
-  statuses,
-  activeIndex,
-  setActiveIndex
+function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const stackRef = useRef<HTMLDivElement | null>(null);
+  const wheelLockRef = useRef(false);
+  const wheelDeltaRef = useRef(0);
+  const touchStartYRef = useRef<number | null>(null);
+
+  function nextIndexFor(direction: number) {
+    return Math.max(0, Math.min(overviewCharts.length - 1, activeIndex + direction));
+  }
+
+  function moveBy(direction: number) {
+    const nextIndex = nextIndexFor(direction);
+    if (nextIndex === activeIndex) return false;
+    setActiveIndex(nextIndex);
+    return true;
+  }
+
+  useEffect(() => {
+    function handleWindowWheel(event: globalThis.WheelEvent) {
+      const section = stackRef.current;
+      if (!section || Math.abs(event.deltaY) < 2) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionVisible = rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12;
+      if (!sectionVisible) return;
+
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const nextIndex = Math.max(0, Math.min(overviewCharts.length - 1, activeIndex + direction));
+      if (nextIndex === activeIndex) {
+        wheelDeltaRef.current = 0;
+        return;
+      }
+
+      event.preventDefault();
+      wheelDeltaRef.current += event.deltaY;
+
+      if (wheelLockRef.current || Math.abs(wheelDeltaRef.current) < 220) return;
+
+      wheelLockRef.current = true;
+      wheelDeltaRef.current = 0;
+      setActiveIndex(nextIndex);
+      window.setTimeout(() => {
+        wheelLockRef.current = false;
+      }, 580);
+    }
+
+    window.addEventListener("wheel", handleWindowWheel, { passive: false });
+    return () => window.removeEventListener("wheel", handleWindowWheel);
+  }, [activeIndex]);
+
+  function handleTouchStart(event: TouchEvent<HTMLDivElement>) {
+    touchStartYRef.current = event.touches[0]?.clientY ?? null;
+  }
+
+  function handleTouchEnd(event: TouchEvent<HTMLDivElement>) {
+    if (touchStartYRef.current === null) return;
+
+    const endY = event.changedTouches[0]?.clientY ?? touchStartYRef.current;
+    const delta = touchStartYRef.current - endY;
+    touchStartYRef.current = null;
+
+    if (Math.abs(delta) < 90) return;
+    moveBy(delta > 0 ? 1 : -1);
+  }
+
+  return (
+    <div
+      ref={stackRef}
+      className="overflow-hidden rounded-lg border border-[#cfd8df] bg-white shadow-sm"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {overviewCharts.map((chart, index) => (
+        <MetricChartCard
+          key={chart.metric}
+          chart={chart}
+          index={index}
+          isActive={activeIndex === index}
+          statuses={statuses}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MetricChartCard({
+  chart,
+  index,
+  isActive,
+  statuses
 }: {
+  chart: (typeof overviewCharts)[number];
+  index: number;
+  isActive: boolean;
   statuses: CentreStatus[];
-  activeIndex: number;
-  setActiveIndex: (index: number) => void;
 }) {
-  const activeChart = overviewCharts[activeIndex];
   const chartData = statuses.map((status) => ({
     name: status.centre.block,
-    value: chartValue(status, activeChart.metric),
-    color: chartBarColor(status, activeChart.metric, activeChart.color)
-  }));
-  const nextIndex = (activeIndex + 1) % overviewCharts.length;
-  const previousIndex = (activeIndex - 1 + overviewCharts.length) % overviewCharts.length;
-  const stackGap = 14;
-  const activeTop = (overviewCharts.length - 1) * stackGap;
-  const peekingCards = Array.from({ length: overviewCharts.length - 1 }, (_, index) => index + 1).map((offset) => ({
-    offset,
-    index: (activeIndex + offset) % overviewCharts.length,
-    chart: overviewCharts[(activeIndex + offset) % overviewCharts.length]
+    value: chartValue(status, chart.metric),
+    color: chartBarColor(status, chart.metric, chart.color)
   }));
 
   return (
-    <div className="relative min-h-[490px]">
-      {peekingCards.reverse().map(({ chart, index, offset }) => (
-        <button
-          key={`${chart.metric}-${offset}`}
-          className="craft-card craft-lift absolute left-3 right-3 h-24 text-left"
-          style={{
-            top: (overviewCharts.length - 1 - offset) * stackGap,
-            zIndex: 10 - offset,
-            transform: `scale(${1 - offset * 0.025})`,
-            transformOrigin: "top center"
-          }}
-          type="button"
-          onClick={() => setActiveIndex(index)}
-          aria-label={`Show ${chart.title}`}
-        >
-          <div className="flex items-center justify-between px-5 pt-3">
-            <span className="text-sm font-bold text-[#17212b]">{chart.title}</span>
-          </div>
-        </button>
-      ))}
+    <article className={`relative overflow-hidden border-b border-[#d8e0e5] bg-white last:border-b-0 transition-[box-shadow,transform] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? "shadow-md" : ""}`}>
+      <div className={`flex items-center justify-between gap-4 overflow-hidden bg-[#f8fafb] px-4 text-[#17212b] transition-[height,background-color] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 ${isActive ? "h-14 sm:h-16" : "h-11 sm:h-12"}`} style={{ borderLeft: `4px solid ${chart.color}` }}>
+        <div className="min-w-0">
+          <h2 className="truncate text-sm font-extrabold leading-tight sm:text-base">{chart.title} by centre</h2>
+          <p className="mt-0.5 hidden truncate text-xs font-semibold text-[#46515c] sm:block">{chart.subtitle}</p>
+        </div>
+        <span className="shrink-0 text-xs font-extrabold text-[#46515c]">{index + 1}/{overviewCharts.length}</span>
+      </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeChart.metric}
-          className="craft-card absolute inset-x-0 z-20 p-5"
-          style={{ top: activeTop }}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.28, ease: easeOut }}
-        >
-          <div className="mb-4 flex items-start justify-between gap-4">
-            <div>
-              <h2 className="craft-section-title">{activeChart.title} by centre</h2>
-              <p className="text-sm text-slate-500">{activeChart.subtitle}</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                className="craft-icon-button grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
-                type="button"
-                onClick={() => setActiveIndex(previousIndex)}
-                aria-label="Previous chart"
-              >
-                <ArrowLeft size={15} strokeWidth={1.75} />
-              </button>
-              <button
-                className="craft-icon-button grid h-9 w-9 place-items-center rounded-md border border-[#cfd8df] bg-white text-[#46515c] hover:border-[#164e63] hover:text-[#164e63]"
-                type="button"
-                onClick={() => setActiveIndex(nextIndex)}
-                aria-label="Next chart"
-              >
-                <ArrowRight size={15} strokeWidth={1.75} />
-              </button>
-            </div>
-          </div>
-          <div className="h-72">
+      <div className={`overflow-hidden transition-[max-height,opacity] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isActive ? "max-h-[350px] opacity-100" : "max-h-0 opacity-0"}`} aria-hidden={!isActive}>
+        <div className={`bg-white p-4 transition-[opacity,transform] duration-[560ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:p-5 ${isActive ? "translate-y-0 scale-100 opacity-100" : "translate-y-2 scale-[0.985] opacity-0"}`}>
+          <div className="h-64 sm:h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} margin={{ top: 10, right: 16, left: -18, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} domain={activeChart.metric === "stock" ? [0, 100] : undefined} unit={activeChart.metric === "stock" || activeChart.metric === "footfall" ? undefined : "%"} />
+                <YAxis tick={{ fontSize: 12 }} domain={chart.metric === "stock" ? [0, 100] : undefined} unit={chart.metric === "stock" || chart.metric === "footfall" ? undefined : "%"} />
                 <Tooltip
-                  formatter={(value) => [activeChart.metric === "stock" ? `${value} severity score` : activeChart.metric === "footfall" ? `${value} patients` : `${value}%`, activeChart.title]}
+                  formatter={(value) => [chart.metric === "stock" ? `${value} severity score` : chart.metric === "footfall" ? `${value} patients` : `${value}%`, chart.title]}
                 />
-                <Bar dataKey="value" radius={[2, 2, 0, 0]} isAnimationActive animationDuration={360} animationEasing="ease-out">
+                <Bar dataKey="value" radius={[2, 2, 0, 0]} isAnimationActive animationDuration={520} animationEasing="ease-out">
                   {chartData.map((entry) => (
-                    <Cell key={`${activeChart.metric}-${entry.name}`} fill={entry.color} />
+                    <Cell key={`${chart.metric}-${entry.name}`} fill={entry.color} />
                   ))}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="mt-4 flex items-center justify-between gap-4">
-            <div className="flex gap-2">
-              {overviewCharts.map((chart, index) => (
-                <button
-                  key={chart.metric}
-                  className={`h-2.5 rounded-sm transition-all ${index === activeIndex ? "w-8 bg-[#164e63]" : "w-2.5 bg-[#cfd8df] hover:bg-[#9aa9b3]"}`}
-                  type="button"
-                  onClick={() => setActiveIndex(index)}
-                  aria-label={`Show ${chart.title}`}
-                />
-              ))}
-            </div>
-            <span className="text-xs font-bold text-slate-500">{activeIndex + 1}/{overviewCharts.length}</span>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
+        </div>
+      </div>
+    </article>
   );
 }
 

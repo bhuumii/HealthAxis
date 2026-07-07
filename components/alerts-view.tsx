@@ -26,7 +26,7 @@ export function AlertsView() {
     <main className="craft-page mx-auto max-w-7xl px-4 lg:px-8">
       <section className="mb-8">
         <h1 className="craft-title mt-2">{t("priorityAlerts")}</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-[#46515c]">{t("alertsLead")}</p>
+        <p className="mt-3 w-full text-sm leading-6 text-[#46515c]">{t("alertsLead")}</p>
       </section>
       <motion.section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" variants={staggerContainer} initial="hidden" animate="visible">
         {warnings.map((warning) => (

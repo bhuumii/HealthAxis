@@ -1,4 +1,4 @@
-import type { HealthCentre, MedicineStock, Severity, StockForecast, StockHistoryPoint } from "@/lib/types";
+import type { HealthCentre, MedicineStock, PatientFootfallForecast, PatientFootfallPoint, Severity, StockForecast, StockHistoryPoint } from "@/lib/types";
 
 const HIGH_RISK_DAYS = 7;
 const MEDIUM_RISK_DAYS = 14;
@@ -6,6 +6,10 @@ const DEFAULT_ALPHA = 0.35;
 const MIN_DAILY_DEMAND = 0.1;
 
 function sortedHistory(history: StockHistoryPoint[]) {
+  return [...history].sort((a, b) => a.date.localeCompare(b.date));
+}
+
+function sortedFootfall(history: PatientFootfallPoint[]) {
   return [...history].sort((a, b) => a.date.localeCompare(b.date));
 }
 
@@ -68,6 +72,26 @@ export function forecastMedicineStock(centre: HealthCentre, medicine: MedicineSt
 
 export function forecastCentreStock(centre: HealthCentre): StockForecast[] {
   return centre.medicines.map((medicine) => forecastMedicineStock(centre, medicine));
+}
+
+export function forecastPatientFootfall(centre: HealthCentre): PatientFootfallForecast {
+  const history = sortedFootfall(centre.patientFootfall).slice(-30);
+  const counts = history.map((point) => Math.max(0, point.count));
+  const smoothedDemand = exponentialSmoothing(counts, DEFAULT_ALPHA);
+  const recentAverage = average(counts.slice(-7));
+  const recentTrend = counts.length >= 8 ? (average(counts.slice(-3)) - average(counts.slice(-8, -5))) / 2 : 0;
+  const expectedTomorrow = Math.max(0, Math.round(smoothedDemand + recentTrend));
+  const expectedDayAfterTomorrow = Math.max(0, Math.round(smoothedDemand + recentTrend * 2));
+
+  return {
+    centreId: centre.id,
+    centreName: centre.name,
+    expectedTomorrow,
+    expectedDayAfterTomorrow,
+    recentAverage: round(recentAverage),
+    method: "30-day EWMA daily patient count, alpha 0.35, adjusted by recent 3-day trend",
+    historyDays: history.length
+  };
 }
 
 export const STOCK_RISK_THRESHOLDS = {

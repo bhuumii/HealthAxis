@@ -21,7 +21,7 @@ import type { AnomalySignal, CentreStatus, Severity } from "@/lib/types";
 
 type StatusFilter = "all" | "bad" | "warn" | "good";
 type SortMode = "critical" | "patients" | "az";
-type OverviewChartMetric = "beds" | "stock" | "doctors" | "tests";
+type OverviewChartMetric = "beds" | "stock" | "doctors" | "tests" | "footfall";
 
 function displayUserName(displayName?: string | null, email?: string | null) {
   const rawName = displayName?.trim() || email?.split("@")[0] || "User";
@@ -87,6 +87,12 @@ const overviewCharts: Array<{
     title: "Test downtime",
     subtitle: "Current diagnostic test unavailability percentage.",
     color: "#164e63"
+  },
+  {
+    metric: "footfall",
+    title: "Footfall",
+    subtitle: "Today's patient count across all centres.",
+    color: "#5b5fc7"
   }
 ];
 
@@ -100,7 +106,8 @@ function chartValue(status: CentreStatus, metric: OverviewChartMetric) {
   if (metric === "beds") return status.bedOccupancyPct;
   if (metric === "stock") return severityScore(status.stock);
   if (metric === "doctors") return status.doctorAbsenceRate;
-  return status.unavailableTestPct;
+  if (metric === "tests") return status.unavailableTestPct;
+  return status.footfallToday;
 }
 
 function chartBarColor(status: CentreStatus, metric: OverviewChartMetric, fallback: string) {
@@ -108,6 +115,7 @@ function chartBarColor(status: CentreStatus, metric: OverviewChartMetric, fallba
   if (metric === "beds") return severityColor[status.beds];
   if (metric === "doctors") return severityColor[status.doctors];
   if (metric === "tests") return severityColor[status.tests];
+  if (metric === "footfall") return fallback;
   return fallback;
 }
 
@@ -341,20 +349,22 @@ function MetricChartStack({
   }));
   const nextIndex = (activeIndex + 1) % overviewCharts.length;
   const previousIndex = (activeIndex - 1 + overviewCharts.length) % overviewCharts.length;
-  const peekingCards = [1, 2, 3].map((offset) => ({
+  const stackGap = 14;
+  const activeTop = (overviewCharts.length - 1) * stackGap;
+  const peekingCards = Array.from({ length: overviewCharts.length - 1 }, (_, index) => index + 1).map((offset) => ({
     offset,
     index: (activeIndex + offset) % overviewCharts.length,
     chart: overviewCharts[(activeIndex + offset) % overviewCharts.length]
   }));
 
   return (
-    <div className="relative min-h-[440px]">
+    <div className="relative min-h-[490px]">
       {peekingCards.reverse().map(({ chart, index, offset }) => (
         <button
           key={`${chart.metric}-${offset}`}
           className="craft-card craft-lift absolute left-3 right-3 h-24 text-left"
           style={{
-            top: `${(3 - offset) * 14}px`,
+            top: (overviewCharts.length - 1 - offset) * stackGap,
             zIndex: 10 - offset,
             transform: `scale(${1 - offset * 0.025})`,
             transformOrigin: "top center"
@@ -372,7 +382,8 @@ function MetricChartStack({
       <AnimatePresence mode="wait">
         <motion.div
           key={activeChart.metric}
-          className="craft-card absolute inset-x-0 top-12 z-20 p-5"
+          className="craft-card absolute inset-x-0 z-20 p-5"
+          style={{ top: activeTop }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -407,9 +418,9 @@ function MetricChartStack({
               <BarChart data={chartData} margin={{ top: 10, right: 16, left: -18, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} domain={activeChart.metric === "stock" ? [0, 100] : undefined} unit={activeChart.metric === "stock" ? undefined : "%"} />
+                <YAxis tick={{ fontSize: 12 }} domain={activeChart.metric === "stock" ? [0, 100] : undefined} unit={activeChart.metric === "stock" || activeChart.metric === "footfall" ? undefined : "%"} />
                 <Tooltip
-                  formatter={(value) => [activeChart.metric === "stock" ? `${value} severity score` : `${value}%`, activeChart.title]}
+                  formatter={(value) => [activeChart.metric === "stock" ? `${value} severity score` : activeChart.metric === "footfall" ? `${value} patients` : `${value}%`, activeChart.title]}
                 />
                 <Bar dataKey="value" radius={[2, 2, 0, 0]} isAnimationActive animationDuration={360} animationEasing="ease-out">
                   {chartData.map((entry) => (
@@ -431,7 +442,7 @@ function MetricChartStack({
                 />
               ))}
             </div>
-            <span className="text-xs font-bold text-slate-500">{activeIndex + 1}/4</span>
+            <span className="text-xs font-bold text-slate-500">{activeIndex + 1}/{overviewCharts.length}</span>
           </div>
         </motion.div>
       </AnimatePresence>

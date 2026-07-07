@@ -89,6 +89,16 @@ export interface DistrictData {
   centres: HealthCentre[];
 }
 
+export interface PatientFootfallForecast {
+  centreId: string;
+  centreName: string;
+  expectedTomorrow: number;
+  expectedDayAfterTomorrow: number;
+  recentAverage: number;
+  method: string;
+  historyDays: number;
+}
+
 export interface StockForecast {
   centreId: string;
   centreName: string;

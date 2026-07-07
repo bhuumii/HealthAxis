@@ -21,29 +21,36 @@ function standardDeviation(values: number[], baselineMean: number) {
 
 function detectSeriesAnomaly(centre: HealthCentre, series: SeriesPoint[]): AnomalySignal | null {
   const sorted = [...series].sort((a, b) => a.date.localeCompare(b.date));
-  const latest = sorted[sorted.length - 1];
-  const baseline = sorted.slice(-31, -1).map((point) => point.value);
+  const recentCandidates = sorted.slice(-3);
+  const anomalies = recentCandidates.map((point) => {
+    const pointIndex = sorted.indexOf(point);
+    const baseline = sorted.slice(Math.max(0, pointIndex - 30), pointIndex).map((entry) => entry.value);
 
-  if (!latest || baseline.length < 7) return null;
+    if (baseline.length < 7) return null;
 
-  const baselineMean = mean(baseline);
-  const sd = standardDeviation(baseline, baselineMean);
-  if (sd === 0) return null;
+    const baselineMean = mean(baseline);
+    const sd = standardDeviation(baseline, baselineMean);
+    if (sd === 0) return null;
 
-  const zScore = (latest.value - baselineMean) / sd;
-  if (Math.abs(zScore) <= Z_SCORE_THRESHOLD) return null;
+    const zScore = (point.value - baselineMean) / sd;
+    if (Math.abs(zScore) <= Z_SCORE_THRESHOLD) return null;
 
-  return {
-    centreId: centre.id,
-    centreName: centre.name,
-    metric: latest.metric,
-    label: latest.label,
-    currentValue: round(latest.value),
-    baselineMean: round(baselineMean),
-    standardDeviation: round(sd),
-    zScore: round(zScore, 2),
-    direction: zScore > 0 ? "above" : "below"
-  };
+    return {
+      centreId: centre.id,
+      centreName: centre.name,
+      metric: point.metric,
+      label: point.label,
+      currentValue: round(point.value),
+      baselineMean: round(baselineMean),
+      standardDeviation: round(sd),
+      zScore: round(zScore, 2),
+      direction: zScore > 0 ? "above" : "below"
+    };
+  });
+
+  return anomalies
+    .filter((signal): signal is AnomalySignal => Boolean(signal))
+    .sort((a, b) => Math.abs(b.zScore) - Math.abs(a.zScore))[0] ?? null;
 }
 
 function doctorAbsenceSeries(centre: HealthCentre): SeriesPoint[] {
@@ -91,4 +98,4 @@ export function hasAnomalies(centre: HealthCentre) {
   return detectCentreAnomalies(centre).length > 0;
 }
 
-export const ANOMALY_METHOD = "Per-centre baseline using the previous 30 historical values; flag when today's value is more than 2 standard deviations from that baseline.";
+export const ANOMALY_METHOD = "Per-centre baseline using up to the previous 30 historical values; flag when today or one of the last two days is more than 2 standard deviations from that centre baseline.";

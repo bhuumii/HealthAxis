@@ -337,6 +337,8 @@ function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
   const wheelLockRef = useRef(false);
   const wheelDeltaRef = useRef(0);
   const wheelDirectionRef = useRef(0);
+  const activeIndexRef = useRef(0);
+  const wheelUnlockTimerRef = useRef<number | null>(null);
   const touchStartYRef = useRef<number | null>(null);
 
   function nextIndexFor(direction: number) {
@@ -351,17 +353,56 @@ function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
   }
 
   useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
+
+  useEffect(() => {
+    const transitionThresholdFor = (direction: number) => (direction > 0 ? 220 : 72);
+    const transitionLockFor = (direction: number) => (direction > 0 ? 580 : 300);
+
+    function nextIndexForCurrent(direction: number) {
+      return Math.max(0, Math.min(overviewCharts.length - 1, activeIndexRef.current + direction));
+    }
+
+    function moveStack(direction: number) {
+      const nextIndex = nextIndexForCurrent(direction);
+      if (nextIndex === activeIndexRef.current) return false;
+
+      activeIndexRef.current = nextIndex;
+      setActiveIndex(nextIndex);
+      return true;
+    }
+
+    function releaseWheelLock(direction: number) {
+      wheelLockRef.current = false;
+
+      const queuedDirection = wheelDirectionRef.current;
+      const queuedAmount = Math.abs(wheelDeltaRef.current);
+      if (queuedDirection !== direction || queuedAmount < transitionThresholdFor(direction)) return;
+
+      wheelDeltaRef.current = 0;
+      if (!moveStack(direction)) {
+        wheelDirectionRef.current = 0;
+        return;
+      }
+
+      wheelLockRef.current = true;
+      wheelUnlockTimerRef.current = window.setTimeout(() => releaseWheelLock(direction), transitionLockFor(direction));
+    }
+
     function handleWindowWheel(event: globalThis.WheelEvent) {
       const section = stackRef.current;
       if (!section || Math.abs(event.deltaY) < 2) return;
 
       const rect = section.getBoundingClientRect();
-      const sectionVisible = rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12;
-      if (!sectionVisible) return;
-
       const direction = event.deltaY > 0 ? 1 : -1;
-      const nextIndex = Math.max(0, Math.min(overviewCharts.length - 1, activeIndex + direction));
-      if (nextIndex === activeIndex) {
+      const sectionVisible =
+        direction > 0
+          ? rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12
+          : rect.top < window.innerHeight * 0.94 && rect.bottom > window.innerHeight * 0.48;
+      if (!sectionVisible) return;
+      const nextIndex = nextIndexForCurrent(direction);
+      if (nextIndex === activeIndexRef.current) {
         wheelDeltaRef.current = 0;
         wheelDirectionRef.current = 0;
         return;
@@ -374,22 +415,23 @@ function MetricChartStack({ statuses }: { statuses: CentreStatus[] }) {
       }
       wheelDeltaRef.current += event.deltaY;
 
-      const transitionThreshold = direction > 0 ? 220 : 145;
-      const transitionLockMs = direction > 0 ? 580 : 500;
+      if (wheelLockRef.current || Math.abs(wheelDeltaRef.current) < transitionThresholdFor(direction)) return;
 
-      if (wheelLockRef.current || Math.abs(wheelDeltaRef.current) < transitionThreshold) return;
+      wheelDeltaRef.current = 0;
+      if (!moveStack(direction)) return;
 
       wheelLockRef.current = true;
-      wheelDeltaRef.current = 0;
-      setActiveIndex(nextIndex);
-      window.setTimeout(() => {
-        wheelLockRef.current = false;
-      }, transitionLockMs);
+      wheelUnlockTimerRef.current = window.setTimeout(() => releaseWheelLock(direction), transitionLockFor(direction));
     }
 
     window.addEventListener("wheel", handleWindowWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWindowWheel);
-  }, [activeIndex]);
+    return () => {
+      window.removeEventListener("wheel", handleWindowWheel);
+      if (wheelUnlockTimerRef.current !== null) {
+        window.clearTimeout(wheelUnlockTimerRef.current);
+      }
+    };
+  }, []);
 
   function handleTouchStart(event: TouchEvent<HTMLDivElement>) {
     touchStartYRef.current = event.touches[0]?.clientY ?? null;

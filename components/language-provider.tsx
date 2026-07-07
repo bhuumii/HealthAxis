@@ -55,7 +55,7 @@ const labels: Record<Language, Record<string, string>> = {
     alertsLead: "These alerts show medicines and supplies that may run out soon. Technical forecast details are still available on each centre page.",
     daysRemaining: "Days remaining",
     daysRemainingHelp: "Estimated time before this item runs out at current usage.",
-    redistributionLead: "Recommended transfers are computed by a deterministic allocation algorithm, with Gemini used only by the assistant route to phrase explanations.",
+    redistributionLead: "This page recommends safe stock transfers from centres with extra supplies to centres that are running low.",
     allocationMethod: "Allocation method",
   },
   hi: {

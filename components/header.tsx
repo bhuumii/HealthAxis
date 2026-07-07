@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bell, LayoutDashboard, LogOut, Route, ShieldAlert, UserCircle } from "lucide-react";
+import { Bell, LayoutDashboard, LogOut, Route, ShieldAlert, SlidersHorizontal, UserCircle } from "lucide-react";
 import { CustomSelect } from "@/components/custom-select";
 import { useAuth } from "@/components/auth-provider";
 import { useDistrictSelection } from "@/components/district-provider";
@@ -12,7 +12,8 @@ const navItems = [
   { href: "/overview", labelKey: "overview", icon: LayoutDashboard },
   { href: "/alerts", labelKey: "alerts", icon: Bell },
   { href: "/redistribution", labelKey: "redistribution", icon: Route },
-  { href: "/intervention", labelKey: "intervention", icon: ShieldAlert }
+  { href: "/intervention", labelKey: "intervention", icon: ShieldAlert },
+  { href: "/simulator", labelKey: "simulator", icon: SlidersHorizontal }
 ];
 
 export function Header() {
@@ -25,7 +26,7 @@ export function Header() {
   return (
     <div className="flex w-full flex-col gap-3 lg:min-w-0 lg:flex-1 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
       {!authPage ? (
-        <nav className="flex flex-nowrap items-center gap-1.5" aria-label="Primary navigation">
+        <nav className="flex flex-wrap items-center gap-1.5" aria-label="Primary navigation">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active = pathname === item.href || (item.href === "/overview" && pathname === "/");

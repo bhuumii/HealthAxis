@@ -8,11 +8,12 @@ const badgeClasses: Record<Severity, string> = {
   bad: "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]"
 };
 
-export function StatusBadge({ value, label }: { value: Severity; label?: string }) {
+export function StatusBadge({ value, label, size = "sm" }: { value: Severity; label?: string; size?: "sm" | "lg" }) {
   const text = label ?? (value === "bad" ? "Critical" : value === "warn" ? "Watch" : "Stable");
+  const sizeClass = size === "lg" ? "rounded-md px-3 py-1.5 text-sm" : "rounded px-2 py-0.5 text-xs";
   return (
     <motion.span
-      className={`inline-flex items-center rounded px-2 py-0.5 text-xs font-bold ring-1 transition-colors duration-200 ease-out ${badgeClasses[value]}`}
+      className={`inline-flex items-center ${sizeClass} font-bold ring-1 transition-colors duration-200 ease-out ${badgeClasses[value]}`}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2, ease: easeOut }}
     >

@@ -16,6 +16,17 @@ import { useDistrictData } from "@/lib/use-district-data";
 import type { AnomalySignal, HealthCentre, Severity } from "@/lib/types";
 
 type TrendMetric = "stock" | "beds" | "doctors" | "tests";
+type TrendPoint = { date: string; value?: number } & Record<string, string | number | undefined>;
+type TrendSeries = { key: string; label: string; color: string };
+type TrendData = {
+  title: string;
+  subtitle: string;
+  unit: string;
+  status: Severity;
+  data: TrendPoint[];
+  series?: TrendSeries[];
+  domain?: [number, number];
+};
 
 const trendTabs: Array<{ value: TrendMetric; label: string }> = [
   { value: "stock", label: "Stock" },
@@ -29,6 +40,8 @@ const severityStyles: Record<Severity, { line: string; chip: string }> = {
   warn: { line: "#8a6426", chip: "bg-[#f7f1e6] text-[#8a6426] ring-[#d5bd91]" },
   bad: { line: "#9f3a38", chip: "bg-[#f8eeee] text-[#9f3a38] ring-[#d7aaaa]" }
 };
+
+const stockLineColors = ["#9f3a38", "#8a6426", "#164e63"];
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
@@ -54,17 +67,42 @@ function doctorAbsenceTrend(centre: HealthCentre) {
   });
 }
 
-function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentreStatus>, metric: TrendMetric) {
-  const primaryStock = centre.medicines[0];
+function stockCoverTrend(centre: HealthCentre, status: ReturnType<typeof getCentreStatus>) {
+  const riskiestForecasts = [...status.forecasts].sort((a, b) => a.daysUntilStockout - b.daysUntilStockout).slice(0, 3);
+  const dates = [...new Set(centre.medicines.flatMap((medicine) => medicine.history.map((point) => point.date)))].slice(-30);
+  const series = riskiestForecasts.map((forecast, index) => ({
+    key: `stock${index}`,
+    label: forecast.medicineName,
+    color: stockLineColors[index] ?? severityStyles[status.stock].line
+  }));
+
+  const data = dates.map((date) => {
+    const point: TrendPoint = { date: date.slice(5) };
+    riskiestForecasts.forEach((forecast, index) => {
+      const medicine = centre.medicines.find((candidate) => candidate.id === forecast.medicineId);
+      const historyPoint = medicine?.history.find((entry) => entry.date === date);
+      const demand = Math.max(forecast.smoothedDemand || forecast.avgDailyUse, 0.1);
+      point[`stock${index}`] = historyPoint ? Number(clamp(historyPoint.closing / demand, 0, 60).toFixed(1)) : undefined;
+    });
+    return point;
+  });
+
+  return { data, series };
+}
+
+function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentreStatus>, metric: TrendMetric): TrendData {
   const bedDates = centre.beds.history.slice(-30).map((point) => point.date.slice(5));
 
   if (metric === "stock") {
+    const { data, series } = stockCoverTrend(centre, status);
     return {
-      title: `${primaryStock.name} stock trend`,
-      subtitle: "Closing stock over 30 days from stock history.",
-      unit: primaryStock.unit,
+      title: "Lowest medicine stock cover",
+      subtitle: "Days of cover for the three medicines most likely to run out.",
+      unit: "days",
       status: status.stock,
-      data: primaryStock.history.slice(-30).map((point) => ({ date: point.date.slice(5), value: point.closing }))
+      data,
+      series,
+      domain: [0, 60]
     };
   }
 
@@ -154,7 +192,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
       </section>
 
       <motion.section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" variants={staggerContainer} initial="hidden" animate="visible">
-        <Kpi label={t("stock")} value={<StatusBadge value={status.stock} />} />
+        <Kpi label={t("stock")} value={<StatusBadge value={status.stock} size="lg" />} />
         <Kpi label={t("occupancy")} numericValue={status.bedOccupancyPct} suffix="%" />
         <Kpi label={t("doctorAttendance")} numericValue={100 - status.doctorAbsenceRate} suffix="%" decimals={1} />
         <Kpi label={t("testAvailability")} numericValue={100 - status.unavailableTestPct} suffix="%" decimals={1} />
@@ -221,14 +259,33 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                   <LineChart data={trend.data} margin={{ top: 8, right: 12, left: -18, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
                     <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                    <YAxis tick={{ fontSize: 12 }} unit={trend.unit === "%" ? "%" : undefined} />
-                    <Tooltip formatter={(value) => [`${value}${trend.unit.startsWith("%") ? "%" : ` ${trend.unit}`}`, trendTabs.find((tab) => tab.value === activeMetric)?.label ?? "Value"]} />
-                    <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
+                    <YAxis tick={{ fontSize: 12 }} unit={trend.unit === "%" ? "%" : undefined} domain={trend.domain} />
+                    <Tooltip
+                      formatter={(value, name) => {
+                        const label = trend.series?.find((series) => series.key === name)?.label ?? trendTabs.find((tab) => tab.value === activeMetric)?.label ?? "Value";
+                        return [`${value}${trend.unit.startsWith("%") ? "%" : ` ${trend.unit}`}`, label];
+                      }}
+                    />
+                    {trend.series ? trend.series.map((series) => (
+                      <Line key={series.key} type="monotone" dataKey={series.key} name={series.label} stroke={series.color} strokeWidth={2.25} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
+                    )) : (
+                      <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
+                    )}
                   </LineChart>
                 </ResponsiveContainer>
               </motion.div>
             </AnimatePresence>
           </div>
+          {trend.series ? (
+            <div className="mt-3 flex flex-wrap gap-3 text-xs font-bold text-slate-500">
+              {trend.series.map((series) => (
+                <span className="inline-flex items-center gap-1.5" key={series.key}>
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: series.color }} />
+                  {series.label}
+                </span>
+              ))}
+            </div>
+          ) : null}
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             {urgentForecasts.map((forecast) => (
               <div className="craft-card-muted p-3" key={forecast.medicineId}>

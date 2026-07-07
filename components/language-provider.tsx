@@ -18,6 +18,7 @@ const labels: Record<Language, Record<string, string>> = {
     centreReadiness: "Centre readiness",
     priorityAlerts: "Priority alerts",
     redistribution: "Resource redistribution",
+    simulator: "Simulator",
     askAi: "District query console",
     askPlaceholder: "Example: identify centres with antibiotic stock risk today",
     ask: "Run query",

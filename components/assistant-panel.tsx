@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Trash2 } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { getStockWarnings } from "@/lib/analytics";
 import type { DistrictData, StockForecast } from "@/lib/types";
@@ -38,7 +38,6 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
   async function askAssistant() {
     if (!question.trim()) return;
     const asked = question.trim();
-    setQuestion("");
     setLoading(true);
 
     try {
@@ -61,37 +60,54 @@ export function AssistantPanel({ data }: { data: DistrictData }) {
     <section className="craft-card p-5">
       <div className="mb-4">
         <h2 className="craft-section-title">{t("askAi")}</h2>
-        <p className="mt-1 text-sm text-slate-500">Run structured questions against the current district operating dataset.</p>
+        <p className="mt-1 text-sm text-slate-500">{t("queryConsoleLead")}</p>
       </div>
-      <div className="flex gap-2">
-        <input
-          className="min-w-0 flex-1 rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 py-2 text-sm outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
+      <div className="grid gap-2">
+        <textarea
+          className="min-h-24 w-full resize-y rounded-md border border-[#cfd8df] bg-[#f8fafb] px-3 py-2 text-sm leading-6 outline-none focus:border-[#164e63] focus:ring-2 focus:ring-[#dbe8ed]"
           value={question}
           placeholder={t("askPlaceholder")}
           onChange={(event) => setQuestion(event.target.value)}
           onKeyDown={(event) => {
-            if (event.key === "Enter") void askAssistant();
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              void askAssistant();
+            }
           }}
         />
-        <button
-          className="craft-button inline-flex items-center gap-2 rounded-md bg-[#164e63] px-4 py-2 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
-          type="button"
-          onClick={askAssistant}
-          disabled={loading}
-        >
-          <Send size={15} strokeWidth={1.75} />
-          {loading ? t("thinking") : t("ask")}
-        </button>
+        <div className="flex flex-wrap justify-end gap-2">
+          <button
+            className="craft-button inline-flex items-center gap-2 rounded-md border border-[#cfd8df] bg-white px-3 py-2 text-sm font-bold text-[#46515c] hover:bg-[#f8fafb] disabled:cursor-not-allowed disabled:opacity-60"
+            type="button"
+            onClick={() => {
+              setQuestion("");
+              setAnswers([]);
+            }}
+            disabled={loading || (!question && !answers.length)}
+          >
+            <Trash2 size={15} strokeWidth={1.75} />
+            {t("clearQuery")}
+          </button>
+          <button
+            className="craft-button inline-flex items-center gap-2 rounded-md bg-[#164e63] px-4 py-2 text-sm font-bold text-white hover:bg-[#0d3848] disabled:cursor-not-allowed disabled:opacity-60"
+            type="button"
+            onClick={askAssistant}
+            disabled={loading}
+          >
+            <Send size={15} strokeWidth={1.75} />
+            {loading ? t("thinking") : t("ask")}
+          </button>
+        </div>
       </div>
       <div className="craft-card-muted mt-4 max-h-72 space-y-3 overflow-y-auto p-3">
         {answers.length ? (
           answers.map((answer, index) => (
-            <p key={`${answer}-${index}`} className="rounded border border-[#dde4e9] bg-white p-2.5 text-sm leading-6 text-[#46515c]">
+            <p key={`${answer}-${index}`} className="whitespace-pre-line rounded border border-[#dde4e9] bg-white p-2.5 text-sm leading-6 text-[#46515c]">
               {answer}
             </p>
           ))
         ) : (
-          <p className="p-3 text-sm text-slate-500">Enter a query about stock risk, bed occupancy, workforce coverage, diagnostic availability, or transfer options.</p>
+          <p className="p-3 text-sm text-slate-500">{t("queryConsoleEmpty")}</p>
         )}
       </div>
     </section>

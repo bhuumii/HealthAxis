@@ -185,7 +185,7 @@ export function OverviewView() {
         <div className="min-w-0 flex-1">
           <p className="craft-eyebrow">{data.district}, {data.state}</p>
           <h1 className="craft-title mt-3">Welcome, {displayUserName(user?.displayName, user?.email)}</h1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#46515c]">Select a district to view its current operational status.</p>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#46515c]">{t("overviewSelectDistrict")}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="block text-sm font-bold text-[#46515c]">
@@ -202,7 +202,7 @@ export function OverviewView() {
         </div>
       </section>
 
-      {error ? <p className="mb-4 rounded-md border border-[#d5bd91] bg-[#f7f1e6] px-3 py-2 text-sm text-[#8a6426]">Some live data could not be loaded. Showing the latest available district data.</p> : null}
+      {error ? <p className="mb-4 rounded-md border border-[#d5bd91] bg-[#f7f1e6] px-3 py-2 text-sm text-[#8a6426]">{t("liveDataFallback")}</p> : null}
 
       <motion.section key={`stats-${districtSlug}`} className="craft-hero-band grid gap-3 p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-4 lg:p-6" variants={staggerContainer} initial="hidden" animate="visible">
         <StatCard label={t("centres")} value={kpis.centres} />
@@ -220,7 +220,7 @@ export function OverviewView() {
         <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="craft-section-title">{t("centreReadiness")}</h2>
-            <p className="mt-1 text-sm text-slate-500">Showing {visibleStatuses.length} of {statuses.length} centres.</p>
+            <p className="mt-1 text-sm text-slate-500">{t("centreReadinessShowing").replace("{visible}", String(visibleStatuses.length)).replace("{total}", String(statuses.length))}</p>
           </div>
           <Link className="craft-button inline-flex rounded-md px-3 py-2 text-sm font-bold text-[#164e63] hover:bg-white hover:text-[#0d3848] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b8c7d0]" href={hrefWithDistrict("/intervention")}>
             {t("needsIntervention")}
@@ -235,8 +235,8 @@ export function OverviewView() {
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              placeholder="Search village or centre name..."
-              aria-label="Search village or centre name"
+              placeholder={t("searchPlaceholder")}
+              aria-label={t("searchPlaceholder")}
             />
             {search ? (
               <button
@@ -315,8 +315,8 @@ export function OverviewView() {
           </motion.div>
         ) : (
           <div className="craft-card p-6 text-center">
-            <p className="text-base font-bold text-slate-950">No centres match your search or filter</p>
-            <p className="mt-1 text-sm text-slate-500">Try clearing the search or selecting a different status.</p>
+            <p className="text-base font-bold text-slate-950">{t("noCentreMatch")}</p>
+            <p className="mt-1 text-sm text-slate-500">{t("noCentreMatchLead")}</p>
           </div>
         )}
       </motion.section>

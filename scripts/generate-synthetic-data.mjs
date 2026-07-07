@@ -73,16 +73,24 @@ const doctorNames = [
   "Dr. Meera Nair"
 ];
 
-function createStockHistory(baseDailyUse, startingStock, struggling) {
+function createStockHistory(baseDailyUse, startingStock, struggling, centreIndex, medicineIndex) {
   let closing = startingStock;
   const history = [];
+  const restockDay = 8 + ((centreIndex * 5 + medicineIndex * 7) % 22);
+  const restockQuantity = Math.round(baseDailyUse * between(struggling ? 8 : 14, struggling ? 18 : 30));
+  const dailyRate = baseDailyUse * between(0.84, 1.22) * (struggling ? between(1.04, 1.2) : between(0.88, 1.05));
+  const slope = between(struggling ? 0.002 : -0.002, struggling ? 0.012 : 0.005);
+  const phase = between(0, Math.PI * 2);
 
   for (let day = 44; day >= 0; day -= 1) {
     const date = isoDate(day);
     const opening = closing;
-    const demandTrend = 1 + (44 - day) * (struggling ? 0.006 : 0.0015);
-    const consumed = Math.max(1, Math.round(baseDailyUse * demandTrend * between(0.78, 1.27)));
-    const received = day === 32 || day === 16 ? Math.round(baseDailyUse * between(4, struggling ? 8 : 16)) : 0;
+    const age = 44 - day;
+    const weeklyPattern = 1 + Math.sin(age * 0.42 + phase) * between(0.025, 0.07);
+    const demandTrend = 1 + age * slope;
+    const dayNoise = between(0.9, 1.1);
+    const consumed = Math.max(1, Math.round(dailyRate * demandTrend * weeklyPattern * dayNoise));
+    const received = day === restockDay ? restockQuantity : 0;
     closing = Math.max(0, opening + received - consumed);
     history.push({ date, opening, received, consumed, closing });
   }
@@ -135,16 +143,21 @@ function createCentre(raw, centreIndex, districtConfig) {
       unit,
       minThreshold: threshold,
       critical,
-      history: createStockHistory(baseUse, startingStock + medicineIndex * 8, lowStockItem)
+      history: createStockHistory(baseUse, startingStock + medicineIndex * intBetween(4, 14), lowStockItem, centreIndex, medicineIndex)
     };
   });
 
   const bedHistory = [];
   const footfall = [];
+  const bedBasePressure = raw.struggling.includes("overcrowded") || raw.struggling.includes("beds") ? between(0.88, 1.1) : between(0.5, 0.82);
+  const bedPhase = between(0, Math.PI * 2);
+  const footfallPhase = between(0, Math.PI * 2);
   for (let day = 44; day >= 0; day -= 1) {
-    const pressure = raw.struggling.includes("overcrowded") || raw.struggling.includes("beds") ? between(0.92, 1.16) : between(0.48, 0.86);
-    const occupied = Math.max(1, Math.round(raw.beds * pressure + between(-1.5, 1.8)));
-    const patientCount = Math.round(raw.catchmentPopulation / 1050 + raw.beds * 1.8 + between(-9, 14) + (isStruggling ? 12 : 0));
+    const age = 44 - day;
+    const bedTrend = raw.struggling.includes("overcrowded") || raw.struggling.includes("beds") ? age * between(0.0015, 0.005) : age * between(-0.002, 0.002);
+    const pressure = bedBasePressure + bedTrend + Math.sin(age * 0.38 + bedPhase) * between(0.025, 0.065) + between(-0.025, 0.025);
+    const occupied = Math.max(1, Math.min(Math.round(raw.beds * 1.25), Math.round(raw.beds * pressure)));
+    const patientCount = Math.round(raw.catchmentPopulation / 1050 + raw.beds * 1.8 + Math.sin(age * 0.33 + footfallPhase) * 8 + between(-5, 7) + (isStruggling ? 12 : 0));
     bedHistory.push({ date: isoDate(day), total: raw.beds, occupied });
     footfall.push({ date: isoDate(day), count: Math.min(180, Math.max(30, patientCount)) });
   }
@@ -173,12 +186,27 @@ function createCentre(raw, centreIndex, districtConfig) {
   const centreTests = tests.map(([id, name], index) => {
     const down = raw.struggling.includes("tests") && ["malaria", "dengue", "bloodSugar"].includes(id);
     const intermittent = !down && random() < 0.18;
-    const unavailableDays30 = down ? intBetween(12, 24) : intermittent ? intBetween(2, 6) : 0;
+    const targetUnavailableDays30 = down ? intBetween(12, 24) : intermittent ? intBetween(2, 6) : 0;
+    const outageStart = down ? intBetween(4, 18) : intBetween(6, 25);
+    const outageSpan = Math.max(1, Math.round(targetUnavailableDays30 * between(0.55, 0.9)));
+    let remainingSingleDays = Math.max(0, targetUnavailableDays30 - outageSpan);
+
+    const history = [];
+    for (let day = 44; day >= 0; day -= 1) {
+      const inMainOutage = day <= outageStart && day > outageStart - outageSpan;
+      const sporadicOutage = !inMainOutage && remainingSingleDays > 0 && random() < 0.09 + index * 0.006;
+      const available = !(inMainOutage || sporadicOutage);
+      if (sporadicOutage) remainingSingleDays -= 1;
+      history.push({ date: isoDate(day), available });
+    }
+
+    const unavailableDays30 = history.slice(-30).filter((point) => !point.available).length;
     return {
       id,
       name,
-      available: unavailableDays30 < 10 && !(raw.struggling.includes("tests") && index % 2 === 1),
-      unavailableDays30
+      available: history.at(-1)?.available ?? unavailableDays30 < 10,
+      unavailableDays30,
+      history
     };
   });
 

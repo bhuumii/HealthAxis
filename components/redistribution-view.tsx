@@ -22,13 +22,13 @@ export function RedistributionView() {
       <section className="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0 flex-1">
           <h1 className="craft-title mt-2">{t("redistribution")}</h1>
-          <p className="mt-3 w-full text-sm leading-6 text-[#46515c]">Recommended transfers are computed by a deterministic allocation algorithm, with Gemini used only by the assistant route to phrase explanations.</p>
+          <p className="mt-3 w-full text-sm leading-6 text-[#46515c]">{t("redistributionLead")}</p>
         </div>
         <LiveDataIndicator isLive={isLive} pulse={livePulse} lastUpdatedAt={lastUpdatedAt} />
       </section>
 
       <motion.section className="craft-card mb-5 p-5" variants={riseIn} initial="hidden" animate="visible" transition={entranceTransition}>
-        <p className="craft-section-title">Allocation method</p>
+        <p className="craft-section-title">{t("allocationMethod")}</p>
         <p className="mt-1 text-sm leading-6 text-slate-600">{REDISTRIBUTION_METHOD}</p>
       </motion.section>
 

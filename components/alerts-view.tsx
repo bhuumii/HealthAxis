@@ -26,7 +26,7 @@ export function AlertsView() {
     <main className="craft-page mx-auto max-w-7xl px-4 lg:px-8">
       <section className="mb-8">
         <h1 className="craft-title mt-2">{t("priorityAlerts")}</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-[#46515c]">These alerts show medicines and supplies that may run out soon. Technical forecast details are still available on each centre page.</p>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-[#46515c]">{t("alertsLead")}</p>
       </section>
       <motion.section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" variants={staggerContainer} initial="hidden" animate="visible">
         {warnings.map((warning) => (
@@ -44,13 +44,13 @@ export function AlertsView() {
               </div>
               <div className="craft-card-muted p-3">
                 <dt className="flex items-center gap-1 font-bold text-slate-500">
-                  Days remaining
+                  {t("daysRemaining")}
                   <span title="Estimated days before this item runs out at current usage rate.">
                     <Info size={13} strokeWidth={1.75} className="text-slate-400" />
                   </span>
                 </dt>
                 <dd className="craft-number mt-2 text-2xl font-extrabold leading-none text-[#17212b]">{formatDaysRemaining(warning.daysUntilStockout)}</dd>
-                <dd className="mt-1 text-xs leading-4 text-slate-500">Estimated time before this item runs out at current usage.</dd>
+                <dd className="mt-1 text-xs leading-4 text-slate-500">{t("daysRemainingHelp")}</dd>
               </div>
             </dl>
             <Link className="craft-button mt-5 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-bold text-[#164e63] hover:bg-[#eef3f5] hover:text-[#0d3848]" href={hrefWithDistrict(`/centres/${warning.centreId}`)}>

@@ -28,6 +28,15 @@ type TrendData = {
   domain?: [number, number];
 };
 
+type RestockDotProps = {
+  cx?: number;
+  cy?: number;
+  payload?: Record<string, unknown>;
+  restockKey: string;
+  color: string;
+  opacity: number;
+};
+
 const trendTabs: Array<{ value: TrendMetric; label: string }> = [
   { value: "stock", label: "Stock" },
   { value: "beds", label: "Beds" },
@@ -45,6 +54,11 @@ const stockLineColors = ["#9f3a38", "#8a6426", "#164e63"];
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
+}
+
+function RestockDot({ cx, cy, payload, restockKey, color, opacity }: RestockDotProps) {
+  if (typeof cx !== "number" || typeof cy !== "number" || !payload?.[restockKey]) return null;
+  return <circle cx={cx} cy={cy} r={4} fill="white" stroke={color} strokeWidth={2} opacity={opacity} />;
 }
 
 function simulatedTrend(dates: string[], anchor: number, max = 100) {
@@ -83,6 +97,7 @@ function stockCoverTrend(centre: HealthCentre, status: ReturnType<typeof getCent
       const historyPoint = medicine?.history.find((entry) => entry.date === date);
       const demand = Math.max(forecast.smoothedDemand || forecast.avgDailyUse, 0.1);
       point[`stock${index}`] = historyPoint ? Number(clamp(historyPoint.closing / demand, 0, 60).toFixed(1)) : undefined;
+      point[`stock${index}Restock`] = historyPoint && historyPoint.received > 0 ? historyPoint.received : undefined;
     });
     return point;
   });
@@ -129,12 +144,18 @@ function buildTrendData(centre: HealthCentre, status: ReturnType<typeof getCentr
     };
   }
 
+  const testDates = [...new Set(centre.tests.flatMap((test) => test.history?.map((point) => point.date) ?? []))].slice(-30);
+  const testData = testDates.length ? testDates.map((date) => {
+    const unavailable = centre.tests.filter((test) => test.history?.find((point) => point.date === date)?.available === false).length;
+    return { date: date.slice(5), value: Number(((unavailable / Math.max(centre.tests.length, 1)) * 100).toFixed(1)) };
+  }) : simulatedTrend(bedDates, status.unavailableTestPct);
+
   return {
     title: "Diagnostic test downtime trend",
-    subtitle: "30-day modeled trend anchored to the current diagnostic downtime indicator.",
+    subtitle: testDates.length ? "Daily percentage of diagnostic tests unavailable from test history." : "30-day modeled trend anchored to the current diagnostic downtime indicator.",
     unit: "% down",
     status: status.tests,
-    data: simulatedTrend(bedDates, status.unavailableTestPct)
+    data: testData
   };
 }
 
@@ -155,6 +176,7 @@ export function CentreDetail({ centreId }: { centreId: string }) {
   const { hrefWithDistrict } = useDistrictSelection();
   const { data, isLive, livePulse, lastUpdatedAt } = useDistrictData();
   const [activeMetric, setActiveMetric] = useState<TrendMetric>("stock");
+  const [focusedStockLine, setFocusedStockLine] = useState<string | null>(null);
   const centre = data.centres.find((candidate) => candidate.id === centreId);
 
   if (!centre) {
@@ -266,9 +288,26 @@ export function CentreDetail({ centreId }: { centreId: string }) {
                         return [`${value}${trend.unit.startsWith("%") ? "%" : ` ${trend.unit}`}`, label];
                       }}
                     />
-                    {trend.series ? trend.series.map((series) => (
-                      <Line key={series.key} type="monotone" dataKey={series.key} name={series.label} stroke={series.color} strokeWidth={2.25} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
-                    )) : (
+                    {trend.series ? trend.series.map((series) => {
+                      const dimmed = Boolean(focusedStockLine && focusedStockLine !== series.key);
+                      const opacity = dimmed ? 0.18 : 1;
+                      return (
+                        <Line
+                          key={series.key}
+                          type="monotone"
+                          dataKey={series.key}
+                          name={series.label}
+                          stroke={series.color}
+                          strokeWidth={focusedStockLine === series.key ? 3 : 2.25}
+                          strokeOpacity={opacity}
+                          dot={(props) => <RestockDot {...props} restockKey={`${series.key}Restock`} color={series.color} opacity={opacity} />}
+                          activeDot={{ r: 5, stroke: series.color, strokeWidth: 2 }}
+                          isAnimationActive
+                          animationDuration={280}
+                          animationEasing="ease-out"
+                        />
+                      );
+                    }) : (
                       <Line type="monotone" dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} isAnimationActive animationDuration={280} animationEasing="ease-out" />
                     )}
                   </LineChart>
@@ -277,13 +316,23 @@ export function CentreDetail({ centreId }: { centreId: string }) {
             </AnimatePresence>
           </div>
           {trend.series ? (
-            <div className="mt-3 flex flex-wrap gap-3 text-xs font-bold text-slate-500">
-              {trend.series.map((series) => (
-                <span className="inline-flex items-center gap-1.5" key={series.key}>
-                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: series.color }} />
-                  {series.label}
-                </span>
-              ))}
+            <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold text-slate-500">
+              {trend.series.map((series) => {
+                const active = focusedStockLine === series.key;
+                const dimmed = Boolean(focusedStockLine && !active);
+                return (
+                  <button
+                    className={`craft-button inline-flex items-center gap-1.5 rounded-md border px-2 py-1 transition ${active ? "border-[#164e63] bg-[#eef3f5] text-[#164e63]" : "border-transparent hover:border-[#cfd8df] hover:bg-white"} ${dimmed ? "opacity-45" : "opacity-100"}`}
+                    key={series.key}
+                    type="button"
+                    onClick={() => setFocusedStockLine((current) => current === series.key ? null : series.key)}
+                    aria-pressed={active}
+                  >
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: series.color }} />
+                    {series.label}
+                  </button>
+                );
+              })}
             </div>
           ) : null}
           <div className="mt-5 grid gap-3 md:grid-cols-3">

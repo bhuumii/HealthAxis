@@ -39,11 +39,17 @@ export interface AttendanceRecord {
   status: AttendanceStatus;
 }
 
+export interface TestHistoryPoint {
+  date: string;
+  available: boolean;
+}
+
 export interface DiagnosticTest {
   id: string;
   name: string;
   available: boolean;
   unavailableDays30: number;
+  history?: TestHistoryPoint[];
 }
 
 export interface PatientFootfallPoint {

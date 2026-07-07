@@ -89,7 +89,8 @@ function normalizeTest(id: string, data: DocumentData): TestDoc {
     centreId: readString(record, "centreId"),
     name: readString(record, "name"),
     available: Boolean(record.available),
-    unavailableDays30: readNumber(record, "unavailableDays30")
+    unavailableDays30: readNumber(record, "unavailableDays30"),
+    history: readArray(record, "history")
   };
 }
 

@@ -18,14 +18,27 @@ export async function getDistrictDataFromFirestore(districtSlug = "suryanagar"):
   const district = getDistrictBySlug(districtSlug);
   const byDistrict = (collectionName: string) => db.collection(collectionName).where("district", "==", district.name).get();
 
-  const [centres, stocks, beds, doctors, tests, footfall] = await Promise.all([
-    byDistrict("centres"),
-    byDistrict("stock_items"),
-    byDistrict("beds"),
-    byDistrict("doctors"),
-    byDistrict("tests"),
-    byDistrict("footfall_logs")
-  ]);
+  let centres;
+  let stocks;
+  let beds;
+  let doctors;
+  let tests;
+  let footfall;
+
+  try {
+    [centres, stocks, beds, doctors, tests, footfall] = await Promise.all([
+      byDistrict("centres"),
+      byDistrict("stock_items"),
+      byDistrict("beds"),
+      byDistrict("doctors"),
+      byDistrict("tests"),
+      byDistrict("footfall_logs")
+    ]);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown Firestore read error";
+    console.warn("Firestore district data unavailable for " + districtSlug + "; using bundled data. " + message);
+    return null;
+  }
 
   if (centres.empty) return null;
 

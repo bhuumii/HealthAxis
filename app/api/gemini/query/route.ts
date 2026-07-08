@@ -212,8 +212,16 @@ function directMetricAnswers(question: string, data: DistrictData, language = "e
   if (/score|intervention|flag/.test(normalized) || /स्कोर|हस्तक्षेप|चिह्नित|फ्लैग/.test(rawLower)) {
     answers.push(
       wantsHindi
-        ? `${namedCentre.centre} का intervention score ${namedCentre.interventionScore}/100 है, और यह district intervention के लिए ${namedCentre.flagged ? "flagged" : "flagged नहीं"} है।`
-        : `${namedCentre.centre}'s intervention score is ${namedCentre.interventionScore}/100, and it is ${namedCentre.flagged ? "flagged" : "not flagged"} for district intervention.`
+        ? namedCentre.centre + " का intervention score " + namedCentre.interventionScore + "/100 है, और यह district intervention के लिए " + (namedCentre.flagged ? "flagged" : "flagged नहीं") + " है।"
+        : namedCentre.centre + "'s intervention score is " + namedCentre.interventionScore + "/100, and it is " + (namedCentre.flagged ? "flagged" : "not flagged") + " for district intervention."
+    );
+  }
+
+  if (/patient|patients|footfall|opd|visits|visitors/.test(normalized) || /मरीज़|मरीज|रोगी|ओपीडी/.test(rawLower)) {
+    answers.push(
+      wantsHindi
+        ? namedCentre.centre + " में आज " + namedCentre.patientsToday + " patients हैं।"
+        : namedCentre.centre + " has " + namedCentre.patientsToday + " patients today."
     );
   }
 
@@ -250,6 +258,18 @@ function localAnswer(question: string, data: DistrictData) {
 
   const directAnswer = directMetricAnswer(question, data);
   if (directAnswer) return directAnswer;
+
+  if (/patient|patients|footfall|opd|visits|visitors|crowd|busy|busiest/.test(normalized) && /most|highest|max|maximum|top|busy|busiest|largest/.test(normalized)) {
+    const patientLeaders = [...summaries].sort((a, b) => b.patientsToday - a.patientsToday);
+    const leader = patientLeaders[0];
+    const runnerUp = patientLeaders[1];
+
+    if (!leader) return "No patient footfall data is available in the current district data.";
+
+    return runnerUp
+      ? leader.centre + " has the most patients today with " + leader.patientsToday + " patients. Next is " + runnerUp.centre + " with " + runnerUp.patientsToday + " patients."
+      : leader.centre + " has the most patients today with " + leader.patientsToday + " patients.";
+  }
 
   const namedCentre = findMentionedCentre(question, summaries);
   if (namedCentre && /why|flag|intervention|score|problem|issue/.test(normalized)) {
